@@ -1,6 +1,3 @@
-// @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
-// Copied omelette starter. Re-running copy_starter_component with this kind overwrites this file with the latest version (page content is unaffected).
-/* BEGIN USAGE */
 /**
  * <three-d-stage> — 3D object viewer + exporter shell (three.js).
  *
@@ -8,61 +5,22 @@
  * with a soft ground shadow, orbit controls (drag to orbit, wheel to zoom,
  * right-drag to pan), a camera auto-framed to the object's bounds, resize
  * handling, and a download toolbar that exports the current object as
- * OBJ + MTL or GLB (binary glTF). FBX cannot be exported in the browser;
- * GLB is the interchange format every modern 3D tool imports.
- *
- * three.js loads through the page's import map. Include this EXACT pinned
- * map in <head>, before any module runs — versions and integrity hashes
- * stay together (same map the "3D object" skill mandates):
- *
- *   <script type="importmap">
- *   {
- *     "imports": {
- *       "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
- *       "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
- *       "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
- *       "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
- *     },
- *     "integrity": {
- *       "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
- *       "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
- *       "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
- *       "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
- *       "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
- *     }
- *   }
- *   </script>
+ * OBJ + MTL or GLB (binary glTF).
  *
  * Usage:
- *   <style>three-d-stage:not(:defined){visibility:hidden}</style>
+ *   import './lib/three-d-stage.js';
  *   <three-d-stage name="rocket"></three-d-stage>
- *   <script src="three-d-stage.js"></script>
- *   <script type="module">
- *     const stage = document.querySelector('three-d-stage');
- *     const { THREE } = await stage.ready;
- *     const model = new THREE.Group();
- *     // …build the model out of named meshes with named materials —
- *     // the names become the o / usemtl entries in the exported OBJ…
- *     stage.setObject(model);
- *   </script>
+ *   const { THREE } = await stage.ready;
+ *   stage.setObject(model);
  *
  * Attributes:
  *   name       — export file basename (default "model")
  *   background — CSS color behind the scene (default a warm paper tone)
  *   autorotate — when present, a slow turntable until the user interacts
  *
- * Model in real-world meters, centered on the origin, y-up — exports
- * inherit the scene's units and orientation. The stage fills its own box;
- * size it with ordinary CSS (default 100vw/100vh page hero).
- *
- * Default setup: neutral studio lighting (hemisphere + key + fill), a
- * soft ground shadow, and NO environment map — so high metalness has
- * nothing to reflect and renders near-black. Cap metalness around
- * 0.3–0.4 and carry a metal look with a brighter base color. The copied
- * file is yours: adjust the lights, shadow, or background in _boot()
- * when the object needs a different look.
+ * Model in real-world meters, centered on the origin, y-up. The stage
+ * fills its own box; size it with ordinary CSS.
  */
-/* END USAGE */
 
 (() => {
   const stylesheet = `
@@ -133,19 +91,6 @@
     setTimeout(() => URL.revokeObjectURL(url), 4000);
   }
 
-  /** Tell the host an export attempt settled — telemetry only. The host
-   *  (HTMLViewer) verifies the source and re-reads these fields defensively
-   *  before counting; nothing else crosses the frame boundary. Guarded so
-   *  telemetry can never break the download path. */
-  function notifyExport(format, ok) {
-    try {
-      window.parent.postMessage(
-        { type: 'omelette:notify-3d-export', format: format, ok: ok === true },
-        '*'
-      );
-    } catch (e) {}
-  }
-
   class ThreeDStage extends HTMLElement {
     constructor() {
       super();
@@ -195,9 +140,7 @@
       this._boot().catch((err) => {
         this._err.style.display = 'flex';
         this._err.textContent =
-          'three.js failed to load.\n' +
-          'Check that the pinned <script type="importmap"> from the usage ' +
-          'notes is in <head> before any module script.\n\n' +
+          'three.js failed to load.\n\n' +
           String(err && err.message ? err.message : err);
         this._readyReject(err);
       });
@@ -208,7 +151,7 @@
       if (bg) this.style.setProperty('--stage-bg', bg);
       const [THREE, controlsMod] = await Promise.all([
         import('three'),
-        import('three/addons/controls/OrbitControls.js'),
+        import('three/examples/jsm/controls/OrbitControls.js'),
       ]);
       this._THREE = THREE;
       // preserveDrawingBuffer keeps the last frame readable after
@@ -378,24 +321,14 @@
       return mats;
     }
 
-    /** One export attempt, reported to the host however it settles.
-     *  Rethrows so a failure stays visible on the guest console exactly as
-     *  before. The no-object early return is not an attempt (the toolbar is
-     *  disabled until the model loads) and reports nothing. */
     async _runExport(format) {
       if (!this._object) return;
-      try {
-        await (format === 'obj' ? this._exportObj() : this._exportGlb());
-        notifyExport(format, true);
-      } catch (err) {
-        notifyExport(format, false);
-        throw err;
-      }
+      await (format === 'obj' ? this._exportObj() : this._exportGlb());
     }
 
     async _exportObj() {
       if (!this._object) return;
-      const mod = await import('three/addons/exporters/OBJExporter.js');
+      const mod = await import('three/examples/jsm/exporters/OBJExporter.js');
       const mats = this._nameParts();
       const base = this._basename;
       const obj =
@@ -418,7 +351,7 @@
 
     async _exportGlb() {
       if (!this._object) return;
-      const mod = await import('three/addons/exporters/GLTFExporter.js');
+      const mod = await import('three/examples/jsm/exporters/GLTFExporter.js');
       this._nameParts();
       const base = this._basename;
       const buf = await new mod.GLTFExporter().parseAsync(this._object, {

@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  background: #f4f0e9;
+  color: #2b3a4f;
+  font-family: 'Libre Baskerville', Georgia, serif;
+}
+
+a {
+  color: #2b3a4f;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b96f6f;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+three-d-stage:not(:defined) {
+  visibility: hidden;
+}
+
+.btn-dark:hover {
+  background: #3d5270;
+}
+
+.btn-outline-dark:hover {
+  background: #2b3a4f;
+  color: #fbf7ef;
+}
+
+.btn-gold:hover {
+  background: #f0d295;
+}
+
+.knotiva-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background: #d98c8c;
+  vertical-align: -0.15em;
+  animation: knotiva-blink 0.9s steps(1) infinite;
+}
+
+@keyframes knotiva-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.scene-page {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #f4f0e9;
+}
