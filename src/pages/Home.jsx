@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 24px 88px' }}>
+    <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 4vw, 56px) 88px' }}>
       <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, padding: '26px 0', flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
           <span style={{ fontSize: 24, letterSpacing: '0.02em' }}>Knotiva</span>
