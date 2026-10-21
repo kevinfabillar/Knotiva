@@ -5,12 +5,13 @@ body {
   font-family: 'Libre Baskerville', Georgia, serif;
 }
 
-a {
+/* Site link colours. Invitation templates (.tpl) style their own links. */
+a:where(:not(.tpl a)) {
   color: #2b3a4f;
   text-decoration: none;
 }
 
-a:hover {
+a:where(:not(.tpl a)):hover {
   color: #b96f6f;
 }
 

@@ -1,0 +1,99 @@
+/* Shared base for every invitation template. */
+
+.tpl {
+  container-type: inline-size;
+  container-name: tpl;
+  position: relative;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Things fixed to the viewport (gate, menu, dialogs) render in a .tpl-layer outside the root.
+   The wrapper has no box of its own; it only passes the template's variables and fonts down. */
+.tpl-layer {
+  display: contents;
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(.tpl, .tpl-layer) *,
+:where(.tpl, .tpl-layer) *::before,
+:where(.tpl, .tpl-layer) *::after {
+  box-sizing: border-box;
+}
+
+:where(.tpl, .tpl-layer) img {
+  display: block;
+  max-width: 100%;
+}
+
+:is(.tpl, .tpl-layer) :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.tpl, .tpl-layer) button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:where(.tpl, .tpl-layer) :is(h1, h2, h3, h4, p, ul, ol, dl, dd, figure) {
+  margin: 0;
+}
+
+:where(.tpl, .tpl-layer) :is(ul, ol) {
+  padding: 0;
+  list-style: none;
+}
+
+:where(.tpl) :focus-visible {
+  outline: 2px solid var(--k-accent, currentColor);
+  outline-offset: 3px;
+}
+
+/* Scroll reveal. Uses the `translate` property so it never clobbers an element's own rotate/transform. */
+.tpl .rv {
+  opacity: 0;
+  translate: 0 18px;
+  transition: opacity 0.9s ease, translate 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.tpl .rv.in,
+.tpl.is-static .rv {
+  opacity: 1;
+  translate: none;
+}
+
+.tpl .rv.d1 { transition-delay: 0.08s; }
+.tpl .rv.d2 { transition-delay: 0.16s; }
+.tpl .rv.d3 { transition-delay: 0.24s; }
+.tpl .rv.d4 { transition-delay: 0.32s; }
+
+/* Catalogue thumbnails: everything shown at rest. */
+.tpl.is-static *,
+.tpl.is-static *::before,
+.tpl.is-static *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl .rv {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+}
+
+/* Desktop headers and nav links give way to the kit's phone bar on narrow screens. */
+@container tpl (max-width: 760px) {
+  .tpl .nav-links,
+  .tpl .k-topnav {
+    display: none !important;
+  }
+}

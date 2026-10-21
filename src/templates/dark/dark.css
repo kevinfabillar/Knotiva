@@ -1,0 +1,822 @@
+/* Dark Fiery Flowers — near-black plum smoke, copper-gold line work, wide serif names. */
+
+.t-dark {
+  --bg: #0b0709;
+  --ink: #f1e7e1;
+  --soft: #cdbdb6;
+  --gold: #c8955a;
+  --gold-soft: rgba(200, 149, 90, 0.55);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', system-ui, sans-serif;
+
+  /* kit theme */
+  --k-bg: #0b0709;
+  --k-surface: rgba(28, 16, 22, 0.78);
+  --k-ink: #f1e7e1;
+  --k-muted: #bfaaa1;
+  --k-accent: #c8955a;
+  --k-on-accent: #160c10;
+  --k-line: rgba(200, 149, 90, 0.32);
+  --k-display: 'Cormorant Garamond', Georgia, serif;
+  --k-body: 'Jost', system-ui, sans-serif;
+  --k-script: 'Pinyon Script', cursive;
+  --k-radius: 0px;
+  --k-btn-radius: 0px;
+  --k-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  --k-error: #f0a08f;
+  --g-door: radial-gradient(ellipse at 50% 30%, #2a1420 0%, #120a0e 70%);
+  --g-door-ink: #e4b47c;
+  --g-handle: #c8955a;
+  --k-bar-ink-top: #e4b47c;
+  --k-bar-bg: #0b0709;
+  --k-bar-ink: #e4b47c;
+  --k-menu-bg: #0b0709;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+:where(.t-dark) section {
+  position: relative;
+  scroll-margin-top: 70px;
+  background-color: var(--bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Shared bits */
+.dk-label,
+.dk-eyebrow,
+.dk-title {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 11.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dk-title {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.dk-rule {
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin: 20px auto;
+  background: var(--gold);
+}
+
+.dk-rule--left {
+  margin-left: 0;
+}
+
+.dk-btn {
+  padding: 15px 40px;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  transition: background 0.3s, color 0.3s;
+}
+
+.dk-btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.dk-btn--sm {
+  padding: 10px 22px;
+}
+
+.dk-btn--wide {
+  padding: 17px 52px;
+}
+
+.dk-btn--ghost {
+  border-color: rgba(200, 149, 90, 0.5);
+  color: var(--soft);
+}
+
+.dk-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dk-link {
+  margin-top: 6px;
+  padding: 0 0 2px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--gold-soft);
+  cursor: pointer;
+}
+
+/* Nav */
+.dk-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 72px;
+  margin-bottom: -72px;
+  padding: 0 4cqw;
+  background: linear-gradient(to bottom, rgba(11, 7, 9, 0.96) 0%, rgba(11, 7, 9, 0.88) 62%, rgba(11, 7, 9, 0) 100%);
+}
+
+.dk-mono,
+.dk-foot-mono {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 26px;
+  color: var(--gold);
+}
+
+.dk-mono span,
+.dk-foot-mono span {
+  margin: 0 2px;
+  font-size: 0.7em;
+}
+
+.dk-links {
+  display: flex;
+  gap: 3cqw;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.dk-links a:hover {
+  color: var(--gold);
+}
+
+/* Hero */
+.dk-hero {
+  display: flex;
+  align-items: center;
+  min-height: 51.4cqw;
+  background-image: url('/templates/dark-fiery-flowers/hero.jpg');
+}
+
+.dk-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36cqw;
+  margin-left: 18cqw;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.dk-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.2cqw;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(38px, 4.4cqw, 68px);
+  line-height: 1.02;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.dk-names span {
+  margin-right: -0.24em;
+}
+
+.dk-names em {
+  margin: 0.08em 0 0.12em;
+  font-family: 'Pinyon Script', cursive;
+  font-style: normal;
+  font-size: 0.56em;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--gold);
+}
+
+.dk-when {
+  margin-bottom: 2.6cqw;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dk-when i,
+.dk-foot-meta i {
+  margin: 0 12px;
+  font-style: normal;
+}
+
+/* Story */
+.dk-story {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 50cqw;
+  background-image: url('/templates/dark-fiery-flowers/story.jpg');
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+}
+
+.dk-story-text {
+  width: 40cqw;
+  margin-right: 8cqw;
+}
+
+.dk-story-text h2 {
+  margin-bottom: 18px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(28px, 2.6cqw, 40px);
+}
+
+.dk-story-text p:last-child {
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--soft);
+}
+
+/* Countdown */
+.dk-countdown {
+  display: grid;
+  place-items: center;
+  min-height: 50cqw;
+  background-image: url('/templates/dark-fiery-flowers/arch.jpg');
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+  text-align: center;
+}
+
+.dk-countdown-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding-top: 5cqw;
+}
+
+.dk-count {
+  display: flex;
+  gap: 3cqw;
+}
+
+.dk-count div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 70px;
+}
+
+.dk-count b {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(40px, 4.6cqw, 66px);
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.dk-count span {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+/* Details */
+.dk-details {
+  padding: 4cqw 4cqw 5cqw;
+  background-image: linear-gradient(90deg, rgba(11, 7, 9, 0) 8%, rgba(11, 7, 9, 0.78) 24%, rgba(11, 7, 9, 0.78) 76%, rgba(11, 7, 9, 0) 92%),
+    url('/templates/dark-fiery-flowers/details.jpg');
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+  text-align: center;
+}
+
+.dk-details .dk-rule {
+  margin: 14px auto 3cqw;
+}
+
+.dk-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.dk-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+}
+
+.dk-col + .dk-col {
+  border-left: 1px solid var(--gold-soft);
+}
+
+.dk-col svg {
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+
+.dk-col h3 {
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dk-col p {
+  max-width: 20ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--soft);
+}
+
+/* Schedule */
+.dk-schedule {
+  padding: 4cqw 4cqw 5cqw;
+  background-image: linear-gradient(90deg, rgba(11, 7, 9, 0) 6%, rgba(11, 7, 9, 0.6) 22%, rgba(11, 7, 9, 0.6) 78%, rgba(11, 7, 9, 0) 94%),
+    url('/templates/dark-fiery-flowers/schedule.jpg');
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+  text-align: center;
+}
+
+.dk-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  max-width: 1000px;
+  margin: 3cqw auto 0;
+}
+
+.dk-timeline::before {
+  content: '';
+  position: absolute;
+  top: 57px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--gold-soft);
+}
+
+.dk-timeline li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.dk-timeline svg {
+  color: var(--gold);
+}
+
+.dk-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  margin: 12px 0 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(200, 149, 90, 0.8);
+}
+
+.dk-timeline b {
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.dk-timeline li > span:last-child {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Gallery */
+.dk-gallery {
+  padding: 3.4cqw 4cqw 4cqw;
+  background-image: url('/templates/dark-fiery-flowers/details.jpg');
+  background-position: center 70%;
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+}
+
+.dk-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  max-width: 1120px;
+  margin: 2.4cqw auto 0;
+}
+
+.dk-shot {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--gold-soft);
+  cursor: zoom-in;
+}
+
+.dk-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: saturate(0.9);
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+.dk-shot:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.1);
+}
+
+/* FAQ */
+.dk-faq {
+  padding: 5cqw 4cqw;
+  background-image: url('/templates/dark-fiery-flowers/arch.jpg');
+  background-position: center 30%;
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+}
+
+.dk-faq-card {
+  width: min(680px, 100%);
+  margin: 0 auto;
+  padding: 56px 9% 64px;
+  color: #3b2330;
+  background: #f1e2cf url('/templates/dark-fiery-flowers/faq.jpg') center 72% / cover no-repeat;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.dk-faq-card h2 {
+  margin-bottom: 26px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 2.6cqw, 38px);
+  text-align: center;
+}
+
+.dk-faq-card {
+  --k-ink: #3b2330;
+  --k-muted: #5e4350;
+  --k-line: rgba(91, 50, 67, 0.22);
+  --k-accent: #8a4a5c;
+}
+
+.dk-faq-card .k-faq {
+  width: 100%;
+}
+
+/* RSVP */
+.dk-rsvp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 5cqw 4cqw 5.4cqw;
+  text-align: center;
+  background-image: url('/templates/dark-fiery-flowers/schedule.jpg');
+  background-position: center 85%;
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+}
+
+.dk-rsvp .dk-label {
+  margin-bottom: 14px;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.dk-rsvp p {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--soft);
+}
+
+.dk-rsvp u {
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+}
+
+/* Generic sections: dress code, entourage, gifts */
+.dk-sec {
+  padding: 4.4cqw 4cqw 5cqw;
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+}
+
+.dk-sec--attire,
+.dk-sec--gifts {
+  background-image: linear-gradient(90deg, rgba(11, 7, 9, 0) 6%, rgba(11, 7, 9, 0.7) 24%, rgba(11, 7, 9, 0.7) 76%, rgba(11, 7, 9, 0) 94%),
+    url('/templates/dark-fiery-flowers/schedule.jpg');
+  background-position: center;
+}
+
+.dk-sec--ent {
+  background-image: linear-gradient(rgba(11, 7, 9, 0.55), rgba(11, 7, 9, 0.55)), url('/templates/dark-fiery-flowers/details.jpg');
+  background-position: center;
+}
+
+.dk-head {
+  margin-bottom: 3cqw;
+  text-align: center;
+}
+
+.dk-head .dk-rule {
+  margin: 14px auto 0;
+}
+
+.t-dark .k-swatch span,
+.t-dark .k-ent-title,
+.t-dark .k-gift-label {
+  color: var(--gold);
+}
+
+.t-dark .k-attire-card,
+.t-dark .k-gift-card {
+  background: rgba(20, 11, 16, 0.6);
+  backdrop-filter: blur(3px);
+}
+
+.t-dark .k-gift-number,
+.t-dark .k-ent-pairs span,
+.t-dark .k-ent-names li {
+  color: var(--ink);
+}
+
+.t-dark .k-rsvp {
+  backdrop-filter: blur(6px);
+}
+
+.t-dark .k-swatch-shape {
+  filter: drop-shadow(0 0 1px rgba(228, 180, 124, 0.75));
+}
+
+/* Footer */
+.dk-foot {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 20cqw 30px;
+  border-top: 1px solid rgba(200, 149, 90, 0.35);
+  text-align: center;
+}
+
+.dk-foot-mono {
+  justify-self: start;
+  padding-right: 28px;
+  border-right: 1px solid var(--gold-soft);
+}
+
+.dk-foot-names {
+  font-family: var(--serif);
+  font-size: 17px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dk-foot-meta {
+  margin-top: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.dk-social {
+  display: flex;
+  justify-self: end;
+  gap: 18px;
+  color: var(--soft);
+}
+
+/* ---------- Tablet ---------- */
+@container tpl (max-width: 960px) {
+  .dk-cols {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 36px;
+  }
+
+  .dk-col:nth-child(3) {
+    border-left: 0;
+  }
+
+  .dk-foot {
+    padding: 26px 6cqw 90px;
+  }
+}
+
+/* ---------- Phone ---------- */
+@container tpl (max-width: 640px) {
+  .dk-nav {
+    height: 60px;
+    margin-bottom: -60px;
+    padding: 0 18px;
+  }
+
+  .dk-hero {
+    align-items: flex-end;
+    min-height: 196cqw;
+    background-size: auto 112cqw;
+    background-position: 76% 0;
+  }
+
+  .dk-hero::after {
+    content: '';
+    position: absolute;
+    inset: 70cqw 0 0;
+    background: linear-gradient(to bottom, rgba(11, 7, 9, 0), var(--bg) 34%);
+  }
+
+  .dk-hero-text {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    padding: 0 22px 56px;
+  }
+
+  .dk-names {
+    margin-top: 16px;
+    font-size: 11.4cqw;
+  }
+
+  .dk-when {
+    margin-bottom: 26px;
+    line-height: 2;
+  }
+
+  .dk-story {
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 170cqw;
+    background-size: auto 100cqw;
+    background-position: 14% 0;
+  }
+
+  .dk-story::after {
+    content: '';
+    position: absolute;
+    inset: 62cqw 0 0;
+    background: linear-gradient(to bottom, rgba(11, 7, 9, 0), var(--bg) 40%);
+  }
+
+  .dk-story-text {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    padding: 0 28px 56px;
+  }
+
+  .dk-countdown {
+    min-height: 124cqw;
+    padding: 0;
+    background-size: auto 100%;
+  }
+
+  .dk-countdown-inner {
+    gap: 22px;
+    padding-top: 22cqw;
+  }
+
+  .dk-count {
+    gap: 14px;
+  }
+
+  .dk-count div {
+    min-width: 54px;
+  }
+
+  .dk-count b {
+    font-size: 11cqw;
+  }
+
+  .dk-details,
+  .dk-schedule,
+  .dk-gallery {
+    padding: 56px 20px;
+    background-image: linear-gradient(rgba(11, 7, 9, 0.35), rgba(11, 7, 9, 0.35)), url('/templates/dark-fiery-flowers/tall.jpg');
+    background-position: center;
+  }
+
+  .dk-cols {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 30px;
+    margin-top: 24px;
+  }
+
+  .dk-col {
+    padding: 4px 10px;
+  }
+
+  .dk-timeline {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    width: max-content;
+    margin-top: 32px;
+  }
+
+  .dk-timeline::before {
+    top: 12px;
+    bottom: 12px;
+    left: 61px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+
+  .dk-timeline li {
+    display: grid;
+    grid-template-columns: 38px 32px 74px auto;
+    align-items: center;
+    gap: 6px;
+    text-align: left;
+  }
+
+  .dk-dot {
+    margin: 0 auto;
+  }
+
+  .dk-grid {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 24px;
+  }
+
+  .dk-shot:first-child {
+    grid-column: span 2;
+  }
+
+  .dk-faq {
+    padding: 48px 14px;
+  }
+
+  .dk-faq-card {
+    padding: 44px 22px 52px;
+  }
+
+  .dk-faq-card li button {
+    font-size: 18px;
+  }
+
+  .dk-rsvp {
+    gap: 28px;
+    padding: 64px 16px 72px;
+  }
+
+  .dk-sec {
+    padding: 60px 20px 64px;
+    background-image: linear-gradient(rgba(11, 7, 9, 0.45), rgba(11, 7, 9, 0.45)), url('/templates/dark-fiery-flowers/tall.jpg');
+    background-position: center;
+  }
+
+  .dk-head {
+    margin-bottom: 30px;
+  }
+
+  .dk-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: min(280px, 100%);
+  }
+
+  .dk-hero-actions .k-cal,
+  .dk-hero-actions .dk-btn {
+    width: 100%;
+  }
+
+  .dk-foot {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 32px 20px 96px;
+  }
+
+  .dk-foot-mono {
+    justify-self: center;
+    padding: 0;
+    border: 0;
+  }
+
+  .dk-social {
+    justify-self: center;
+  }
+}

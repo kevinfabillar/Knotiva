@@ -1,29 +1,18 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import WalkInScene from '../scenes/WalkInScene.jsx';
+import TemplateCard from '../components/TemplateCard.jsx';
+import { CATALOG, FILTERS, catalogEntry } from '../templates/catalog.js';
+
+const PAGE = 9;
 
 const ACCENT = '#b96f6f';
-
-const TEMPLATES = [
-  { name: 'Ribbon & Rope', style: 'Classic', price: 'from ₱68/set', slot: '[ photo of letterpress suite ]', note: 'Deckled edge, knot monogram, grosgrain tie.', tag: 'classic' },
-  { name: 'Garden Longhand', style: 'Script', price: 'from ₱74/set', slot: '[ photo of calligraphy suite ]', note: 'Hand-lettered names, pressed-flower vellum band.', tag: 'script' },
-  { name: 'Bayanihan Blue', style: 'Modern', price: 'from ₱59/set', slot: '[ photo of two-colour suite ]', note: 'Two-ink risograph, Filipino motifs, matte stock.', tag: 'modern' },
-  { name: 'Wax & Willow', style: 'Classic', price: 'from ₱82/set', slot: '[ photo of wax-sealed suite ]', note: 'Hand-poured seal, cotton envelope, silk ribbon.', tag: 'classic' },
-  { name: 'Quiet Type', style: 'Modern', price: 'from ₱52/set', slot: '[ photo of minimal suite ]', note: 'One typeface, deep margins, nothing else.', tag: 'modern' },
-  { name: 'Gold Knotwork', style: 'Script', price: 'from ₱96/set', slot: '[ photo of foiled suite ]', note: 'Foiled knot border, blind deboss, tissue liner.', tag: 'script' },
-];
 
 const CRAFTS = [
   { n: '01', title: 'Lettering', body: 'Names drawn by hand or set in metal — your call. Three directions, one proof.' },
   { n: '02', title: 'Printing', body: 'Letterpress, riso and digital in-house, so the stock choice never gets vetoed by a supplier.' },
   { n: '03', title: 'Sealing', body: 'Wax poured and stamped per envelope, colour-matched to the suite.' },
   { n: '04', title: 'Finishing', body: 'Ribbon, vellum, addressing, postage weight check, boxed and ready to post.' },
-];
-
-const FILTERS = [
-  { key: 'all', label: 'All' },
-  { key: 'classic', label: 'Classic' },
-  { key: 'script', label: 'Script' },
-  { key: 'modern', label: 'Modern' },
 ];
 
 const mono = "'IBM Plex Mono', monospace";
@@ -41,8 +30,27 @@ export default function Home() {
   const [sent, setSent] = useState(false);
   const [sentName, setSentName] = useState('');
   const mascotRef = useRef(null);
+  const location = useLocation();
+  const [query] = useSearchParams();
+  // A template chosen on a demo page ("Use this design") or a card pre-fills the enquiry.
+  const [picked, setPicked] = useState(() => catalogEntry(query.get('template'))?.name || '');
+  const [limit, setLimit] = useState(PAGE);
 
-  const shown = filter === 'all' ? TEMPLATES : TEMPLATES.filter((t) => t.tag === filter);
+  const matching = filter === 'all' ? CATALOG : CATALOG.filter((t) => t.tags.includes(filter));
+  const shown = matching.slice(0, limit);
+  const filters = FILTERS.filter((f) => f.key === 'all' || CATALOG.some((t) => t.tags.includes(f.key)));
+
+  // Arriving from another page with #templates or #contact: scroll there once the page has laid out.
+  useEffect(() => {
+    if (!location.hash) return undefined;
+    const t = setTimeout(() => document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'smooth' }), 80);
+    return () => clearTimeout(t);
+  }, [location.hash]);
+
+  const requestDesign = (t) => {
+    setPicked(t.name);
+    setSent(false);
+  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -140,13 +148,21 @@ export default function Home() {
 
       <section id="templates" style={{ paddingTop: 88 }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap', borderBottom: '1px solid #ddd3c2', paddingBottom: 18 }}>
-          <h2 style={sectionHeading}>Templates</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <h2 style={sectionHeading}>Templates</h2>
+            <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: '#5d6a80', maxWidth: '52ch' }}>
+              Digital invitations your guests open on their phones, with an RSVP form, a schedule, maps and a gallery. Open any design to try the live demo.
+            </p>
+          </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            {FILTERS.map((f) => (
+            {filters.map((f) => (
               <button
                 key={f.key}
                 type="button"
-                onClick={() => setFilter(f.key)}
+                onClick={() => {
+                  setFilter(f.key);
+                  setLimit(PAGE);
+                }}
                 style={{
                   padding: '9px 16px',
                   borderRadius: 999,
@@ -165,28 +181,23 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,258px),1fr))', gap: 26, paddingTop: 30 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,360px),1fr))', gap: '44px 30px', paddingTop: 30 }}>
           {shown.map((t) => (
-            <article key={t.name} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <div style={{ position: 'relative', aspectRatio: '3/4', border: '1px solid #ddd3c2', borderRadius: 14, overflow: 'hidden', backgroundColor: '#fbf7ef', backgroundImage: 'repeating-linear-gradient(135deg,rgba(43,58,79,0.055) 0 8px,transparent 8px 16px)' }}>
-                <span style={{ position: 'absolute', left: 14, top: 14, padding: '5px 10px', background: '#f4f0e9', border: '1px solid #ddd3c2', borderRadius: 999, fontFamily: mono, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#7b7266' }}>
-                  {t.style}
-                </span>
-                <span style={{ position: 'absolute', inset: 'auto 14px 14px', fontFamily: mono, fontSize: 10, lineHeight: 1.5, letterSpacing: '0.06em', color: '#8b8172' }}>
-                  {t.slot}
-                </span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
-                <h3 style={{ margin: 0, fontSize: 19, fontWeight: 400 }}>{t.name}</h3>
-                <span style={{ fontFamily: mono, fontSize: 11, color: '#7b7266' }}>{t.price}</span>
-              </div>
-              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: '#5d6a80' }}>{t.note}</p>
-              <a href="#contact" style={{ fontFamily: mono, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', borderBottom: '1px solid #c9bda8', paddingBottom: 3, alignSelf: 'flex-start' }}>
-                Request this set
-              </a>
-            </article>
+            <TemplateCard key={t.slug} template={t} onRequest={() => requestDesign(t)} />
           ))}
         </div>
+        {matching.length > shown.length && (
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 44 }}>
+            <button
+              type="button"
+              className="btn-outline-dark"
+              onClick={() => setLimit((n) => n + PAGE)}
+              style={{ ...pill, padding: '14px 28px', border: '1.5px solid #2b3a4f', background: 'transparent', cursor: 'pointer' }}
+            >
+              Show more designs ({matching.length - shown.length})
+            </button>
+          </div>
+        )}
       </section>
 
       <section id="craft" style={{ paddingTop: 88 }}>
@@ -255,9 +266,11 @@ export default function Home() {
             <label style={fieldLabel}>
               What are you after?
               <textarea
+                key={picked}
                 name="note"
                 rows="4"
-                placeholder="We liked the Ribbon & Rope set — garden ceremony, 140 guests."
+                defaultValue={picked ? `We'd like the ${picked} template. ` : ''}
+                placeholder="We liked the Cinematic template — beach ceremony, 140 guests."
                 style={{ ...field, lineHeight: 1.55, resize: 'vertical' }}
               />
             </label>
