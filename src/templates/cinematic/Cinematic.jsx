@@ -9,6 +9,12 @@ import {
   Rsvp,
   TemplateRoot,
   demo,
+  initials,
+  useDetails,
+  useEntourage,
+  useGifts,
+  usePhoto,
+  useSchedule,
   mapsUrl,
   scrollToId,
   seatLine,
@@ -19,7 +25,7 @@ import './cinematic.css';
 
 const P = '/templates/cinematic/';
 
-const D = {
+const DEFAULTS = {
   a: 'Nathan',
   b: 'Louise',
   start: '2027-03-13T16:30:00-07:00',
@@ -30,22 +36,12 @@ const D = {
   replyBy: 'February 1, 2027',
 };
 
-const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
-
 const SCHEDULE = [
   { icon: 'rings', time: '4:30 PM', label: 'Ceremony' },
   { icon: 'camera', time: '5:00 PM', label: 'Photos' },
   { icon: 'cocktail', time: '6:00 PM', label: 'Cocktail Hour' },
   { icon: 'dinner', time: '7:30 PM', label: 'Dinner' },
   { icon: 'music', time: '9:00 PM', label: 'Dancing' },
-];
-
-const GALLERY = [
-  { src: `${P}g1.jpg`, alt: 'White rose bouquet' },
-  { src: `${P}g2.jpg`, alt: 'Candlelit reception table' },
-  { src: `${P}g3.jpg`, alt: 'The couple, forehead to forehead' },
-  { src: `${P}g4.jpg`, alt: 'Bridal bouquet of garden roses' },
-  { src: `${P}g5.jpg`, alt: 'Place setting with a printed menu' },
 ];
 
 const NAV = [
@@ -66,7 +62,10 @@ const PALETTE = [
   { name: 'Charcoal', hex: '#3d3935' },
 ];
 
-const gifts = demo.gifts(D);
+const DRESS = {
+  note: 'Formal beach attire in soft, neutral tones. Please leave the stilettos at home: the ceremony is on the sand.',
+  attire: [{ who: 'Ladies', text: 'Flowing long dresses or elegant cocktail dresses.', icon: 'gown' }, { who: 'Gentlemen', text: 'Light suits or a barong with linen trousers.', icon: 'suit' }],
+};
 
 function Title({ children }) {
   return (
@@ -77,7 +76,23 @@ function Title({ children }) {
   );
 }
 
+export const meta = { defaults: DEFAULTS, className: 't-cine', cover: `${P}hero.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+
 export default function Cinematic() {
+  const D = useDetails(DEFAULTS);
+  const photo = usePhoto();
+  const schedule = useSchedule(SCHEDULE);
+  const entourage = useEntourage(demo.entourage(D));
+  const [I1, I2] = initials(D);
+  const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
+  const GALLERY = [
+    { src: photo(`${P}g1.jpg`), alt: 'White rose bouquet' },
+    { src: photo(`${P}g2.jpg`), alt: 'Candlelit reception table' },
+    { src: photo(`${P}g3.jpg`), alt: 'The couple, forehead to forehead' },
+    { src: photo(`${P}g4.jpg`), alt: 'Bridal bouquet of garden roses' },
+    { src: photo(`${P}g5.jpg`), alt: 'Place setting with a printed menu' },
+  ];
+  const gifts = useGifts(demo.gifts(D));
   const { guest } = useInvite();
   const lightbox = useLightbox(GALLERY);
 
@@ -85,13 +100,13 @@ export default function Cinematic() {
     <TemplateRoot
       className="t-cine"
       nav={NAV}
-      monogram="n / L"
+      monogram={`${I1.toLowerCase()} / ${I2}`}
       music="canon"
-      gate={{ variant: 'envelope', names: `${D.a} & ${D.b}`, monogram: 'N·L', petals: true }}
+      gate={{ variant: 'envelope', names: `${D.a} & ${D.b}`, monogram: `${I1}·${I2}`, petals: true }}
     >
       <header className="cine-nav k-topnav">
         <a className="cine-mono" href="#top">
-          n<span>/</span>L
+          {I1.toLowerCase()}<span>/</span>{I2}
         </a>
         <nav className="nav-links cine-links">
           {NAV.slice(0, 5).map(({ id, label }) => (
@@ -132,7 +147,7 @@ export default function Cinematic() {
           </div>
         </div>
         <div className="cine-hero-img">
-          <img src={`${P}hero.jpg`} alt={`${D.a} and ${D.b} on the beach`} />
+          <img src={photo(`${P}hero.jpg`)} alt={`${D.a} and ${D.b} on the beach`} />
         </div>
       </section>
 
@@ -152,7 +167,7 @@ export default function Cinematic() {
           </p>
         </div>
         <div className="cine-story-img rv d1">
-          <img src={`${P}story.jpg`} alt="Walking along the shore" loading="lazy" />
+          <img src={photo(`${P}story.jpg`)} alt="Walking along the shore" loading="lazy" />
         </div>
       </section>
 
@@ -196,7 +211,7 @@ export default function Cinematic() {
       <section className="cine-schedule" id="schedule">
         <Title>Schedule of Events</Title>
         <ol className="cine-timeline rv d1">
-          {SCHEDULE.map((s) => (
+          {schedule.map((s) => (
             <li key={s.label}>
               <Icon name={s.icon} size={34} stroke={1.05} />
               <span className="cine-dot" />
@@ -209,19 +224,12 @@ export default function Cinematic() {
 
       <section className="cine-sec" id="attire">
         <Title>Dress Code</Title>
-        <DressCode
-          note="Formal beach attire in soft, neutral tones. Please leave the stilettos at home: the ceremony is on the sand."
-          palette={PALETTE}
-          attire={[
-            { who: 'Ladies', text: 'Flowing long dresses or elegant cocktail dresses.', icon: 'gown' },
-            { who: 'Gentlemen', text: 'Light suits or a barong with linen trousers.', icon: 'suit' },
-          ]}
-        />
+        <DressCode {...DRESS} palette={PALETTE} />
       </section>
 
       <section className="cine-sec cine-sec--tint" id="entourage">
         <Title>The Entourage</Title>
-        <Entourage groups={demo.entourage(D)} />
+        <Entourage groups={entourage} />
       </section>
 
       <section className="cine-gallery" id="gallery">
@@ -235,7 +243,7 @@ export default function Cinematic() {
 
       <section className="cine-sec" id="gifts">
         <Title>Gifts</Title>
-        <Gifts note={gifts.note} accounts={gifts.accounts} />
+        <Gifts note={gifts.note} accounts={gifts.accounts} qr={gifts.qr} />
       </section>
 
       <section className="cine-sec cine-sec--tint" id="faq">
@@ -244,8 +252,8 @@ export default function Cinematic() {
       </section>
 
       <section className="cine-rsvp" id="rsvp">
-        <img className="cine-olive cine-olive--l" src={`${P}olive-l.png`} alt="" loading="lazy" />
-        <img className="cine-olive cine-olive--r" src={`${P}olive-r.png`} alt="" loading="lazy" />
+        <img className="cine-olive cine-olive--l" src={photo(`${P}olive-l.png`)} alt="" loading="lazy" />
+        <img className="cine-olive cine-olive--r" src={photo(`${P}olive-r.png`)} alt="" loading="lazy" />
         <div className="cine-rsvp-text rv">
           <h2>Kindly Respond</h2>
           <p>
@@ -259,7 +267,7 @@ export default function Cinematic() {
 
       <footer className="cine-foot">
         <span className="cine-mono">
-          n<span>/</span>L
+          {I1.toLowerCase()}<span>/</span>{I2}
         </span>
         <div>
           <p className="cine-foot-names">

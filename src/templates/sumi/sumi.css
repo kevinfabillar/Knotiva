@@ -1,0 +1,1648 @@
+/* Sumi — Japanese ink on washi: ensō, vermilion hanko, mizuhiki knot, gold kintsugi seams. */
+
+.t-sumi {
+  --washi: #f3eee3;
+  --paper: #faf7f0;
+  --ink: #1e1c19;
+  --usuzumi: #6a655c;
+  --shu: #b8361f;
+  --kin: #b08d3c;
+  --kin-light: #e3cc8c;
+  --line: #d8cfbf;
+  --ai: #2e3f55;
+  --mincho: 'Shippori Mincho', 'Yu Mincho', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+
+  --k-bg: #f3eee3;
+  --k-surface: #faf7f0;
+  --k-ink: #1e1c19;
+  --k-muted: #6a655c;
+  --k-accent: #b8361f;
+  --k-on-accent: #faf7f0;
+  --k-line: #d8cfbf;
+  --k-display: 'Spectral', Georgia, serif;
+  --k-display-weight: 300;
+  --k-body: 'Albert Sans', system-ui, sans-serif;
+  --k-script: 'Spectral', Georgia, serif;
+  --k-radius: 0px;
+  --k-btn-radius: 0px;
+  --k-shadow: 0 24px 50px rgba(30, 28, 25, 0.12);
+  --k-field-bg: transparent;
+
+  --g-bg: #efe9dd;
+  --g-ink: #1e1c19;
+  --g-accent: #b8361f;
+  --g-env: #fbf8f2;
+  --g-letter: #faf7f0;
+  --g-card-ink: #1e1c19;
+  --g-seal: #b8361f;
+  --g-seal-ink: rgba(250, 247, 240, 0.9);
+  --g-door: #1e1c19;
+  --g-door-ink: #f3eee3;
+  --g-names-case: none;
+  --g-btn-hover-bg: #1e1c19;
+  --g-btn-hover-ink: #f3eee3;
+
+  --k-bar-ink-top: #1e1c19;
+  --k-bar-bg: #f3eee3;
+  --k-bar-ink: #1e1c19;
+  --k-menu-bg: #f3eee3;
+  --k-music-bg: #b8361f;
+  --k-music-ink: #faf7f0;
+
+  background: var(--washi);
+  color: var(--ink);
+  font-family: var(--k-body);
+}
+
+.t-sumi section,
+.t-sumi [id] {
+  scroll-margin-top: 20px;
+}
+
+/* ---------- Overrides ---------- */
+.t-sumi .k-gate-names em,
+.t-sumi .k-gate-dear {
+  font-style: italic;
+}
+
+.t-sumi .k-gate-names em {
+  color: var(--shu);
+}
+
+.t-sumi .k-count-cell b {
+  font-weight: 200;
+}
+
+.t-sumi .k-faq button {
+  font-weight: 400;
+}
+
+/* ---------- Gate: folded washi card ---------- */
+.t-sumi .k-gate--card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  pointer-events: none;
+  background: url(/templates/sumi/enso.svg) center / min(900px, 130vmin) no-repeat;
+}
+
+.t-sumi .k-card-cover-front {
+  justify-content: flex-end;
+  padding-bottom: 22%;
+  background: url(/templates/sumi/mizuhiki.svg) 50% 13% / 53% auto no-repeat, var(--g-env);
+}
+
+.t-sumi .k-card-mono {
+  font-weight: 300;
+  font-size: 40px;
+  letter-spacing: 0.1em;
+}
+
+.t-sumi .k-card-cover-front::after {
+  content: '';
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  background: #b8361f;
+  box-shadow: inset 0 0 0 2px #b8361f, inset 0 0 0 3px rgba(250, 247, 240, 0.85);
+  transform: rotate(-6deg);
+}
+
+.t-sumi .k-card-inside .k-gate-names {
+  font-weight: 300;
+}
+
+.t-sumi .k-gate-eyebrow,
+.t-sumi .k-card-sub,
+.t-sumi .k-gate-hint {
+  font-weight: 500;
+}
+
+/* ---------- Shared ---------- */
+.sm-hanko {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 5px;
+  font: 500 21px/1.02 var(--k-display);
+  color: #faf7f0;
+  background: #b8361f;
+  box-shadow: inset 0 0 0 4px #b8361f, inset 0 0 0 5.5px rgba(250, 247, 240, 0.85);
+  transform: rotate(-3deg);
+}
+
+.sm-v {
+  writing-mode: vertical-rl;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.sm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  min-width: 140px;
+  padding: 0 26px;
+  font-family: var(--k-body);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--shu);
+  border: 1px solid var(--shu);
+  transition: background 0.25s, color 0.25s;
+}
+
+.sm-btn:hover {
+  background: #9c2c18;
+}
+
+.sm-btn--line {
+  min-width: 180px;
+  color: var(--ink);
+  background: transparent;
+  border-color: var(--ink);
+}
+
+.sm-btn--line:hover {
+  color: var(--washi);
+  background: var(--ink);
+}
+
+.sm-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  font-family: var(--k-body);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--shu);
+  text-underline-offset: 6px;
+  cursor: pointer;
+}
+
+.t-sumi a.sm-link {
+  text-decoration: underline;
+  text-decoration-color: var(--shu);
+}
+
+.sm-seam {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 28px;
+  pointer-events: none;
+}
+
+.sm-seam--phone {
+  display: none;
+}
+
+.sm-seam--top {
+  top: 0;
+}
+
+.sm-seam--bottom {
+  bottom: 0;
+}
+
+/* Section grid: a narrow label rail, then the content column. */
+.sm-sec {
+  position: relative;
+  display: grid;
+  grid-template-columns: 160px minmax(0, 900px);
+  justify-content: center;
+  column-gap: 60px;
+  padding: 64px 80px 100px;
+}
+
+.sm-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.sm-num {
+  font-family: var(--mincho);
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.sm-num--inline {
+  display: none;
+}
+
+.sm-vlabel {
+  writing-mode: vertical-rl;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--usuzumi);
+}
+
+.sm-rail-line {
+  width: 1px;
+  height: 160px;
+  margin-left: 5px;
+  background: var(--line);
+}
+
+.sm-title {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 64px;
+}
+
+.sm-title h2 {
+  font-family: var(--k-display);
+  font-weight: 300;
+  font-size: 52px;
+  line-height: 1.1;
+}
+
+.sm-brush-rule {
+  display: block;
+  width: 180px;
+  height: 14px;
+  margin-top: 10px;
+  color: var(--ink);
+}
+
+/* ---------- 1. Hero ---------- */
+.sm-hero {
+  position: relative;
+  height: 900px;
+  overflow: hidden;
+}
+
+.sm-nav {
+  position: absolute;
+  top: 56px;
+  left: 80px;
+  right: 72px;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.sm-vnav {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 22px;
+}
+
+.sm-vnav a {
+  writing-mode: vertical-rl;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+
+.t-sumi .sm-vnav a:hover {
+  color: var(--shu);
+}
+
+.t-sumi .sm-vnav a.is-reply {
+  font-weight: 600;
+  color: var(--shu);
+}
+
+.sm-hero-in {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1280px;
+  height: 900px;
+  translate: -50% 0;
+}
+
+.sm-enso-box {
+  position: absolute;
+  left: 200px;
+  top: 150px;
+  display: grid;
+  place-items: center;
+  width: 620px;
+  height: 620px;
+}
+
+.sm-enso {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--ink);
+}
+
+.sm-names {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  font-family: var(--k-display);
+  font-weight: 200;
+  font-size: 120px;
+  line-height: 0.95;
+  text-align: center;
+}
+
+.sm-names em {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.5em;
+  line-height: 1.1;
+  color: var(--shu);
+}
+
+.sm-hero-together {
+  position: absolute;
+  left: 936px;
+  top: 200px;
+}
+
+.sm-hero-when {
+  position: absolute;
+  left: 900px;
+  top: 200px;
+  color: var(--usuzumi);
+}
+
+.sm-musubi {
+  position: absolute;
+  left: 1036px;
+  top: 312px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.sm-kanji {
+  font-family: var(--mincho);
+  font-weight: 500;
+  font-size: 112px;
+  line-height: 1;
+}
+
+.sm-musubi .sm-v {
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--usuzumi);
+}
+
+.sm-hero-actions {
+  position: absolute;
+  left: 343px;
+  top: 800px;
+  display: flex;
+  gap: 14px;
+}
+
+.sm-seam--hero {
+  bottom: 0;
+}
+
+/* ---------- 2. Countdown ---------- */
+.sm-count-sec {
+  padding-top: 70px;
+  padding-bottom: 80px;
+}
+
+.sm-seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  font-family: var(--mincho);
+  font-size: 26px;
+  color: #faf7f0;
+  background: var(--shu);
+  box-shadow: inset 0 0 0 3px var(--shu), inset 0 0 0 4px rgba(250, 247, 240, 0.85);
+  transform: rotate(-4deg);
+}
+
+.sm-count-sec .sm-rail {
+  align-items: center;
+  width: 48px;
+}
+
+.sm-count-sec .sm-vlabel {
+  letter-spacing: 0.36em;
+}
+
+.t-sumi .sm-count {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 22px;
+}
+
+.t-sumi .sm-count .k-count-cell {
+  align-items: flex-start;
+  gap: 6px;
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+
+.t-sumi .sm-count .k-count-cell:first-child {
+  border-left: 0;
+}
+
+.t-sumi .sm-count .k-count-cell::before {
+  content: '日';
+  font-family: var(--mincho);
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--shu);
+}
+
+.t-sumi .sm-count .k-count-cell:nth-child(2)::before {
+  content: '時';
+}
+
+.t-sumi .sm-count .k-count-cell:nth-child(3)::before {
+  content: '分';
+}
+
+.t-sumi .sm-count .k-count-cell:nth-child(4)::before {
+  content: '秒';
+}
+
+.t-sumi .sm-count b {
+  font-size: 92px;
+  color: var(--ink);
+}
+
+.t-sumi .sm-count span {
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--usuzumi);
+}
+
+/* ---------- 3. The day ---------- */
+.sm-day {
+  display: grid;
+  grid-template-columns: 420px 420px;
+  grid-template-rows: auto 1fr;
+  column-gap: 60px;
+}
+
+.sm-day .sm-title {
+  grid-area: 1 / 1;
+}
+
+.sm-dl {
+  grid-area: 2 / 1;
+  align-self: start;
+  border-top: 1px solid var(--line);
+}
+
+.sm-dl > div {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.sm-dl dt {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--shu);
+}
+
+.sm-dd-main {
+  margin-top: 8px;
+  font-family: var(--k-display);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.25;
+}
+
+.sm-dd-small {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--usuzumi);
+}
+
+.sm-dd-actions {
+  display: flex;
+  gap: 26px;
+  margin-top: 6px;
+}
+
+.sm-dd-actions .k-cal-menu {
+  left: 0;
+  transform: none;
+}
+
+.sm-day-photo {
+  grid-area: 1 / 2 / 3 / 3;
+  position: relative;
+  height: 580px;
+}
+
+.sm-day-photo img,
+.sm-ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sm-day-photo::after,
+.sm-ph::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(30, 28, 25, 0.12);
+  pointer-events: none;
+}
+
+/* ---------- 4. Order of the day ---------- */
+.sm-prog-wrap {
+  position: relative;
+}
+
+.sm-prog-line {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 100%;
+  height: 16px;
+  color: var(--ink);
+}
+
+.sm-prog-line-v {
+  display: none;
+}
+
+.sm-prog {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.sm-prog li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sm-prog-time {
+  font-family: var(--k-display);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 40px;
+  white-space: nowrap;
+}
+
+.sm-prog-dot {
+  width: 14px;
+  height: 14px;
+  margin-top: 21px;
+  border-radius: 50%;
+  background: var(--shu);
+}
+
+.sm-prog-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sm-prog-label {
+  margin-top: 22px;
+  font-weight: 500;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.sm-prog-note {
+  max-width: 140px;
+  margin-top: 6px;
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--usuzumi);
+}
+
+/* ---------- 5. What to wear ---------- */
+.sm-attire-sec {
+  padding-bottom: 120px;
+}
+
+.sm-cols {
+  display: grid;
+  grid-template-columns: 400px 420px;
+  column-gap: 80px;
+  align-items: start;
+}
+
+.t-sumi .sm-dress-l,
+.t-sumi .sm-dress-r {
+  align-items: flex-start;
+  gap: 32px;
+  margin: 0;
+  text-align: left;
+}
+
+.t-sumi .sm-dress-l .k-dress-note {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--usuzumi);
+}
+
+.t-sumi .sm-dress-l .k-swatches {
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.t-sumi .sm-dress-l .k-swatch {
+  width: 72px;
+}
+
+.t-sumi .sm-dress-l .k-swatch span {
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+.t-sumi .k-swatch-shape--circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 47% 53% 50% 50% / 52% 48% 52% 48%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.t-sumi .k-swatch:nth-child(2) .k-swatch-shape {
+  border-radius: 52% 48% 47% 53% / 50% 52% 48% 50%;
+}
+
+.t-sumi .k-swatch:nth-child(3) .k-swatch-shape {
+  border-radius: 49% 51% 53% 47% / 47% 53% 49% 51%;
+}
+
+.t-sumi .k-swatch:nth-child(4) .k-swatch-shape {
+  border-radius: 53% 47% 50% 50% / 48% 52% 50% 50%;
+}
+
+.t-sumi .k-swatch:nth-child(5) .k-swatch-shape {
+  border-radius: 50% 50% 46% 54% / 53% 47% 51% 49%;
+}
+
+.t-sumi .sm-dress-r .k-attire {
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.t-sumi .k-attire-card {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  column-gap: 0;
+  row-gap: 6px;
+  align-items: start;
+  padding: 24px 0;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.t-sumi .k-attire-card svg {
+  grid-row: 1 / span 2;
+  width: 36px;
+  height: 36px;
+  margin: 2px 0 0;
+  color: var(--ink);
+}
+
+.t-sumi .k-attire-card h3 {
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.t-sumi .k-attire-card p {
+  max-width: none;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--usuzumi);
+}
+
+/* ---------- 6. Family & friends ---------- */
+.sm-ent-wrap {
+  position: relative;
+}
+
+.sm-ent-line {
+  position: absolute;
+  left: calc(50% - 4px);
+  top: 0;
+  width: 8px;
+  height: 100%;
+  color: var(--ink);
+  opacity: 0.45;
+}
+
+.t-sumi .k-entourage {
+  display: block;
+  columns: 2;
+  column-gap: 120px;
+  max-width: none;
+  text-align: left;
+}
+
+.t-sumi .k-ent-group {
+  break-inside: avoid;
+  margin-bottom: 36px;
+}
+
+.t-sumi .k-ent-title {
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--shu);
+}
+
+.t-sumi .k-ent-pairs span,
+.t-sumi .k-ent-names li {
+  font-family: var(--k-display);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.t-sumi .k-ent-pairs li {
+  display: block;
+  padding: 0;
+}
+
+.t-sumi .k-ent-pairs li span:first-child,
+.t-sumi .k-ent-pairs li span:last-child {
+  text-align: left;
+}
+
+.t-sumi .k-ent-pairs li span + span::before {
+  content: ' · ';
+  color: var(--shu);
+}
+
+.t-sumi .k-ent-names.is-cols {
+  columns: 1;
+}
+
+/* ---------- 7. Moments ---------- */
+.sm-moments {
+  display: grid;
+  grid-template-columns: 440px 40px 200px 20px 200px;
+  grid-template-rows: 300px 30px 40px 190px;
+}
+
+.sm-ph {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.sm-ph img {
+  transition: transform 0.7s ease;
+}
+
+.sm-ph:hover img {
+  transform: scale(1.03);
+}
+
+.sm-ph--a {
+  grid-area: 1 / 1 / 5 / 2;
+}
+
+.sm-ph--b {
+  grid-area: 1 / 3 / 2 / 6;
+}
+
+.sm-ph--c {
+  grid-area: 3 / 3 / 5 / 4;
+}
+
+.sm-ph--d {
+  grid-area: 4 / 5 / 5 / 6;
+}
+
+/* ---------- 8. Gifts ---------- */
+.sm-note {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--usuzumi);
+}
+
+.sm-knot {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.sm-knot-svg {
+  flex: none;
+  width: 180px;
+  height: 150px;
+}
+
+.sm-knot figcaption {
+  max-width: 160px;
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--usuzumi);
+}
+
+.t-sumi .sm-gifts {
+  align-items: stretch;
+}
+
+.t-sumi .k-gift-cards {
+  grid-template-columns: 1fr;
+  gap: 0;
+  width: 100%;
+  border-top: 1px solid var(--line);
+}
+
+.t-sumi .k-gift-card {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  column-gap: 18px;
+  row-gap: 2px;
+  align-items: center;
+  padding: 26px 0;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.t-sumi .k-gift-card::before {
+  content: '';
+  grid-row: 1 / span 3;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--shu);
+  box-shadow: inset 0 0 0 3px var(--shu), inset 0 0 0 4px rgba(250, 247, 240, 0.85);
+  transform: rotate(-4deg);
+}
+
+.t-sumi .k-gift-label,
+.t-sumi .k-gift-name,
+.t-sumi .k-gift-number {
+  grid-column: 2;
+}
+
+.t-sumi .k-gift-label {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--shu);
+}
+
+.t-sumi .k-gift-name {
+  font-size: 14px;
+  color: var(--usuzumi);
+}
+
+.t-sumi .k-gift-number {
+  margin: 0;
+  font-weight: 300;
+  font-size: 30px;
+}
+
+.t-sumi .k-copy {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  height: 44px;
+  border-radius: 0;
+  border-color: var(--ink);
+}
+
+/* ---------- 9. Questions ---------- */
+.t-sumi .sm-faq {
+  width: 100%;
+}
+
+.t-sumi .sm-faq button {
+  font-size: 22px;
+}
+
+.t-sumi .sm-faq .k-faq-a p {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--usuzumi);
+}
+
+.t-sumi .k-faq button i {
+  width: 16px;
+  height: 16px;
+}
+
+.t-sumi .k-faq button i::before,
+.t-sumi .k-faq button i::after {
+  top: 7.5px;
+  width: 16px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.t-sumi .k-faq li.is-open button i::before {
+  background: var(--shu);
+}
+
+/* ---------- 10. Reply ---------- */
+.sm-reply {
+  padding-top: 64px;
+  padding-bottom: 110px;
+  overflow: hidden;
+}
+
+.sm-reply-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 736px;
+  padding-top: 196px;
+  text-align: center;
+}
+
+.sm-reply-enso {
+  position: absolute;
+  left: 50%;
+  top: 16px;
+  width: 760px;
+  height: 760px;
+  color: var(--ink);
+  opacity: 0.92;
+  translate: -50% 0;
+  pointer-events: none;
+}
+
+.sm-reply-title {
+  position: relative;
+  font-family: var(--k-display);
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+.sm-reply-line {
+  position: relative;
+  max-width: 400px;
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--usuzumi);
+}
+
+.sm-card-wrap {
+  position: relative;
+  width: min(520px, 100%);
+  margin-top: 32px;
+}
+
+.t-sumi .sm-rsvp {
+  position: relative;
+  width: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 50px rgba(30, 28, 25, 0.12);
+}
+
+.t-sumi .k-field input {
+  padding: 10px 0;
+  font-family: var(--k-display);
+  font-size: 20px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+}
+
+.t-sumi .k-btn {
+  min-height: 48px;
+  font-weight: 600;
+}
+
+.sm-stamp {
+  position: absolute;
+  right: -26px;
+  bottom: -28px;
+  z-index: 2;
+  width: 66px;
+  height: 66px;
+  font-size: 22px;
+  opacity: 0.94;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+
+/* ---------- 11. Footer ---------- */
+.sm-foot {
+  position: relative;
+  display: grid;
+  grid-template-columns: 160px minmax(0, 900px);
+  justify-content: center;
+  column-gap: 60px;
+  align-items: center;
+  padding: 90px 80px 80px;
+}
+
+.sm-foot-hanko {
+  width: 72px;
+  height: 72px;
+  font-size: 23px;
+}
+
+.sm-foot-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sm-foot-names {
+  font-family: var(--k-display);
+  font-weight: 200;
+  font-size: 46px;
+  line-height: 1.1;
+}
+
+.sm-foot-names em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--shu);
+}
+
+.sm-foot-meta {
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--usuzumi);
+}
+
+.sm-social {
+  display: flex;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.sm-foot-kanji {
+  position: absolute;
+  right: 72px;
+  top: 50%;
+  font-family: var(--mincho);
+  font-weight: 500;
+  font-size: 22px;
+  translate: 0 -50%;
+}
+
+/* ---------- Tablet ---------- */
+@container tpl (max-width: 1100px) {
+  .sm-sec,
+  .sm-foot {
+    grid-template-columns: 90px minmax(0, 1fr);
+    column-gap: 36px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  /* hero flows: ensō, then the vertical lines and 結, then the buttons */
+  .sm-hero {
+    height: auto;
+    padding: 150px 24px 90px;
+  }
+
+  .sm-nav {
+    top: 40px;
+    left: 40px;
+    right: 40px;
+  }
+
+  .sm-hero-in {
+    position: static;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: start;
+    column-gap: 30px;
+    row-gap: 40px;
+    width: auto;
+    height: auto;
+    translate: none;
+  }
+
+  .sm-hero-in > * {
+    position: static;
+  }
+
+  .sm-enso-box {
+    position: relative;
+    inset: auto;
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(620px, 60cqw);
+    height: min(620px, 60cqw);
+  }
+
+  .sm-names {
+    width: 65%;
+    font-size: calc(min(620px, 60cqw) * 0.1935);
+  }
+
+  .sm-hero-actions {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .sm-day {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 40px;
+  }
+
+  .sm-day-photo {
+    height: 100%;
+    min-height: 480px;
+  }
+
+  .sm-prog {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 44px;
+  }
+
+  .sm-prog-line {
+    display: none;
+  }
+
+  .sm-cols {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 48px;
+  }
+
+  .sm-moments {
+    grid-template-columns: 49fr 4fr 22fr 2fr 22fr;
+    grid-template-rows: 30cqw 3cqw 4cqw 19cqw;
+  }
+
+  .t-sumi .k-entourage {
+    column-gap: 60px;
+  }
+
+  .sm-reply-enso {
+    width: min(760px, 70cqw);
+    height: min(760px, 70cqw);
+  }
+}
+
+/* ---------- Phone ---------- */
+@container tpl (max-width: 640px) {
+  .t-sumi section,
+  .t-sumi [id] {
+    scroll-margin-top: 56px;
+  }
+
+  .sm-seam--desk {
+    display: none;
+  }
+
+  .sm-seam--phone {
+    display: block;
+  }
+
+  .sm-sec {
+    display: block;
+    padding: 56px 24px 72px;
+  }
+
+  .sm-rail {
+    display: none;
+  }
+
+  .sm-num--inline {
+    display: block;
+    font-size: 40px;
+  }
+
+  .sm-title {
+    margin-bottom: 40px;
+  }
+
+  .sm-title h2 {
+    font-size: 36px;
+  }
+
+  .sm-brush-rule {
+    width: 130px;
+    height: 10px;
+  }
+
+  /* hero */
+  .sm-hero {
+    min-height: 860px;
+    padding: 186px 16px 90px;
+  }
+
+  .sm-hero-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0;
+  }
+
+  .sm-enso-box {
+    width: min(330px, calc(100cqw - 60px));
+    height: min(330px, calc(100cqw - 60px));
+  }
+
+  .sm-names {
+    width: 70%;
+    font-size: min(66px, 17cqw);
+  }
+
+  .sm-names em {
+    font-size: 34px;
+  }
+
+  .sm-hero-together {
+    order: 1;
+    margin-top: 40px;
+    writing-mode: horizontal-tb;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--usuzumi);
+  }
+
+  .sm-hero-when {
+    order: 2;
+    margin-top: 10px;
+    writing-mode: horizontal-tb;
+    font-family: var(--k-display);
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+  }
+
+  .sm-musubi {
+    position: absolute;
+    top: 82px;
+    left: calc(50% + 95px);
+    gap: 8px;
+  }
+
+  .sm-hero-in > .sm-musubi {
+    position: absolute;
+  }
+
+  .sm-kanji {
+    font-size: 52px;
+  }
+
+  .sm-musubi .sm-v {
+    font-size: 9.5px;
+  }
+
+  .sm-hero-actions {
+    order: 3;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+    width: min(260px, 100%);
+  }
+
+  .sm-hero-actions .sm-btn,
+  .sm-hero-actions .k-cal {
+    width: 100%;
+  }
+
+  .sm-seam--hero {
+    bottom: 6px;
+  }
+
+  /* countdown */
+  .sm-count-sec .sm-rail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: auto;
+    margin-bottom: 28px;
+  }
+
+  .sm-count-sec .sm-seal {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+  }
+
+  .sm-count-sec .sm-vlabel {
+    writing-mode: horizontal-tb;
+  }
+
+  .t-sumi .sm-count {
+    margin-top: 0;
+  }
+
+  .t-sumi .sm-count .k-count-cell {
+    align-items: center;
+    gap: 4px;
+    padding-left: 0;
+  }
+
+  .t-sumi .sm-count .k-count-cell::before {
+    font-size: 13px;
+  }
+
+  .t-sumi .sm-count b {
+    font-size: min(44px, 11cqw);
+  }
+
+  .t-sumi .sm-count span {
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+  }
+
+  /* the day */
+  .sm-day {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sm-day-photo {
+    height: 390px;
+    min-height: 0;
+    margin-top: 36px;
+  }
+
+  /* order */
+  .sm-prog-wrap {
+    padding-left: 0;
+  }
+
+  .sm-prog-line-v {
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    bottom: 10px;
+    display: block;
+    width: 10px;
+    height: calc(100% - 20px);
+    color: var(--ink);
+  }
+
+  .sm-prog {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .sm-prog li {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    grid-template-areas: 'dot time' 'dot text';
+    column-gap: 14px;
+    align-items: start;
+    text-align: left;
+  }
+
+  .sm-prog-time {
+    grid-area: time;
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .sm-prog-dot {
+    grid-area: dot;
+    margin: 10px 0 0 12px;
+  }
+
+  .sm-prog-text {
+    grid-area: text;
+    align-items: flex-start;
+  }
+
+  .sm-prog-label {
+    margin-top: 6px;
+  }
+
+  .sm-prog-note {
+    max-width: none;
+  }
+
+  /* attire */
+  .sm-cols {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .t-sumi .sm-dress-l .k-swatches {
+    justify-content: space-between;
+    width: 100%;
+    gap: 0;
+  }
+
+  .t-sumi .sm-dress-l .k-swatch {
+    width: 58px;
+  }
+
+  .t-sumi .k-swatch-shape--circle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .t-sumi .k-attire-card svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .t-sumi .k-attire-card h3 {
+    font-size: 23px;
+  }
+
+  /* family */
+  .sm-ent-line {
+    display: none;
+  }
+
+  .t-sumi .k-entourage {
+    columns: 1;
+  }
+
+  .t-sumi .k-ent-names li {
+    font-size: 18px;
+  }
+
+  .t-sumi .k-ent-pairs span {
+    font-size: 16px;
+  }
+
+  /* moments */
+  .sm-moments {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto;
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+
+  .sm-ph--a {
+    grid-area: 1 / 1 / 2 / 3;
+    height: 420px;
+  }
+
+  .sm-ph--b {
+    grid-area: 2 / 1;
+    height: 220px;
+  }
+
+  .sm-ph--c {
+    grid-area: 2 / 2;
+    height: 220px;
+    margin-top: 40px;
+  }
+
+  .sm-ph--d {
+    display: none;
+  }
+
+  /* gifts */
+  .sm-knot {
+    margin-top: 28px;
+  }
+
+  .sm-knot-svg {
+    width: 140px;
+    height: 117px;
+  }
+
+  .t-sumi .k-copy {
+    grid-column: 2;
+    grid-row: auto;
+    justify-self: start;
+    margin-top: 12px;
+  }
+
+  .t-sumi .k-gift-number {
+    font-size: 26px;
+  }
+
+  /* questions */
+  .t-sumi .sm-faq button {
+    font-size: 19px;
+  }
+
+  /* reply */
+  .sm-reply {
+    padding: 64px 16px 90px;
+  }
+
+  .sm-reply-body {
+    min-height: 0;
+    padding-top: 216px;
+  }
+
+  .sm-reply-enso {
+    top: 76px;
+    width: min(380px, calc(100cqw - 10px));
+    height: min(380px, calc(100cqw - 10px));
+  }
+
+  .sm-reply-title {
+    font-size: 32px;
+  }
+
+  .sm-reply-line {
+    max-width: calc(100cqw - 148px);
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .sm-card-wrap {
+    width: 100%;
+    margin-top: 44px;
+  }
+
+  .t-sumi .sm-rsvp {
+    padding: 26px 22px;
+  }
+
+  .sm-stamp {
+    right: -6px;
+    bottom: -26px;
+    width: 56px;
+    height: 56px;
+    font-size: 19px;
+  }
+
+  /* footer */
+  .sm-foot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 64px 24px 96px;
+  }
+
+  .sm-foot-hanko {
+    width: 60px;
+    height: 60px;
+    font-size: 19px;
+  }
+
+  .sm-foot-names {
+    font-size: 42px;
+  }
+
+  .sm-foot-kanji {
+    right: 24px;
+    top: auto;
+    bottom: 100px;
+    translate: none;
+  }
+}

@@ -10,6 +10,12 @@ import {
   Rsvp,
   TemplateRoot,
   demo,
+  initials,
+  useDetails,
+  useEntourage,
+  useGifts,
+  usePhoto,
+  useSchedule,
   mapsUrl,
   scrollToId,
   seatLine,
@@ -22,7 +28,7 @@ const P = '/templates/rustic-romance/';
 const LIGHT = '#ece2d2';
 const FIBER = '#f6efe4';
 
-const D = {
+const DEFAULTS = {
   a: 'Daniel',
   b: 'Sofia',
   start: '2027-04-24T15:00:00+08:00',
@@ -36,29 +42,12 @@ const D = {
   replyBy: 'March 10, 2027',
 };
 
-const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
-
-const DETAILS = [
-  { icon: 'calendar', title: 'Date', lines: [D.date, '3:00 PM'], cal: true },
-  { icon: 'pin', title: 'Location', lines: [D.venue, D.place], map: `${D.venue} ${D.place}` },
-  { icon: 'wreath', title: 'Ceremony', lines: ['Garden Chapel', '3:00 PM'] },
-  { icon: 'cheers', title: 'Reception', lines: ['Dinner, drinks & dancing', 'to follow'] },
-];
-
 const SCHEDULE = [
   { icon: 'rings', time: '3:00 PM', label: 'Ceremony' },
   { icon: 'camera', time: '4:00 PM', label: 'Photos' },
   { icon: 'cocktail', time: '5:30 PM', label: 'Cocktail Hour' },
   { icon: 'dinner', time: '7:00 PM', label: 'Dinner' },
   { icon: 'music', time: '8:30 PM', label: 'Dancing' },
-];
-
-const GALLERY = [
-  { src: `${P}g1.jpg`, alt: 'Daniel and Sofia in the meadow', tilt: -4 },
-  { src: `${P}g2.jpg`, alt: 'A quiet kiss', tilt: 3 },
-  { src: `${P}g3.jpg`, alt: 'Candlelit table with roses', tilt: -2 },
-  { src: `${P}g4.jpg`, alt: 'Dancing by the sea', tilt: 4 },
-  { src: `${P}g5.jpg`, alt: 'Long table under string lights', tilt: -3 },
 ];
 
 const NAV = [
@@ -79,7 +68,11 @@ const PALETTE = [
   { name: 'Cream', hex: '#efe4d0' },
 ];
 
-const gifts = demo.gifts(D);
+const DRESS = {
+  note: 'Garden formal in soft, romantic tones. Block heels are your friend on the lawn.',
+  shape: 'petal',
+  attire: [{ who: 'Ladies', text: 'Flowy midi or long dresses in florals, blush or terracotta.', icon: 'gown' }, { who: 'Gentlemen', text: 'Barong or a light suit with suspenders. No tie needed.', icon: 'barong' }],
+};
 
 // Bulbs hanging on sagging strands of wire.
 function StringLights() {
@@ -159,7 +152,29 @@ function Heart() {
   );
 }
 
+export const meta = { defaults: DEFAULTS, className: 't-rus', cover: `${P}hero.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+
 export default function RusticRomance() {
+  const D = useDetails(DEFAULTS);
+  const photo = usePhoto();
+  const schedule = useSchedule(SCHEDULE);
+  const entourage = useEntourage(demo.entourage(D));
+  const [I1, I2] = initials(D);
+  const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
+  const DETAILS = [
+    { icon: 'calendar', title: 'Date', lines: [D.date, '3:00 PM'], cal: true },
+    { icon: 'pin', title: 'Location', lines: [D.venue, D.place], map: `${D.venue} ${D.place}` },
+    { icon: 'wreath', title: 'Ceremony', lines: ['Garden Chapel', '3:00 PM'] },
+    { icon: 'cheers', title: 'Reception', lines: ['Dinner, drinks & dancing', 'to follow'] },
+  ];
+  const GALLERY = [
+    { src: photo(`${P}g1.jpg`), alt: 'Daniel and Sofia in the meadow', tilt: -4 },
+    { src: photo(`${P}g2.jpg`), alt: 'A quiet kiss', tilt: 3 },
+    { src: photo(`${P}g3.jpg`), alt: 'Candlelit table with roses', tilt: -2 },
+    { src: photo(`${P}g4.jpg`), alt: 'Dancing by the sea', tilt: 4 },
+    { src: photo(`${P}g5.jpg`), alt: 'Long table under string lights', tilt: -3 },
+  ];
+  const gifts = useGifts(demo.gifts(D));
   const { guest } = useInvite();
   const lightbox = useLightbox(GALLERY);
 
@@ -167,9 +182,9 @@ export default function RusticRomance() {
     <TemplateRoot
       className="t-rus"
       nav={NAV}
-      monogram="D / S"
+      monogram={`${I1} / ${I2}`}
       music="canon"
-      gate={{ variant: 'envelope', names: `${D.a} & ${D.b}`, monogram: 'D·S' }}
+      gate={{ variant: 'envelope', names: `${D.a} & ${D.b}`, monogram: `${I1}·${I2}` }}
     >
       <section className="ru-hero ru-wood">
         <StringLights />
@@ -227,7 +242,7 @@ export default function RusticRomance() {
               <span className="ru-sheet" />
               <span className="ru-sheet ru-sheet--2" />
               <figure className="ru-stack">
-                <img src={`${P}hero.jpg`} alt={`${D.a} and ${D.b} holding a bouquet`} />
+                <img src={photo(`${P}hero.jpg`)} alt={`${D.a} and ${D.b} holding a bouquet`} />
               </figure>
             </div>
           </div>
@@ -238,7 +253,7 @@ export default function RusticRomance() {
       <section className="ru-story ru-light" id="story">
         <div className="ru-story-photo rv">
           <figure className="ru-deckle">
-            <img src={`${P}story.jpg`} alt="Walking hand in hand through the field" loading="lazy" />
+            <img src={photo(`${P}story.jpg`)} alt="Walking hand in hand through the field" loading="lazy" />
           </figure>
         </div>
         <div className="ru-story-text rv d1">
@@ -261,7 +276,7 @@ export default function RusticRomance() {
             <Countdown date={D.start} className="ru-countdown" />
           </div>
         </div>
-        <img className="ru-jar" src={`${P}jar.jpg`} alt="" loading="lazy" />
+        <img className="ru-jar" src={photo(`${P}jar.jpg`)} alt="" loading="lazy" />
       </section>
 
       <section className="ru-details ru-wood" id="details">
@@ -292,7 +307,7 @@ export default function RusticRomance() {
         <h2 className="ru-h rv">Schedule of Events</h2>
         <Heart />
         <ol className="ru-timeline rv d1">
-          {SCHEDULE.map((s) => (
+          {schedule.map((s) => (
             <li key={s.label}>
               <Icon name={s.icon} size={40} stroke={1.05} />
               <span className="ru-dot" />
@@ -301,21 +316,13 @@ export default function RusticRomance() {
             </li>
           ))}
         </ol>
-        <img className="ru-roses" src={`${P}flowers.jpg`} alt="" loading="lazy" />
+        <img className="ru-roses" src={photo(`${P}flowers.jpg`)} alt="" loading="lazy" />
       </section>
 
       <section className="ru-sec ru-light ru-light--alt" id="attire">
         <h2 className="ru-h rv">Dress Code</h2>
         <Heart />
-        <DressCode
-          note="Garden formal in soft, romantic tones. Block heels are your friend on the lawn."
-          palette={PALETTE}
-          shape="petal"
-          attire={[
-            { who: 'Ladies', text: 'Flowy midi or long dresses in florals, blush or terracotta.', icon: 'gown' },
-            { who: 'Gentlemen', text: 'Barong or a light suit with suspenders. No tie needed.', icon: 'barong' },
-          ]}
-        />
+        <DressCode {...DRESS} palette={PALETTE} />
       </section>
 
       <section className="ru-gallery ru-wood" id="gallery">
@@ -343,13 +350,13 @@ export default function RusticRomance() {
       <section className="ru-sec ru-light" id="entourage">
         <h2 className="ru-h rv">The Entourage</h2>
         <Heart />
-        <Entourage groups={demo.entourage(D)} />
+        <Entourage groups={entourage} />
       </section>
 
       <section className="ru-sec ru-light ru-light--alt" id="gifts">
         <h2 className="ru-h rv">Gifts</h2>
         <Heart />
-        <Gifts note={gifts.note} accounts={gifts.accounts} />
+        <Gifts note={gifts.note} accounts={gifts.accounts} qr={gifts.qr} />
       </section>
 
       <section className="ru-sec ru-wood ru-faq" id="faq">

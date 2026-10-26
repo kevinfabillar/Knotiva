@@ -69,6 +69,30 @@ export const CATALOG = [
     blurb: 'An editorial Provence layout with a weekend guide and favourite restaurants.',
     fonts: ['Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400', 'Jost:wght@300;400;500', 'Herr+Von+Muellerhoff'],
   },
+  {
+    slug: 'gilded-deco',
+    name: 'Gilded Deco',
+    tags: ['elegant', 'moody'],
+    price: '₱4,200',
+    blurb: 'A New Year’s Eve ballroom in black, emerald and champagne gold, with stepped arches and a gold-foil scratch-off date.',
+    fonts: ['Poiret+One', 'Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700', 'Josefin+Sans:wght@300;400;600'],
+  },
+  {
+    slug: 'isla',
+    name: 'Isla',
+    tags: ['filipino', 'rustic'],
+    price: '₱3,800',
+    blurb: 'A Filipino island wedding with capiz-shell windows, banig weave, cut-paper palms and Tagalog greetings.',
+    fonts: ['Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1', 'Figtree:wght@400;500;600'],
+  },
+  {
+    slug: 'sumi',
+    name: 'Sumi',
+    tags: ['modern', 'elegant'],
+    price: '₱3,800',
+    blurb: 'Japanese ink on washi paper: an ensō brush circle, a vermilion hanko seal and gold kintsugi seams.',
+    fonts: ['Spectral:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300', 'Albert+Sans:wght@300;400;500;600', 'Shippori+Mincho:wght@500;600'],
+  },
 ];
 
 export const catalogEntry = (slug) => CATALOG.find((t) => t.slug === slug);

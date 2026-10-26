@@ -231,7 +231,7 @@
   background-color: #2a2420;
   background-image: linear-gradient(90deg, rgba(16, 13, 10, 0.8) 0%, rgba(16, 13, 10, 0.7) 30%, rgba(16, 13, 10, 0.4) 46%, rgba(16, 13, 10, 0.08) 60%, rgba(16, 13, 10, 0) 68%),
     linear-gradient(to bottom, rgba(16, 13, 10, 0.5), rgba(16, 13, 10, 0) 18%),
-    url('/templates/street-minimal/hero.jpg');
+    var(--img-hero, url('/templates/street-minimal/hero.jpg'));
   background-size: cover;
   background-position: 70% 30%;
 }
@@ -764,7 +764,7 @@
     background-color: #1c1714;
     background-image: linear-gradient(to top, #1c1714 0%, #1c1714 36%, rgba(28, 23, 20, 0) 64%),
       linear-gradient(to bottom, rgba(16, 13, 10, 0.5), rgba(16, 13, 10, 0) 16%),
-      url('/templates/street-minimal/hero.jpg');
+      var(--img-hero, url('/templates/street-minimal/hero.jpg'));
     background-size: 100% 100%, 100% 100%, auto 158cqw;
     background-repeat: no-repeat;
     background-position: 0 0, 0 0, 74% top;

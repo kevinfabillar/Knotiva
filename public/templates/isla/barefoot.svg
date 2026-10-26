@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1440" width="800" height="1440">
+<defs><linearGradient id="g" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#efe0c3"/><stop offset="0.55" stop-color="#cfae7f"/><stop offset="1" stop-color="#8a6a45"/></linearGradient>
+<radialGradient id="sheen" cx="0.3" cy="0.2" r="0.7"><stop offset="0" stop-color="#fff" stop-opacity="0.35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="1440" fill="url(#g)"/><circle cx="400.0" cy="489.6" r="128.0" fill="#fff6e0" fill-opacity="0.35"/><rect x="153.2" y="1196.4" width="493.6" height="84.0" rx="42.0" fill="#173a2d" fill-opacity="0.6"/><text x="400.0" y="1252.8000000000002" text-anchor="middle" font-family="Figtree, Helvetica, Arial, sans-serif" font-weight="600" font-size="40" letter-spacing="5.6000000000000005" fill="#fff9f0">BAREFOOT WALK</text>
+</svg>

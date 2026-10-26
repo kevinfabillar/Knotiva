@@ -9,6 +9,12 @@ import {
   Rsvp,
   TemplateRoot,
   demo,
+  initials,
+  useDetails,
+  useEntourage,
+  useGifts,
+  usePhoto,
+  useSchedule,
   mapsUrl,
   scrollToId,
   seatLine,
@@ -19,7 +25,7 @@ import './minimal.css';
 
 const P = '/templates/street-minimal/';
 
-const D = {
+const DEFAULTS = {
   a: 'Leo',
   b: 'Mika',
   start: '2027-08-21T16:00:00+07:00',
@@ -30,24 +36,8 @@ const D = {
   replyBy: 'July 10, 2027',
 };
 
-const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
-
-const DETAILS = [
-  { icon: 'calendar', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
-  { icon: 'pin', title: 'Location', lines: ['Yogyakarta,', 'Indonesia'], map: `${D.venue} ${D.place}` },
-  { icon: 'rings', title: 'Ceremony', lines: ['4:00 PM', 'Sacred space'] },
-  { icon: 'cheers', title: 'Celebration', lines: ['7:00 PM', 'Good vibes'] },
-  { icon: 'cutlery', title: 'Dinner', lines: ['7:30 PM', "Let's eat!"] },
-];
-
 const EATS = ['Angkringan Kopi Joss', 'Sate Klathak Pak Bungkus', 'Gudeg Yu Djum', 'House of Raminten'];
 const TODO = ['Jalan-jalan di Malioboro', 'Explore Candi Prambanan', 'Sunset di Bukit Bintang', 'Visit Kotagede'];
-
-const PHOTOS = [
-  { src: `${P}story.jpg`, alt: `${D.a} and ${D.b} laughing on a street corner` },
-  { src: `${P}food.jpg`, alt: 'A bowl of noodles with satay' },
-  { src: `${P}becak.jpg`, alt: 'A becak parked on a quiet street' },
-];
 
 const NAV = [
   { id: 'story', label: 'Our Story' },
@@ -67,7 +57,11 @@ const PALETTE = [
   { name: 'Black', hex: '#151515' },
 ];
 
-const gifts = demo.gifts(D);
+const DRESS = {
+  note: 'Clean, relaxed and a little bit cool. Whites, creams and soft pastels. Sneakers are fine!',
+  shape: 'arch',
+  attire: [{ who: 'Ladies', text: 'Slip dresses, linen sets or a sharp white suit.', icon: 'gown' }, { who: 'Gentlemen', text: 'Linen shirt, light trousers, clean sneakers or loafers.', icon: 'suit' }],
+};
 
 function Arrow({ className }) {
   return (
@@ -117,19 +111,41 @@ function Head({ n, children }) {
   );
 }
 
+export const meta = { defaults: DEFAULTS, className: 't-min', cover: `${P}hero.jpg`, schedule: demo.program, palette: PALETTE, dress: DRESS };
+
 export default function StreetMinimal() {
+  const D = useDetails(DEFAULTS);
+  const photo = usePhoto();
+  const schedule = useSchedule(demo.program);
+  const entourage = useEntourage(demo.entourage(D));
+  const [I1, I2] = initials(D);
+  const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
+  const DETAILS = [
+    { icon: 'calendar', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
+    { icon: 'pin', title: 'Location', lines: ['Yogyakarta,', 'Indonesia'], map: `${D.venue} ${D.place}` },
+    { icon: 'rings', title: 'Ceremony', lines: ['4:00 PM', 'Sacred space'] },
+    { icon: 'cheers', title: 'Celebration', lines: ['7:00 PM', 'Good vibes'] },
+    { icon: 'cutlery', title: 'Dinner', lines: ['7:30 PM', "Let's eat!"] },
+  ];
+  const PHOTOS = [
+    { src: photo(`${P}story.jpg`), alt: `${D.a} and ${D.b} laughing on a street corner` },
+    { src: photo(`${P}food.jpg`), alt: 'A bowl of noodles with satay' },
+    { src: photo(`${P}becak.jpg`), alt: 'A becak parked on a quiet street' },
+  ];
+  const gifts = useGifts(demo.gifts(D));
   const { guest } = useInvite();
   const lightbox = useLightbox(PHOTOS);
 
   return (
     <TemplateRoot
       className="t-min"
+      style={{ '--img-hero': `url("${photo(`${P}hero.jpg`)}")` }}
       nav={NAV}
-      monogram="L & M"
+      monogram={`${I1} & ${I2}`}
       music="canon"
       gate={{
         variant: 'curtain',
-        image: `${P}hero.jpg`,
+        image: photo(`${P}hero.jpg`),
         eyebrow: 'We’re getting married!',
         names: `${D.a} & ${D.b}`,
         date: `${D.date} · ${D.place}`,
@@ -206,7 +222,7 @@ export default function StreetMinimal() {
           <Dots className="mn-dots" />
           <Arrow className="mn-arrow" />
           <button type="button" className="mn-pol" onClick={() => lightbox.open(0)} aria-label="Open photo">
-            <img src={`${P}story.jpg`} alt={`${D.a} and ${D.b} laughing on a street corner`} loading="lazy" />
+            <img src={photo(`${P}story.jpg`)} alt={`${D.a} and ${D.b} laughing on a street corner`} loading="lazy" />
           </button>
         </div>
       </section>
@@ -234,15 +250,7 @@ export default function StreetMinimal() {
 
       <section className="mn-sec mn-attire" id="attire">
         <Head n="03">Dress Code</Head>
-        <DressCode
-          note="Clean, relaxed and a little bit cool. Whites, creams and soft pastels. Sneakers are fine!"
-          palette={PALETTE}
-          shape="arch"
-          attire={[
-            { who: 'Ladies', text: 'Slip dresses, linen sets or a sharp white suit.', icon: 'gown' },
-            { who: 'Gentlemen', text: 'Linen shirt, light trousers, clean sneakers or loafers.', icon: 'suit' },
-          ]}
-        />
+        <DressCode {...DRESS} palette={PALETTE} />
       </section>
 
       <section className="mn-sec mn-eat" id="eat">
@@ -252,7 +260,7 @@ export default function StreetMinimal() {
           </div>
           <Arrow className="mn-arrow mn-arrow--down" />
           <button type="button" className="mn-plate" onClick={() => lightbox.open(1)} aria-label="Open photo">
-            <img src={`${P}food.jpg`} alt="A bowl of noodles with satay" loading="lazy" />
+            <img src={photo(`${P}food.jpg`)} alt="A bowl of noodles with satay" loading="lazy" />
           </button>
           <span className="mn-tape" />
         </div>
@@ -293,7 +301,7 @@ export default function StreetMinimal() {
         </div>
         <div className="mn-todo-photo rv d1">
           <button type="button" className="mn-pol mn-pol--r" onClick={() => lightbox.open(2)} aria-label="Open photo">
-            <img src={`${P}becak.jpg`} alt="A becak parked on a quiet street" loading="lazy" />
+            <img src={photo(`${P}becak.jpg`)} alt="A becak parked on a quiet street" loading="lazy" />
           </button>
           <Dots className="mn-dots mn-dots--r" />
         </div>
@@ -302,12 +310,12 @@ export default function StreetMinimal() {
 
       <section className="mn-sec mn-ent" id="entourage">
         <Head n="06">The Entourage</Head>
-        <Entourage groups={demo.entourage(D)} />
+        <Entourage groups={entourage} />
       </section>
 
       <section className="mn-sec mn-gifts" id="gifts">
         <Head n="07">Gifts</Head>
-        <Gifts note={gifts.note} accounts={gifts.accounts} />
+        <Gifts note={gifts.note} accounts={gifts.accounts} qr={gifts.qr} />
       </section>
 
       <section className="mn-sec mn-faq" id="faq">

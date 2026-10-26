@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 1450" width="1050" height="1450">
+<defs><linearGradient id="g" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#d3cdbf"/><stop offset="1" stop-color="#a9a393"/></linearGradient>
+<radialGradient id="sheen" cx="0.3" cy="0.2" r="0.7"><stop offset="0" stop-color="#fff" stop-opacity="0.35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<rect width="1050" height="1450" fill="url(#g)"/><rect width="1050" height="1450" fill="url(#sheen)"/><text x="52.5" y="1397.5" font-family="Albert Sans, Helvetica, Arial, sans-serif" font-weight="500" font-size="26" letter-spacing="6.24" fill="#1e1c19" fill-opacity="0.6">STONE PATH, MAPLES</text>
+</svg>

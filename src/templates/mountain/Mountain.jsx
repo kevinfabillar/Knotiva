@@ -10,6 +10,12 @@ import {
   Rsvp,
   TemplateRoot,
   demo,
+  initials,
+  useDetails,
+  useEntourage,
+  useGifts,
+  usePhoto,
+  useSchedule,
   mapsUrl,
   scrollToId,
   seatLine,
@@ -21,7 +27,7 @@ import './mountain.css';
 const P = '/templates/mountain/';
 const PAPER = '#efe9df';
 
-const D = {
+const DEFAULTS = {
   a: 'Ethan',
   b: 'Clara',
   start: '2027-09-18T16:00:00-06:00',
@@ -32,30 +38,12 @@ const D = {
   replyBy: 'August 1, 2027',
 };
 
-const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
-
-const DETAILS = [
-  { icon: 'calendar', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
-  { icon: 'pin', title: 'Location', lines: [D.place, 'Mountain view'], map: `${D.venue} ${D.place}` },
-  { icon: 'mountain', title: 'Ceremony', lines: ['4:30 PM', 'Cliffside'] },
-  { icon: 'cheers', title: 'Reception', lines: ['6:00 PM', 'Dinner & drinks'] },
-  { icon: 'music', title: 'After', lines: ['8:30 PM', 'Bonfire & stars'] },
-];
-
 const SCHEDULE = [
   { icon: 'rings', time: '4:00 PM', label: 'Ceremony' },
   { icon: 'camera', time: '4:30 PM', label: 'Photos' },
   { icon: 'cheers', time: '6:00 PM', label: 'Reception' },
   { icon: 'dinner', time: '7:30 PM', label: 'Dinner' },
   { icon: 'music', time: '9:00 PM', label: 'Celebration' },
-];
-
-const GALLERY = [
-  { src: `${P}g1.jpg`, alt: 'Mountain lake at dusk' },
-  { src: `${P}g2.jpg`, alt: 'The couple with a wildflower bouquet' },
-  { src: `${P}g3.jpg`, alt: 'Valley below snowy peaks' },
-  { src: `${P}g4.jpg`, alt: 'Walking the mountain trail' },
-  { src: `${P}g5.jpg`, alt: 'Campfire under the peaks' },
 ];
 
 const NAV = [
@@ -76,7 +64,10 @@ const PALETTE = [
   { name: 'Stone', hex: '#8b8478' },
 ];
 
-const gifts = demo.gifts(D);
+const DRESS = {
+  note: 'Mountain formal: elegant, but ready for a breeze. Think earthy tones, layers and shoes that can handle a grassy ridge.',
+  attire: [{ who: 'Ladies', text: 'Long dresses in earthy tones, with a shawl for the evening.', icon: 'gown' }, { who: 'Gentlemen', text: 'Suits in tweed, olive or brown. Ties optional.', icon: 'suit' }],
+};
 
 function Heading({ children, light }) {
   return (
@@ -89,19 +80,43 @@ function Heading({ children, light }) {
   );
 }
 
+export const meta = { defaults: DEFAULTS, className: 't-mtn', cover: `${P}hero.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+
 export default function Mountain() {
+  const D = useDetails(DEFAULTS);
+  const photo = usePhoto();
+  const schedule = useSchedule(SCHEDULE);
+  const entourage = useEntourage(demo.entourage(D));
+  const [I1, I2] = initials(D);
+  const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
+  const DETAILS = [
+    { icon: 'calendar', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
+    { icon: 'pin', title: 'Location', lines: [D.place, 'Mountain view'], map: `${D.venue} ${D.place}` },
+    { icon: 'mountain', title: 'Ceremony', lines: ['4:30 PM', 'Cliffside'] },
+    { icon: 'cheers', title: 'Reception', lines: ['6:00 PM', 'Dinner & drinks'] },
+    { icon: 'music', title: 'After', lines: ['8:30 PM', 'Bonfire & stars'] },
+  ];
+  const GALLERY = [
+    { src: photo(`${P}g1.jpg`), alt: 'Mountain lake at dusk' },
+    { src: photo(`${P}g2.jpg`), alt: 'The couple with a wildflower bouquet' },
+    { src: photo(`${P}g3.jpg`), alt: 'Valley below snowy peaks' },
+    { src: photo(`${P}g4.jpg`), alt: 'Walking the mountain trail' },
+    { src: photo(`${P}g5.jpg`), alt: 'Campfire under the peaks' },
+  ];
+  const gifts = useGifts(demo.gifts(D));
   const { guest } = useInvite();
   const lightbox = useLightbox(GALLERY);
 
   return (
     <TemplateRoot
       className="t-mtn"
+      style={{ '--img-hero': `url("${photo(`${P}hero.jpg`)}")` }}
       nav={NAV}
-      monogram="E & C"
+      monogram={`${I1} & ${I2}`}
       music="canon"
       gate={{
         variant: 'curtain',
-        image: `${P}hero.jpg`,
+        image: photo(`${P}hero.jpg`),
         eyebrow: 'Together in adventure',
         names: `${D.a} & ${D.b}`,
         date: `${D.date} · ${D.place}`,
@@ -174,9 +189,9 @@ export default function Mountain() {
         </div>
         <div className="mt-story-photo rv d1">
           <figure className="mt-polaroid">
-            <img src={`${P}story.jpg`} alt="Ethan and Clara resting on a summit" loading="lazy" />
+            <img src={photo(`${P}story.jpg`)} alt="Ethan and Clara resting on a summit" loading="lazy" />
           </figure>
-          <img className="mt-grass" src={`${P}grass.png`} alt="" loading="lazy" />
+          <img className="mt-grass" src={photo(`${P}grass.png`)} alt="" loading="lazy" />
         </div>
       </section>
 
@@ -224,7 +239,7 @@ export default function Mountain() {
           <Sprig width={64} />
         </div>
         <ol className="mt-timeline rv d1">
-          {SCHEDULE.map((s) => (
+          {schedule.map((s) => (
             <li key={s.label}>
               <Icon name={s.icon} size={38} stroke={1.05} />
               <span className="mt-dot" />
@@ -237,24 +252,17 @@ export default function Mountain() {
 
       <section className="mt-sec mt-paper" id="attire">
         <Heading>Dress Code</Heading>
-        <DressCode
-          note="Mountain formal: elegant, but ready for a breeze. Think earthy tones, layers and shoes that can handle a grassy ridge."
-          palette={PALETTE}
-          attire={[
-            { who: 'Ladies', text: 'Long dresses in earthy tones, with a shawl for the evening.', icon: 'gown' },
-            { who: 'Gentlemen', text: 'Suits in tweed, olive or brown. Ties optional.', icon: 'suit' },
-          ]}
-        />
+        <DressCode {...DRESS} palette={PALETTE} />
       </section>
 
       <section className="mt-sec mt-paper mt-sec--tint" id="entourage">
         <Heading>The Entourage</Heading>
-        <Entourage groups={demo.entourage(D)} />
+        <Entourage groups={entourage} />
       </section>
 
       <section className="mt-sec mt-paper" id="gifts">
         <Heading>Gifts</Heading>
-        <Gifts note={gifts.note} accounts={gifts.accounts} />
+        <Gifts note={gifts.note} accounts={gifts.accounts} qr={gifts.qr} />
       </section>
 
       <section className="mt-sec mt-paper mt-sec--tint" id="faq">
@@ -264,7 +272,7 @@ export default function Mountain() {
 
       <section className="mt-rsvp mt-paper" id="rsvp">
         <div className="mt-rsvp-fog" aria-hidden="true" />
-        <img className="mt-rsvp-flowers" src={`${P}rsvp-flowers.png`} alt="" loading="lazy" />
+        <img className="mt-rsvp-flowers" src={photo(`${P}rsvp-flowers.png`)} alt="" loading="lazy" />
         <div className="mt-rsvp-text rv">
           <h2 className="mt-h">Kindly Respond</h2>
           <p className="mt-body">

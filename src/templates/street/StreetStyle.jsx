@@ -10,6 +10,12 @@ import {
   Rsvp,
   TemplateRoot,
   demo,
+  initials,
+  useDetails,
+  useEntourage,
+  useGifts,
+  usePhoto,
+  useSchedule,
   mapsUrl,
   scrollToId,
   seatLine,
@@ -21,7 +27,7 @@ import './street.css';
 const P = '/templates/street-style/';
 const PAPER = '#efe7da';
 
-const D = {
+const DEFAULTS = {
   a: 'Rafael',
   b: 'Joy',
   start: '2027-06-12T16:00:00+07:00',
@@ -31,16 +37,6 @@ const D = {
   venue: 'Omah Kebon',
   replyBy: 'May 1, 2027',
 };
-
-const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
-
-const DETAILS = [
-  { icon: 'calendar', tone: 'green', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
-  { icon: 'pin', tone: 'green', title: 'Location', lines: ['Yogyakarta,', 'Indonesia'], map: `${D.venue} ${D.place}` },
-  { icon: 'rings', tone: 'orange', title: 'Ceremony', lines: ['4:00 PM', 'Sacred space'] },
-  { icon: 'music', tone: 'green', title: 'Celebration', lines: ['7:00 PM', 'Good vibes'] },
-  { icon: 'cutlery', tone: 'pink', title: 'Dinner', lines: ['7:30 PM', "Let's eat!"] },
-];
 
 const SCHEDULE = [
   { icon: 'flower', time: '4:00 PM', tag: 'The Yes', sub: 'We say I do' },
@@ -52,12 +48,6 @@ const SCHEDULE = [
 
 const EATS = ['Angkringan Kopi Joss', 'Sate Klathak Pak Bungkus', 'Gudeg Yu Djum', 'House of Raminten'];
 const TODO = ['Jalan-jalan di Malioboro', 'Explore Candi Prambanan', 'Sunset di Bukit Bintang', 'Visit Kotagede'];
-
-const PHOTOS = [
-  { src: `${P}story.jpg`, alt: `${D.a} and ${D.b} at a street café` },
-  { src: `${P}pol1.jpg`, alt: 'Riding through the old town' },
-  { src: `${P}pol2.jpg`, alt: 'On the scooter' },
-];
 
 const NAV = [
   { id: 'story', label: 'Our Story' },
@@ -77,7 +67,11 @@ const PALETTE = [
   { name: 'Ink', hex: '#1d1b19' },
 ];
 
-const gifts = demo.gifts(D);
+const DRESS = {
+  note: 'Smart casual with a splash of colour. Comfy shoes: we will be dancing on old stone floors!',
+  shape: 'square',
+  attire: [{ who: 'Ladies', text: 'Sundresses, jumpsuits or a breezy two-piece. Bright is right.', icon: 'gown' }, { who: 'Gentlemen', text: 'Linen shirts, chinos and loafers. Batik is very welcome.', icon: 'barong' }],
+};
 
 function Tape({ tone = 'green', tilt = -2, as: Tag = 'span', className = '', children, ...rest }) {
   return (
@@ -124,17 +118,39 @@ function Heading({ tone, tilt = -2, children }) {
   );
 }
 
+export const meta = { defaults: DEFAULTS, className: 't-str', cover: `${P}hero.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+
 export default function StreetStyle() {
+  const D = useDetails(DEFAULTS);
+  const photo = usePhoto();
+  const schedule = useSchedule(SCHEDULE);
+  const entourage = useEntourage(demo.entourage(D));
+  const [I1, I2] = initials(D);
+  const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
+  const DETAILS = [
+    { icon: 'calendar', tone: 'green', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
+    { icon: 'pin', tone: 'green', title: 'Location', lines: ['Yogyakarta,', 'Indonesia'], map: `${D.venue} ${D.place}` },
+    { icon: 'rings', tone: 'orange', title: 'Ceremony', lines: ['4:00 PM', 'Sacred space'] },
+    { icon: 'music', tone: 'green', title: 'Celebration', lines: ['7:00 PM', 'Good vibes'] },
+    { icon: 'cutlery', tone: 'pink', title: 'Dinner', lines: ['7:30 PM', "Let's eat!"] },
+  ];
+  const PHOTOS = [
+    { src: photo(`${P}story.jpg`), alt: `${D.a} and ${D.b} at a street café` },
+    { src: photo(`${P}pol1.jpg`), alt: 'Riding through the old town' },
+    { src: photo(`${P}pol2.jpg`), alt: 'On the scooter' },
+  ];
+  const gifts = useGifts(demo.gifts(D));
   const { guest } = useInvite();
   const lightbox = useLightbox(PHOTOS);
 
   return (
     <TemplateRoot
       className="t-str"
+      style={{ '--img-hero': `url("${photo(`${P}hero.jpg`)}")` }}
       nav={NAV}
-      monogram="R + J"
+      monogram={`${I1} + ${I2}`}
       music="canon"
-      gate={{ variant: 'card', names: `${D.a} & ${D.b}`, monogram: 'R+J', eyebrow: 'Psst! You got mail', date: D.date, hint: 'Tap to open' }}
+      gate={{ variant: 'card', names: `${D.a} & ${D.b}`, monogram: `${I1}+${I2}`, eyebrow: 'Psst! You got mail', date: D.date, hint: 'Tap to open' }}
     >
       <section className="st-hero">
         <header className="st-nav k-topnav">
@@ -182,7 +198,7 @@ export default function StreetStyle() {
       <section className="st-story st-paper" id="story">
         <div className="st-story-photo rv">
           <button type="button" className="st-pol" onClick={() => lightbox.open(0)} aria-label="Open photo">
-            <img src={`${P}story.jpg`} alt={`${D.a} and ${D.b} at a street café`} loading="lazy" />
+            <img src={photo(`${P}story.jpg`)} alt={`${D.a} and ${D.b} at a street café`} loading="lazy" />
           </button>
           <span className="st-pol-tape" />
           <Icon name="flower" size={56} stroke={1.4} className="st-sticker" />
@@ -224,8 +240,8 @@ export default function StreetStyle() {
             </p>
             <DoodleHeart className="st-note-heart" />
           </div>
-          <img className="st-palm" src={`${P}palm.png`} alt="" loading="lazy" />
-          <img className="st-sun" src={`${P}sun.png`} alt="" loading="lazy" />
+          <img className="st-palm" src={photo(`${P}palm.png`)} alt="" loading="lazy" />
+          <img className="st-sun" src={photo(`${P}sun.png`)} alt="" loading="lazy" />
         </div>
       </section>
 
@@ -261,7 +277,7 @@ export default function StreetStyle() {
           <DoodleHeart className="st-sched-heart" />
         </div>
         <ol className="st-timeline rv d1">
-          {SCHEDULE.map((s) => (
+          {schedule.map((s) => (
             <li key={s.tag}>
               <Icon name={s.icon} size={44} stroke={1.25} />
               <b>{s.time}</b>
@@ -278,15 +294,7 @@ export default function StreetStyle() {
         <Heading tone="green" tilt={-3}>
           What to wear
         </Heading>
-        <DressCode
-          note="Smart casual with a splash of colour. Comfy shoes: we will be dancing on old stone floors!"
-          palette={PALETTE}
-          shape="square"
-          attire={[
-            { who: 'Ladies', text: 'Sundresses, jumpsuits or a breezy two-piece. Bright is right.', icon: 'gown' },
-            { who: 'Gentlemen', text: 'Linen shirts, chinos and loafers. Batik is very welcome.', icon: 'barong' },
-          ]}
-        />
+        <DressCode {...DRESS} palette={PALETTE} />
       </section>
 
       <section className="st-guide st-paper">
@@ -313,7 +321,7 @@ export default function StreetStyle() {
           <Tape tone="pink" tilt={-1} as="a" href={mapsUrl('best food Yogyakarta')} target="_blank" rel="noreferrer">
             Explore more
           </Tape>
-          <img className="st-bowl" src={`${P}bowl.png`} alt="" loading="lazy" />
+          <img className="st-bowl" src={photo(`${P}bowl.png`)} alt="" loading="lazy" />
         </div>
         <div className="st-guide-col rv d1" id="todo">
           <div className="st-guide-head">
@@ -337,7 +345,7 @@ export default function StreetStyle() {
           <Tape tone="green" tilt={-1} as="a" href={mapsUrl('things to do Yogyakarta')} target="_blank" rel="noreferrer">
             Explore more
           </Tape>
-          <img className="st-bike" src={`${P}bike.png`} alt="" loading="lazy" />
+          <img className="st-bike" src={photo(`${P}bike.png`)} alt="" loading="lazy" />
         </div>
       </section>
 
@@ -345,14 +353,14 @@ export default function StreetStyle() {
         <Heading tone="pink" tilt={-2}>
           The Squad
         </Heading>
-        <Entourage groups={demo.entourage(D)} />
+        <Entourage groups={entourage} />
       </section>
 
       <section className="st-sec st-paper st-sec--line" id="gifts">
         <Heading tone="orange" tilt={-3}>
           Gifts
         </Heading>
-        <Gifts note={gifts.note} accounts={gifts.accounts} />
+        <Gifts note={gifts.note} accounts={gifts.accounts} qr={gifts.qr} />
       </section>
 
       <section className="st-sec st-paper st-sec--line" id="faq">
@@ -364,7 +372,7 @@ export default function StreetStyle() {
 
       <section className="st-rsvp st-paper" id="rsvp">
         <button type="button" className="st-pol st-pol--sm st-pol--l rv" onClick={() => lightbox.open(1)} aria-label="Open photo">
-          <img src={`${P}pol1.jpg`} alt="Riding through the old town" loading="lazy" />
+          <img src={photo(`${P}pol1.jpg`)} alt="Riding through the old town" loading="lazy" />
         </button>
         <div className="st-rsvp-text rv d1">
           <h2 className="st-h st-h--big">
@@ -379,7 +387,7 @@ export default function StreetStyle() {
           </p>
         </div>
         <button type="button" className="st-pol st-pol--sm st-pol--r rv d2" onClick={() => lightbox.open(2)} aria-label="Open photo">
-          <img src={`${P}pol2.jpg`} alt="On the scooter" loading="lazy" />
+          <img src={photo(`${P}pol2.jpg`)} alt="On the scooter" loading="lazy" />
         </button>
         <Rsvp couple={D} deadline={D.replyBy} className="st-rsvp-card rv d2" />
         {lightbox.node}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 900" width="1260" height="900">
+<defs><linearGradient id="g" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#e2d6c4"/><stop offset="1" stop-color="#c2a98e"/></linearGradient>
+<radialGradient id="sheen" cx="0.3" cy="0.2" r="0.7"><stop offset="0" stop-color="#fff" stop-opacity="0.35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<rect width="1260" height="900" fill="url(#g)"/><rect width="1260" height="900" fill="url(#sheen)"/><text x="63.0" y="837.0" font-family="Albert Sans, Helvetica, Arial, sans-serif" font-weight="500" font-size="30" letter-spacing="7.199999999999999" fill="#1e1c19" fill-opacity="0.6">MAPLE CANOPY, WIDE</text>
+</svg>

@@ -24,6 +24,9 @@ export default function TemplateCard({ template: t, onRequest }) {
         <Link to={base} className="tc-link">
           View live demo →
         </Link>
+        <Link to={`${base}/customize`} className="tc-link">
+          Customize
+        </Link>
         <a href="#contact" onClick={onRequest} className="tc-link tc-link--muted">
           Request this design
         </a>

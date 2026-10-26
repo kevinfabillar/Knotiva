@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200">
+<defs><linearGradient id="g" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#b9d8cd"/><stop offset="0.55" stop-color="#6fa596"/><stop offset="1" stop-color="#2f6f66"/></linearGradient>
+<radialGradient id="sheen" cx="0.3" cy="0.2" r="0.7"><stop offset="0" stop-color="#fff" stop-opacity="0.35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="1200" fill="url(#g)"/><circle cx="400.0" cy="408.00000000000006" r="128.0" fill="#fff6e0" fill-opacity="0.35"/><rect x="153.2" y="990.0" width="493.6" height="84.0" rx="42.0" fill="#173a2d" fill-opacity="0.6"/><text x="400.0" y="1046.4" text-anchor="middle" font-family="Figtree, Helvetica, Arial, sans-serif" font-weight="600" font-size="40" letter-spacing="5.6000000000000005" fill="#fff9f0">SANDBAR, WIDE</text>
+</svg>

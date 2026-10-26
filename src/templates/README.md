@@ -40,3 +40,13 @@ Kit pieces only read CSS variables, so they take on each template's look. Set th
 ```
 
 Layout uses container queries (`@container tpl (max-width: 640px)`) so a template lays out by its own width. Give the desktop header the class `k-topnav`: on phones it is hidden and the kit's bar and menu take over. Add `rv` (plus `d1`–`d4` for stagger) to anything that should fade up on scroll.
+
+## Editable by the couple
+
+Templates must read their details and photos through the kit so the Customize page (`/templates/<slug>/customize`) and the print page (`/templates/<slug>/print`) work:
+
+- Keep the couple's details in a module constant `DEFAULTS` (`a`, `b`, `start`, `end`, `date`, `place`, `venue`, `replyBy`, …) and call `const D = useDetails(DEFAULTS)` inside the component. Never hard-code names or initials; use `initials(D)`.
+- Wrap every photo path in `photo(...)` from `usePhoto()`. For a CSS background photo, pass it as a variable on `TemplateRoot` (`style={{ '--img-hero': url(...) }}`) and use `var(--img-hero, url(...))` in the CSS.
+- Export `meta = { defaults: DEFAULTS, className, cover }`. The print page uses it for the card's theme and photo.
+
+Edits are saved in the visitor's browser (IndexedDB, `kit/store.js`); `?mine=1` shows them on the demo page.

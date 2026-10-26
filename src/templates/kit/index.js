@@ -6,3 +6,4 @@ export { CalendarButton, Countdown, DressCode, Entourage, Faq, Gifts, Program, T
 export { DEMO_PARTIES, Rsvp } from './Rsvp.jsx';
 export { Gallery, Lightbox, useLightbox } from './Gallery.jsx';
 export * as demo from './demo.js';
+export { CustomContext, formatEntourage, formatSchedule, initials, parseEntourage, parseSchedule, useDetails, useEntourage, usePhoto, useSchedule, useGifts, parseGifts, formatGifts, GIFT_QR } from './custom.jsx';

@@ -254,10 +254,16 @@ function CopyButton({ value }) {
 }
 
 /** accounts = [{ label, name, number }] */
-export function Gifts({ note, accounts = [], className = '' }) {
+export function Gifts({ note, accounts = [], qr, className = '' }) {
   return (
     <div className={`k-gifts ${className}`}>
       {note && <p className="k-gifts-note rv">{note}</p>}
+      {qr && (
+        <figure className="k-gift-qr rv">
+          <img src={qr} alt="Payment QR code" />
+          <figcaption>Scan to send a gift</figcaption>
+        </figure>
+      )}
       <div className="k-gift-cards">
         {accounts.map((a, i) => (
           <div key={a.label} className={`k-gift-card rv d${i + 1}`}>

@@ -1,0 +1,1481 @@
+/* Gilded Deco — a New Year's Eve ballroom: onyx, emerald and champagne gold, symmetric and stepped. */
+
+.t-deco {
+  /* palette */
+  --onyx: #0b0f0d;
+  --panel: #101814;
+  --emerald: #0f2d24;
+  --ivory: #f2e9d4;
+  --taupe: #a99f88;
+  --body-soft: #c9bfa8;
+  --gold: #d4b26a;
+  --gold-deep: #b8913f;
+  --gold-pale: #f3dc9b;
+  --gold-line: #3f3826;
+  --deco-caps: 'Poiret One', 'Josefin Sans', sans-serif;
+  --foil: linear-gradient(180deg, #f6e3a6 0%, #d4b26a 46%, #a8832f 56%, #e9cf8a 100%);
+  --rays: repeating-conic-gradient(from -90deg at 50% 100%, rgba(212, 178, 106, 0.07) 0deg 0.5deg, transparent 0.5deg 6deg);
+
+  --k-bg: #0b0f0d;
+  --k-surface: #101814;
+  --k-ink: #f2e9d4;
+  --k-muted: #a99f88;
+  --k-accent: #d4b26a;
+  --k-on-accent: #0b0f0d;
+  --k-line: #3f3826;
+  --k-display: 'Bodoni Moda', Didot, Georgia, serif;
+  --k-display-weight: 400;
+  --k-body: 'Josefin Sans', system-ui, sans-serif;
+  --k-script: 'Bodoni Moda', Georgia, serif;
+  --k-radius: 0px;
+  --k-btn-radius: 0px;
+  --k-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  --k-field-bg: transparent;
+
+  --g-bg: radial-gradient(ellipse 55% 60% at 50% 56%, rgba(212, 178, 106, 0.12), rgba(212, 178, 106, 0) 70%),
+    repeating-conic-gradient(from -90deg at 50% 100%, rgba(212, 178, 106, 0.09) 0deg 0.5deg, rgba(212, 178, 106, 0) 0.5deg 6deg), #0b0f0d;
+  --g-ink: #f2e9d4;
+  --g-accent: #d4b26a;
+  --g-env: #101814;
+  --g-seal: #b8913f;
+  --g-door: #0b0f0d;
+  --g-door-ink: #d4b26a;
+  --g-names-case: uppercase;
+  --g-foil-1: #b8913f;
+  --g-foil-2: #f3dc9b;
+  --g-spot: #0f2d24;
+  --g-spot-ink: #d4b26a;
+  --g-petal: #d4b26a;
+  --g-btn-hover-bg: #d4b26a;
+  --g-btn-hover-ink: #0b0f0d;
+
+  --k-bar-ink-top: #d4b26a;
+  --k-bar-bg: #0b0f0d;
+  --k-bar-ink: #d4b26a;
+  --k-menu-bg: #0b0f0d;
+  --k-music-bg: #d4b26a;
+  --k-music-ink: #0b0f0d;
+
+  background: var(--onyx);
+  color: var(--ivory);
+  font-family: var(--k-body);
+}
+
+.t-deco section,
+.t-deco [id] {
+  scroll-margin-top: 20px;
+}
+
+/* ---------- Gate (scratch, gold foil) ---------- */
+.t-deco .k-gate-names {
+  font-family: var(--deco-caps);
+  letter-spacing: 0.1em;
+}
+
+.t-deco .k-gate-names span {
+  background: var(--foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.t-deco .k-gate-names em,
+.t-deco .k-gate-dear {
+  font-style: italic;
+}
+
+.t-deco .k-gate-names em {
+  color: var(--ivory);
+}
+
+.t-deco .k-gate-eyebrow {
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: rgba(242, 233, 212, 0.85);
+  opacity: 1;
+}
+
+@media (min-width: 561px) {
+  .t-deco .k-gate--scratch .k-gate-inner {
+    width: min(680px, 100%);
+  }
+
+  .t-deco .k-gate-names {
+    font-size: min(54px, 6.4vw);
+    white-space: nowrap;
+  }
+}
+
+.t-deco .k-gate--scratch::before {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  border: 1px solid #b8913f;
+  background:
+    url(/templates/gilded-deco/gate-corner-tl.svg) -10px -10px / 48px no-repeat,
+    url(/templates/gilded-deco/gate-corner-tr.svg) calc(100% + 10px) -10px / 48px no-repeat,
+    url(/templates/gilded-deco/gate-corner-bl.svg) -10px calc(100% + 10px) / 48px no-repeat,
+    url(/templates/gilded-deco/gate-corner-br.svg) calc(100% + 10px) calc(100% + 10px) / 48px no-repeat;
+  pointer-events: none;
+}
+
+.t-deco .k-gate--scratch::after {
+  content: '';
+  position: absolute;
+  inset: 33px;
+  border: 1px solid rgba(212, 178, 106, 0.35);
+  pointer-events: none;
+}
+
+.t-deco .k-gate--scratch .k-gate-inner::before {
+  content: '';
+  width: 200px;
+  height: 100px;
+  background: url(/templates/gilded-deco/fan.svg) center / contain no-repeat;
+}
+
+.t-deco .k-spot-face {
+  box-shadow: inset 0 0 0 1px rgba(212, 178, 106, 0.55);
+}
+
+.t-deco .k-spot {
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #0b0f0d, 0 0 0 6px rgba(212, 178, 106, 0.35);
+}
+
+.t-deco .k-spot-face b {
+  font-family: var(--k-display);
+  font-weight: 500;
+}
+
+.t-deco .k-gate-btn {
+  font-weight: 600;
+  color: var(--ivory);
+  border-color: var(--ivory);
+}
+
+@media (max-width: 560px) {
+  .t-deco .k-gate--scratch::before {
+    inset: 14px;
+    background-size: 34px;
+    background-position: -7px -7px, calc(100% + 7px) -7px, -7px calc(100% + 7px), calc(100% + 7px) calc(100% + 7px);
+  }
+
+  .t-deco .k-gate--scratch::after {
+    inset: 20px;
+  }
+
+  .t-deco .k-gate--scratch .k-gate-inner::before {
+    width: 140px;
+    height: 70px;
+  }
+}
+
+/* ---------- Shared ---------- */
+.dc-foil {
+  background: var(--foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dc-scale {
+  background:
+    radial-gradient(circle at 50% 100%, transparent 0 15px, rgba(212, 178, 106, 0.12) 15px 16px, transparent 16px 23px, rgba(212, 178, 106, 0.12) 23px 24px, transparent 24px 31px, rgba(212, 178, 106, 0.12) 31px 32px, transparent 32px) 0 0 / 64px 32px,
+    radial-gradient(circle at 50% 100%, transparent 0 15px, rgba(212, 178, 106, 0.12) 15px 16px, transparent 16px 23px, rgba(212, 178, 106, 0.12) 23px 24px, transparent 24px 31px, rgba(212, 178, 106, 0.12) 31px 32px, transparent 32px) 32px 16px / 64px 32px,
+    var(--emerald);
+}
+
+.dc-party.dc-scale {
+  background:
+    radial-gradient(circle at 50% 100%, transparent 0 15px, rgba(212, 178, 106, 0.1) 15px 16px, transparent 16px 23px, rgba(212, 178, 106, 0.1) 23px 24px, transparent 24px 31px, rgba(212, 178, 106, 0.1) 31px 32px, transparent 32px) 0 0 / 64px 32px,
+    radial-gradient(circle at 50% 100%, transparent 0 15px, rgba(212, 178, 106, 0.1) 15px 16px, transparent 16px 23px, rgba(212, 178, 106, 0.1) 23px 24px, transparent 24px 31px, rgba(212, 178, 106, 0.1) 31px 32px, transparent 32px) 32px 16px / 64px 32px,
+    var(--emerald);
+}
+
+.dc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 32px;
+  font-family: var(--k-body);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--onyx);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  transition: background 0.25s, color 0.25s;
+}
+
+.dc-btn:hover {
+  background: var(--gold-pale);
+}
+
+.dc-btn--line {
+  padding: 0 28px;
+  color: var(--gold);
+  background: transparent;
+}
+
+.dc-btn--line:hover {
+  color: var(--onyx);
+  background: var(--gold);
+}
+
+.dc-crest {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+}
+
+.dc-crest i {
+  position: absolute;
+  inset: 9px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.dc-crest i + i {
+  inset: 14px;
+  border-color: rgba(212, 178, 106, 0.45);
+}
+
+.dc-crest b {
+  position: relative;
+  font-family: var(--deco-caps);
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.dc-sec {
+  position: relative;
+  padding: 72px 40px 96px;
+}
+
+.dc-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 56px;
+  text-align: center;
+}
+
+.dc-fan {
+  width: 84px;
+  height: 42px;
+  color: var(--gold);
+}
+
+.dc-head h2 {
+  font-family: var(--deco-caps);
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 1.15;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dc-divider {
+  width: 240px;
+  height: 12px;
+}
+
+.dc-head p {
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--taupe);
+}
+
+.dc-chev {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 12px;
+}
+
+.dc-chev--top {
+  top: 10px;
+}
+
+.dc-chev--bottom {
+  bottom: 10px;
+}
+
+/* ---------- 1. Hero ---------- */
+.dc-hero {
+  --aw: min(640px, 70cqw);
+  position: relative;
+  height: calc(100px + var(--aw) * 1.21875);
+  min-height: 880px;
+  overflow: hidden;
+  background: radial-gradient(ellipse 50% 55% at 50% 60%, rgba(212, 178, 106, 0.1), transparent 70%), var(--rays), var(--onyx);
+}
+
+.dc-hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid rgba(212, 178, 106, 0.45);
+}
+
+.dc-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr);
+  align-items: center;
+  height: 96px;
+  padding: 0 56px;
+}
+
+.dc-nav nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3cqw, 40px);
+}
+
+.dc-nav-l {
+  justify-self: end;
+  padding-right: 32px;
+}
+
+.dc-nav-r {
+  justify-self: start;
+  padding-left: 32px;
+}
+
+.dc-nav-crest {
+  justify-self: center;
+}
+
+.dc-nav a:not(.dc-nav-crest) {
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ivory);
+  transition: color 0.2s;
+}
+
+.t-deco .dc-nav a:hover {
+  color: var(--gold-pale);
+}
+
+.t-deco .dc-nav .dc-nav-rsvp {
+  padding: 11px 22px;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.dc-sky {
+  position: absolute;
+  bottom: 0;
+  width: 260px;
+  height: 560px;
+  opacity: 0.55;
+}
+
+.dc-sky--l {
+  left: 34px;
+}
+
+.dc-sky--r {
+  right: 34px;
+  transform: scaleX(-1);
+}
+
+.dc-arch {
+  position: absolute;
+  left: 50%;
+  top: 92px;
+  width: var(--aw);
+  height: calc(var(--aw) * 1.21875);
+  translate: -50% 0;
+}
+
+.dc-arch-phone {
+  display: none;
+}
+
+.dc-hero-text {
+  position: absolute;
+  left: 50%;
+  top: calc(92px + var(--aw) * 0.528);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--aw);
+  text-align: center;
+  translate: -50% 0;
+}
+
+.dc-eyebrow {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dc-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 18px;
+  font-family: var(--deco-caps);
+  font-weight: 400;
+  font-size: min(78px, 9.6cqw);
+  line-height: 1.04;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dc-names em {
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 0.667em;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--ivory);
+}
+
+.dc-hero-text .dc-divider {
+  margin-top: 16px;
+}
+
+.dc-hero-date {
+  margin-top: 18px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.dc-hero-venue {
+  margin-top: 8px;
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--taupe);
+}
+
+.dc-hero-venue i {
+  font-style: inherit;
+}
+
+.dc-hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+/* ---------- 2. Countdown ---------- */
+.dc-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  min-height: 320px;
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.dc-count-eyebrow {
+  font-family: var(--deco-caps);
+  font-size: 30px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-deco .dc-count {
+  gap: 26px;
+}
+
+.t-deco .dc-count .k-count-cell {
+  position: relative;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  background: var(--onyx);
+  border: 1px solid var(--gold);
+  outline: 1px solid rgba(212, 178, 106, 0.35);
+  outline-offset: 5px;
+}
+
+.t-deco .dc-count .k-count-cell + .k-count-cell::before {
+  content: '';
+  position: absolute;
+  left: -17px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.t-deco .dc-count b {
+  font-weight: 500;
+  font-size: 62px;
+  color: var(--ivory);
+}
+
+.t-deco .dc-count span {
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.dc-count-note {
+  display: none;
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--body-soft);
+}
+
+/* ---------- 3. The Affair (kit Venues) ---------- */
+.t-deco .dc-venues {
+  position: relative;
+  grid-template-columns: repeat(2, 380px);
+  justify-content: center;
+  column-gap: 120px;
+  max-width: none;
+}
+
+.t-deco .dc-venues::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  width: 1px;
+  height: 300px;
+  background: linear-gradient(transparent, #b8913f 30%, #b8913f 70%, transparent);
+}
+
+.t-deco .dc-venues::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 5px);
+  bottom: 185px;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.t-deco .dc-venues .k-venue {
+  min-height: 440px;
+  padding: 74px 40px 40px;
+  background: url(/templates/gilded-deco/arch-panel.svg) 0 0 / 100% 100% no-repeat;
+  border: 0;
+  border-radius: 0;
+}
+
+.t-deco .k-venue-icon {
+  order: 0;
+  width: 38px;
+  height: 38px;
+  color: var(--gold);
+}
+
+.t-deco .k-venue-kind {
+  order: 1;
+  margin-top: 8px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.t-deco .k-venue-time {
+  order: 2;
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 17px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--taupe);
+}
+
+.t-deco .k-venue-name {
+  order: 3;
+  margin-top: 10px;
+  font-size: 30px;
+  color: var(--ivory);
+}
+
+.t-deco .k-venue-address {
+  order: 4;
+  font-size: 15px;
+  color: var(--taupe);
+}
+
+.t-deco .k-venue-actions {
+  order: 5;
+  gap: 24px;
+  margin-top: 18px;
+}
+
+.t-deco .k-link {
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  border-bottom-color: rgba(212, 178, 106, 0.5);
+}
+
+/* ---------- 4. The Evening ---------- */
+.dc-evening {
+  background: var(--panel);
+}
+
+.dc-prog {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.dc-prog::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 74px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4b26a 6%, #d4b26a 94%, transparent);
+}
+
+.dc-prog li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.dc-prog-time {
+  font-family: var(--k-display);
+  font-size: 23px;
+  line-height: 28px;
+  color: var(--ivory);
+}
+
+.dc-prog-node {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-top: 18px;
+  color: var(--gold);
+}
+
+.dc-prog-node::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  background: var(--onyx);
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+
+.dc-prog-node svg {
+  position: relative;
+}
+
+.dc-prog li.is-last .dc-prog-node {
+  color: var(--onyx);
+}
+
+.dc-prog li.is-last .dc-prog-node::before {
+  background: var(--gold);
+}
+
+.dc-prog-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dc-prog-label {
+  margin-top: 22px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dc-prog-note {
+  margin-top: 6px;
+  max-width: 18ch;
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--taupe);
+}
+
+/* ---------- 5. Attire ---------- */
+.t-deco .dc-dress .k-dress-note {
+  max-width: 640px;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--body-soft);
+}
+
+.t-deco .dc-dress .k-swatches {
+  gap: 46px;
+}
+
+.t-deco .k-swatch-shape--square {
+  width: 48px;
+  height: 48px;
+  margin: 10px 0 8px;
+  border-radius: 0;
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 1px #d4b26a, 0 0 0 5px #0b0f0d, 0 0 0 6px rgba(212, 178, 106, 0.4);
+}
+
+.t-deco .dc-dress .k-swatch span {
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  color: var(--taupe);
+}
+
+.t-deco .dc-dress .k-attire {
+  grid-template-columns: repeat(2, 420px);
+  justify-content: center;
+  gap: 28px;
+}
+
+.t-deco .k-attire-card {
+  min-height: 196px;
+  padding: 28px 36px;
+  background:
+    url(/templates/gilded-deco/corner-tl.svg) 6px 6px / 26px no-repeat,
+    url(/templates/gilded-deco/corner-tr.svg) calc(100% - 6px) 6px / 26px no-repeat,
+    url(/templates/gilded-deco/corner-bl.svg) 6px calc(100% - 6px) / 26px no-repeat,
+    url(/templates/gilded-deco/corner-br.svg) calc(100% - 6px) calc(100% - 6px) / 26px no-repeat,
+    var(--panel);
+  border: 1px solid var(--gold-line);
+}
+
+.t-deco .k-attire-card svg {
+  color: var(--gold);
+}
+
+.t-deco .k-attire-card h3 {
+  font-size: 24px;
+  color: var(--ivory);
+}
+
+.t-deco .k-attire-card p {
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--taupe);
+}
+
+/* ---------- 6. The Wedding Party ---------- */
+.t-deco .dc-ent {
+  max-width: 900px;
+  gap: 32px 80px;
+}
+
+.t-deco .k-ent-title {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.t-deco .dc-ent .k-ent-pairs span,
+.t-deco .dc-ent .k-ent-names li {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ivory);
+}
+
+.t-deco .k-ent-pairs li {
+  position: relative;
+  column-gap: 20px;
+}
+
+.t-deco .k-ent-pairs li::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: #b8913f;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ---------- 7. Portraits ---------- */
+.dc-gallery {
+  display: grid;
+  grid-template-columns: 300px 340px 300px;
+  grid-template-rows: 225px 225px;
+  justify-content: center;
+  column-gap: 50px;
+  row-gap: 30px;
+}
+
+.dc-ph {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: #1a1b18;
+}
+
+.dc-ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  transition: transform 0.6s ease;
+}
+
+.dc-ph:hover img {
+  transform: scale(1.03);
+}
+
+.dc-ph::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 8px #0b0f0d, inset 0 0 0 9px rgba(212, 178, 106, 0.6);
+  pointer-events: none;
+}
+
+.dc-ph--1 { grid-area: 1 / 1; }
+.dc-ph--2 { grid-area: 2 / 1; }
+.dc-ph--4 { grid-area: 1 / 3; }
+.dc-ph--5 { grid-area: 2 / 3; }
+
+.dc-ph.is-arch {
+  grid-area: 1 / 2 / 3 / 3;
+  padding: 10px;
+  background: none;
+  border: 1px solid var(--gold);
+  border-radius: 180px 180px 0 0;
+}
+
+.dc-ph.is-arch::after {
+  display: none;
+}
+
+.dc-ph.is-arch img {
+  border-radius: 170px 170px 0 0;
+}
+
+.dc-gallery-arrows {
+  display: none;
+}
+
+/* ---------- 8. Gifts ---------- */
+.dc-gifts-sec {
+  background: var(--panel);
+}
+
+.t-deco .dc-gifts .k-gifts-note {
+  max-width: 640px;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--body-soft);
+}
+
+.t-deco .dc-gifts .k-gift-cards {
+  grid-template-columns: repeat(2, 340px);
+  justify-content: center;
+  gap: 28px;
+  width: auto;
+}
+
+.t-deco .k-gift-card {
+  justify-content: center;
+  min-height: 170px;
+  background: var(--onyx);
+  border: 1px solid #b8913f;
+  box-shadow: inset 0 0 0 6px #0b0f0d, inset 0 0 0 7px rgba(212, 178, 106, 0.35);
+}
+
+.t-deco .k-gift-label {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.t-deco .k-gift-name {
+  color: var(--taupe);
+}
+
+.t-deco .k-gift-number {
+  font-size: 26px;
+  letter-spacing: 0.06em;
+  color: var(--ivory);
+}
+
+.t-deco .k-copy {
+  border-radius: 0;
+  border-color: var(--gold-line);
+  color: var(--ivory);
+}
+
+.t-deco .k-copy svg {
+  color: var(--gold);
+}
+
+.t-deco .k-copy.is-done,
+.t-deco .k-copy.is-done svg {
+  color: var(--onyx);
+}
+
+/* ---------- 9. Enquiries ---------- */
+.t-deco .dc-faq {
+  width: min(720px, 100%);
+}
+
+.t-deco .k-faq,
+.t-deco .k-faq li {
+  border-color: var(--gold-line);
+}
+
+.t-deco .k-faq button {
+  font-size: 21px;
+  color: var(--ivory);
+}
+
+.t-deco .k-faq-a p {
+  font-weight: 300;
+  color: var(--taupe);
+}
+
+.t-deco .k-faq button i {
+  width: 22px;
+  height: 22px;
+  background: url(/templates/gilded-deco/faq-diamond.svg) center / 22px no-repeat;
+}
+
+.t-deco .k-faq button i::before,
+.t-deco .k-faq button i::after {
+  left: 6px;
+  top: 10.5px;
+  width: 10px;
+  background: #d4b26a;
+}
+
+/* ---------- 10. Kindly Reply ---------- */
+.dc-rsvp {
+  padding-bottom: 110px;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(212, 178, 106, 0.14), transparent 70%), var(--rays), var(--emerald);
+}
+
+.dc-rsvp .dc-head {
+  margin-bottom: 26px;
+}
+
+.dc-rsvp-lead {
+  margin: 0 auto 40px;
+  font-family: var(--k-display);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--ivory);
+}
+
+.t-deco .k-rsvp {
+  position: relative;
+  width: min(580px, 100%);
+  background:
+    url(/templates/gilded-deco/corner-tl.svg) 12px 12px / 30px no-repeat,
+    url(/templates/gilded-deco/corner-tr.svg) calc(100% - 12px) 12px / 30px no-repeat,
+    url(/templates/gilded-deco/corner-bl.svg) 12px calc(100% - 12px) / 30px no-repeat,
+    url(/templates/gilded-deco/corner-br.svg) calc(100% - 12px) calc(100% - 12px) / 30px no-repeat,
+    #0b0f0d;
+  border: 1px solid var(--gold);
+  box-shadow: inset 0 0 0 7px #0b0f0d, inset 0 0 0 8px rgba(212, 178, 106, 0.3), 0 30px 60px rgba(0, 0, 0, 0.35);
+}
+
+.t-deco .k-field input,
+.t-deco .k-field textarea {
+  border-color: var(--gold-line);
+}
+
+.t-deco .k-btn {
+  font-weight: 600;
+}
+
+/* ---------- 11. Footer ---------- */
+.dc-foot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 60px 24px 56px;
+  text-align: center;
+  background: var(--onyx);
+}
+
+.dc-foot-names {
+  font-family: var(--deco-caps);
+  font-size: 26px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.dc-foot-meta {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.dc-social {
+  display: flex;
+  gap: 22px;
+  margin-top: 6px;
+  color: var(--gold);
+}
+
+/* ---------- Tablet ---------- */
+@container tpl (max-width: 1100px) {
+  .dc-sky {
+    display: none;
+  }
+}
+
+@container tpl (max-width: 960px) {
+  .dc-nav {
+    grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr);
+    padding: 0 20px;
+  }
+
+  .dc-nav nav {
+    gap: 16px;
+  }
+
+  .dc-nav-l {
+    padding-right: 4px;
+  }
+
+  .dc-nav-r {
+    padding-left: 4px;
+  }
+
+  .dc-nav a:not(.dc-nav-crest) {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+  }
+
+  .t-deco .dc-nav .dc-nav-rsvp {
+    padding: 10px 14px;
+  }
+
+  .dc-prog {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 48px;
+  }
+
+  .dc-prog::before {
+    display: none;
+  }
+
+  .t-deco .dc-count .k-count-cell {
+    width: 124px;
+    height: 124px;
+  }
+
+  .t-deco .dc-count b {
+    font-size: 50px;
+  }
+
+  .t-deco .dc-venues {
+    grid-template-columns: repeat(2, minmax(0, 340px));
+    column-gap: 60px;
+  }
+
+  .dc-gallery {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.13fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 24px;
+    row-gap: 20px;
+  }
+
+  .dc-ph:not(.is-arch) {
+    aspect-ratio: 4 / 3;
+  }
+
+  .t-deco .dc-dress .k-attire,
+  .t-deco .dc-gifts .k-gift-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+}
+
+/* ---------- Phone ---------- */
+@container tpl (max-width: 640px) {
+  .t-deco section,
+  .t-deco [id] {
+    scroll-margin-top: 56px;
+  }
+
+  .dc-sec {
+    padding: 64px 16px 72px;
+  }
+
+  .dc-head {
+    margin-bottom: 40px;
+  }
+
+  .dc-fan {
+    width: 70px;
+    height: 35px;
+  }
+
+  .dc-head h2 {
+    max-width: 9em;
+    font-size: 32px;
+  }
+
+  .dc-divider {
+    width: 160px;
+    height: 8px;
+  }
+
+  .dc-head p {
+    font-size: 16px;
+  }
+
+  /* hero */
+  .dc-hero {
+    height: 820px;
+    min-height: 0;
+  }
+
+  .dc-arch {
+    display: none;
+  }
+
+  .dc-arch-phone {
+    position: absolute;
+    left: 50%;
+    top: 96px;
+    display: block;
+    width: min(340px, calc(100cqw - 50px));
+    height: auto;
+    aspect-ratio: 340 / 640;
+    translate: -50% 0;
+  }
+
+  .dc-hero-text {
+    top: 300px;
+    width: min(340px, calc(100cqw - 50px));
+    padding: 0 18px;
+  }
+
+  .dc-eyebrow {
+    font-size: 10px;
+  }
+
+  .dc-names {
+    font-size: min(44px, 11.3cqw);
+  }
+
+  .dc-names em {
+    font-size: 34px;
+  }
+
+  .dc-hero-date {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+  }
+
+  .dc-hero-venue {
+    font-size: 15px;
+  }
+
+  .dc-hero-venue span {
+    display: block;
+  }
+
+  .dc-hero-venue i {
+    display: none;
+  }
+
+  .dc-hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dc-hero-actions .dc-btn,
+  .dc-hero-actions .k-cal {
+    width: 250px;
+  }
+
+  .dc-hero-actions .k-cal .dc-btn {
+    width: 100%;
+  }
+
+  /* countdown */
+  .dc-countdown {
+    min-height: 380px;
+    gap: 28px;
+    padding: 56px 16px;
+  }
+
+  .dc-count-eyebrow {
+    max-width: 11em;
+    font-size: 24px;
+  }
+
+  .t-deco .dc-count {
+    gap: 6px;
+  }
+
+  .t-deco .dc-count .k-count-cell {
+    width: min(80px, 22cqw);
+    height: 104px;
+    outline: 0;
+  }
+
+  .t-deco .dc-count .k-count-cell + .k-count-cell::before {
+    display: none;
+  }
+
+  .t-deco .dc-count b {
+    font-size: 9.5cqw;
+  }
+
+  .t-deco .dc-count span {
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+  }
+
+  .dc-count-note {
+    display: block;
+  }
+
+  /* venues */
+  .t-deco .dc-venues {
+    grid-template-columns: min(326px, 100%);
+    row-gap: 28px;
+  }
+
+  .t-deco .dc-venues::before,
+  .t-deco .dc-venues::after {
+    display: none;
+  }
+
+  .t-deco .dc-venues .k-venue {
+    min-height: 410px;
+    padding: 64px 28px 32px;
+    background-image: url(/templates/gilded-deco/arch-panel-phone.svg);
+  }
+
+  .t-deco .k-venue-name {
+    font-size: 26px;
+  }
+
+  /* programme */
+  .dc-prog {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+    max-width: 380px;
+    padding: 0 8px;
+  }
+
+  .dc-prog::before {
+    display: block;
+    left: 36px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, transparent, #d4b26a 6%, #d4b26a 94%, transparent);
+  }
+
+  .dc-prog li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-areas: 'node time' 'node text';
+    column-gap: 18px;
+    align-items: start;
+    text-align: left;
+  }
+
+  .dc-prog-node {
+    grid-area: node;
+    margin: 0;
+  }
+
+  .dc-prog-time {
+    grid-area: time;
+    font-size: 20px;
+  }
+
+  .dc-prog-text {
+    grid-area: text;
+    align-items: flex-start;
+  }
+
+  .dc-prog-label {
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .dc-prog-note {
+    max-width: none;
+    font-size: 14px;
+  }
+
+  /* attire */
+  .t-deco .dc-dress .k-swatches {
+    gap: 6px;
+  }
+
+  .t-deco .k-swatch-shape--square {
+    width: 36px;
+    height: 36px;
+  }
+
+  .t-deco .dc-dress .k-attire,
+  .t-deco .dc-gifts .k-gift-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .t-deco .k-attire-card {
+    min-height: 210px;
+  }
+
+  /* party */
+  .t-deco .dc-ent .k-ent-pairs span,
+  .t-deco .dc-ent .k-ent-names li {
+    font-size: 16px;
+  }
+
+  /* portraits */
+  .dc-gallery {
+    display: flex;
+    gap: 14px;
+    margin: 0 -16px;
+    padding: 0 32px 6px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 32px;
+    scrollbar-width: none;
+  }
+
+  .dc-gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dc-ph,
+  .dc-ph.is-arch {
+    flex: none;
+    width: 280px;
+    height: 400px;
+    aspect-ratio: auto;
+    padding: 8px;
+    background: none;
+    border: 1px solid var(--gold);
+    border-radius: 148px 148px 0 0;
+    scroll-snap-align: start;
+  }
+
+  .dc-ph::after {
+    display: none;
+  }
+
+  .dc-ph img,
+  .dc-ph.is-arch img {
+    border-radius: 140px 140px 0 0;
+  }
+
+  .dc-gallery-arrows {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .dc-gallery-arrows button {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    color: var(--gold);
+    border: 1px solid var(--gold-line);
+    border-radius: 50%;
+  }
+
+  /* gifts */
+  .t-deco .k-gift-card {
+    min-height: 176px;
+  }
+
+  /* faq */
+  .t-deco .k-faq button {
+    font-size: 18px;
+  }
+
+  /* rsvp */
+  .dc-rsvp-lead {
+    font-size: 18px;
+  }
+
+  .t-deco .k-rsvp {
+    padding: 30px 22px;
+  }
+
+  /* footer */
+  .dc-foot {
+    padding: 56px 16px 90px;
+  }
+
+  .dc-foot-names {
+    font-size: 24px;
+  }
+
+  .dc-foot-names span {
+    display: block;
+  }
+
+  .dc-foot-area {
+    display: none;
+  }
+}

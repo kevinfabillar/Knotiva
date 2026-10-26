@@ -9,6 +9,12 @@ import {
   Rsvp,
   TemplateRoot,
   demo,
+  initials,
+  useDetails,
+  useEntourage,
+  useGifts,
+  usePhoto,
+  useSchedule,
   mapsUrl,
   scrollToId,
   seatLine,
@@ -19,7 +25,7 @@ import './europe.css';
 
 const P = '/templates/europe-style/';
 
-const D = {
+const DEFAULTS = {
   a: 'Julien',
   b: 'Camille',
   start: '2027-08-28T16:00:00+02:00',
@@ -29,16 +35,6 @@ const D = {
   venue: 'Château de Tourreau',
   replyBy: '15 June 2027',
 };
-
-const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
-
-const DETAILS = [
-  { icon: 'calendar', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
-  { icon: 'pin', title: 'Location', lines: ['Provence,', 'France'], map: `${D.venue} Provence` },
-  { icon: 'rings', title: 'Ceremony', lines: ['4:00 PM', D.venue] },
-  { icon: 'cheers', title: 'Celebration', lines: ['7:00 PM', 'Dinner & dancing'] },
-  { icon: 'cutlery', title: 'After Party', lines: ['11:00 PM', "Let's dance!"] },
-];
 
 const GUIDE = [
   { icon: 'house', title: 'Stay', text: 'Our favorite places to stay', href: mapsUrl('boutique hotels Provence') },
@@ -50,12 +46,6 @@ const EATS = [
   { img: 'e1.jpg', name: 'Le Petit Café', text: 'Great coffee & pastries in the morning.' },
   { img: 'e2.jpg', name: 'La Table du Village', text: 'Our go-to for lunch & local flavors.' },
   { img: 'e3.jpg', name: 'Le Bistrot', text: 'Perfect for dinner & wine.' },
-];
-
-const PHOTOS = [
-  { src: `${P}story.jpg`, alt: 'Coffee at a café table' },
-  { src: `${P}weekend.jpg`, alt: 'An old car parked in a narrow Provençal street' },
-  { src: `${P}hero.jpg`, alt: `${D.a} and ${D.b} walking down a cobbled lane` },
 ];
 
 const NAV = [
@@ -76,9 +66,13 @@ const PALETTE = [
   { name: 'Taupe', hex: '#857761' },
 ];
 
-const gifts = demo.gifts(D);
+const DRESS = {
+  note: 'Summer formal in the colours of Provence: linen, stone, lavender and olive. The courtyard is cobbled, so choose your heels wisely.',
+  shape: 'arch',
+  attire: [{ who: 'Ladies', text: 'Long, light dresses in soft neutrals or lavender.', icon: 'gown' }, { who: 'Gentlemen', text: 'Linen suits in stone or sand. Loafers welcome.', icon: 'suit' }],
+};
 
-function Mono({ className = '' }) {
+function Mono({ D, className = '' }) {
   return (
     <span className={`eu-mono ${className}`} aria-hidden="true">
       <span>{D.a[0]}</span>
@@ -98,7 +92,28 @@ function Num({ n, children }) {
   );
 }
 
+export const meta = { defaults: DEFAULTS, className: 't-eu', cover: `${P}hero.jpg`, schedule: demo.program, palette: PALETTE, dress: DRESS };
+
 export default function EuropeStyle() {
+  const D = useDetails(DEFAULTS);
+  const photo = usePhoto();
+  const schedule = useSchedule(demo.program);
+  const entourage = useEntourage(demo.entourage(D));
+  const [I1, I2] = initials(D);
+  const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
+  const DETAILS = [
+    { icon: 'calendar', title: 'Date', lines: [D.date, '4:00 PM'], cal: true },
+    { icon: 'pin', title: 'Location', lines: ['Provence,', 'France'], map: `${D.venue} Provence` },
+    { icon: 'rings', title: 'Ceremony', lines: ['4:00 PM', D.venue] },
+    { icon: 'cheers', title: 'Celebration', lines: ['7:00 PM', 'Dinner & dancing'] },
+    { icon: 'cutlery', title: 'After Party', lines: ['11:00 PM', "Let's dance!"] },
+  ];
+  const PHOTOS = [
+    { src: photo(`${P}story.jpg`), alt: 'Coffee at a café table' },
+    { src: photo(`${P}weekend.jpg`), alt: 'An old car parked in a narrow Provençal street' },
+    { src: photo(`${P}hero.jpg`), alt: `${D.a} and ${D.b} walking down a cobbled lane` },
+  ];
+  const gifts = useGifts(demo.gifts(D));
   const { guest } = useInvite();
   const lightbox = useLightbox(PHOTOS);
 
@@ -106,13 +121,13 @@ export default function EuropeStyle() {
     <TemplateRoot
       className="t-eu"
       nav={NAV}
-      monogram="J / C"
+      monogram={`${I1} / ${I2}`}
       music="reverie"
-      gate={{ variant: 'seal', names: `${D.a} & ${D.b}`, monogram: 'J·C', eyebrow: 'You have an invitation from', hint: 'Break the seal' }}
+      gate={{ variant: 'seal', names: `${D.a} & ${D.b}`, monogram: `${I1}·${I2}`, eyebrow: 'You have an invitation from', hint: 'Break the seal' }}
     >
       <header className="eu-nav k-topnav">
         <a href="#top" aria-label="Home">
-          <Mono />
+          <Mono D={D} />
         </a>
         <nav className="nav-links eu-links">
           {NAV.slice(0, 5).map(({ id, label }) => (
@@ -157,7 +172,7 @@ export default function EuropeStyle() {
           </div>
         </div>
         <div className="eu-hero-photo">
-          <img src={`${P}hero.jpg`} alt={`${D.a} and ${D.b} walking down a cobbled lane`} />
+          <img src={photo(`${P}hero.jpg`)} alt={`${D.a} and ${D.b} walking down a cobbled lane`} />
         </div>
       </section>
 
@@ -181,9 +196,9 @@ export default function EuropeStyle() {
         </div>
         <div className="eu-story-art rv d1">
           <button type="button" className="eu-print" onClick={() => lightbox.open(0)} aria-label="Open photo">
-            <img src={`${P}story.jpg`} alt="Coffee at a café table" loading="lazy" />
+            <img src={photo(`${P}story.jpg`)} alt="Coffee at a café table" loading="lazy" />
           </button>
-          <img className="eu-stamp" src={`${P}stamp.png`} alt="" loading="lazy" />
+          <img className="eu-stamp" src={photo(`${P}stamp.png`)} alt="" loading="lazy" />
           <svg className="eu-sprig" viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true">
             <path d="M6 54 C 22 40, 36 26, 54 6" />
             <path d="M18 43 C 12 40, 10 34, 12 30 C 17 33, 19 38, 18 43 Z" />
@@ -227,15 +242,7 @@ export default function EuropeStyle() {
         <div className="rv">
           <Num n="03">Dress Code</Num>
         </div>
-        <DressCode
-          note="Summer formal in the colours of Provence: linen, stone, lavender and olive. The courtyard is cobbled, so choose your heels wisely."
-          palette={PALETTE}
-          shape="arch"
-          attire={[
-            { who: 'Ladies', text: 'Long, light dresses in soft neutrals or lavender.', icon: 'gown' },
-            { who: 'Gentlemen', text: 'Linen suits in stone or sand. Loafers welcome.', icon: 'suit' },
-          ]}
-        />
+        <DressCode {...DRESS} palette={PALETTE} />
       </section>
 
       <section className="eu-guide">
@@ -257,7 +264,7 @@ export default function EuropeStyle() {
           </a>
         </div>
         <button type="button" className="eu-tall rv d1" onClick={() => lightbox.open(1)} aria-label="Open photo">
-          <img src={`${P}weekend.jpg`} alt="An old car parked in a narrow Provençal street" loading="lazy" />
+          <img src={photo(`${P}weekend.jpg`)} alt="An old car parked in a narrow Provençal street" loading="lazy" />
         </button>
         <div className="eu-eat rv d2" id="eat">
           <Num n="05">Eat &amp; Drink</Num>
@@ -269,7 +276,7 @@ export default function EuropeStyle() {
           <ul className="eu-eat-list">
             {EATS.map((e) => (
               <li key={e.name}>
-                <img src={`${P}${e.img}`} alt="" loading="lazy" />
+                <img src={photo(`${P}${e.img}`)} alt="" loading="lazy" />
                 <div>
                   <h3>{e.name}</h3>
                   <p>{e.text}</p>
@@ -288,14 +295,14 @@ export default function EuropeStyle() {
         <div className="rv">
           <Num n="06">The Entourage</Num>
         </div>
-        <Entourage groups={demo.entourage(D)} />
+        <Entourage groups={entourage} />
       </section>
 
       <section className="eu-sec" id="gifts">
         <div className="rv">
           <Num n="07">Gifts</Num>
         </div>
-        <Gifts note={gifts.note} accounts={gifts.accounts} />
+        <Gifts note={gifts.note} accounts={gifts.accounts} qr={gifts.qr} />
       </section>
 
       <section className="eu-sec eu-sec--tint" id="faq">
@@ -316,7 +323,7 @@ export default function EuropeStyle() {
             <b>{D.replyBy}.</b>
           </p>
           <figure className="eu-wall">
-            <img src={`${P}rsvp.jpg`} alt="" loading="lazy" />
+            <img src={photo(`${P}rsvp.jpg`)} alt="" loading="lazy" />
             <figcaption>
               We can&rsquo;t wait
               <br />

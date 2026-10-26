@@ -7,4 +7,7 @@ export const LOADERS = {
   'street-style': () => import('./street/StreetStyle.jsx'),
   'street-minimal': () => import('./minimal/StreetMinimal.jsx'),
   'europe-style': () => import('./europe/EuropeStyle.jsx'),
+  'gilded-deco': () => import('./deco/GildedDeco.jsx'),
+  isla: () => import('./isla/Isla.jsx'),
+  sumi: () => import('./sumi/Sumi.jsx'),
 };

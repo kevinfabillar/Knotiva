@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 920" width="800" height="920">
+<defs><linearGradient id="g" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#ddd5c7"/><stop offset="1" stop-color="#b9ae9c"/></linearGradient>
+<radialGradient id="sheen" cx="0.3" cy="0.2" r="0.7"><stop offset="0" stop-color="#fff" stop-opacity="0.35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="920" fill="url(#g)"/><rect width="800" height="920" fill="url(#sheen)"/><text x="40.0" y="880.0" font-family="Albert Sans, Helvetica, Arial, sans-serif" font-weight="500" font-size="38" letter-spacing="9.12" fill="#1e1c19" fill-opacity="0.6">HANDS, SAKE CUP</text>
+</svg>

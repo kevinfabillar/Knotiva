@@ -1804,6 +1804,29 @@
   border-color: var(--k-accent);
 }
 
+.k-gift-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.k-gift-qr img {
+  width: min(220px, 60vw);
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--k-line);
+  border-radius: var(--k-radius);
+}
+
+.k-gift-qr figcaption {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--k-muted);
+}
+
 /* ---------- FAQ ---------- */
 .k-faq {
   width: min(720px, 100%);

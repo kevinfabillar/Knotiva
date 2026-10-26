@@ -9,6 +9,12 @@ import {
   Rsvp,
   TemplateRoot,
   demo,
+  initials,
+  useDetails,
+  useEntourage,
+  useGifts,
+  usePhoto,
+  useSchedule,
   mapsUrl,
   scrollToId,
   seatLine,
@@ -19,7 +25,7 @@ import './dark.css';
 
 const P = '/templates/dark-fiery-flowers/';
 
-const D = {
+const DEFAULTS = {
   a: 'Adrian',
   b: 'Celeste',
   start: '2027-10-23T16:30:00+08:00',
@@ -30,29 +36,12 @@ const D = {
   replyBy: 'September 15, 2027',
 };
 
-const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
-
-const DETAILS = [
-  { icon: 'calendar', title: D.date, sub: 'Four thirty in the afternoon', cal: true },
-  { icon: 'pin', title: D.venue, sub: D.place, map: `${D.venue} ${D.place}` },
-  { icon: 'cocktail', title: 'Cocktail Hour', sub: 'Immediately following the ceremony' },
-  { icon: 'cheers', title: 'Reception', sub: 'Dinner, drinks & dancing' },
-];
-
 const SCHEDULE = [
   { icon: 'rings', time: '4:30 PM', label: 'Ceremony' },
   { icon: 'camera', time: '5:00 PM', label: 'Photos' },
   { icon: 'cocktail', time: '6:00 PM', label: 'Cocktail Hour' },
   { icon: 'dinner', time: '7:30 PM', label: 'Dinner' },
   { icon: 'music', time: '9:00 PM', label: 'Dancing' },
-];
-
-const GALLERY = [
-  { src: `${P}g1.jpg`, alt: 'Burgundy rose bouquet' },
-  { src: `${P}g2.jpg`, alt: 'Candlelit table' },
-  { src: `${P}g3.jpg`, alt: 'The couple in silhouette' },
-  { src: `${P}g4.jpg`, alt: 'Dark rose bouquet' },
-  { src: `${P}g5.jpg`, alt: 'Place setting with a velvet menu' },
 ];
 
 const FAQ = [
@@ -81,7 +70,11 @@ const PALETTE = [
   { name: 'Black', hex: '#121012' },
 ];
 
-const gifts = demo.gifts(D);
+const DRESS = {
+  note: 'Black-tie optional. We would love to see you in deep jewel tones: plum, wine, mauve and copper.',
+  shape: 'petal',
+  attire: [{ who: 'Ladies', text: 'Floor-length gowns or elegant cocktail dresses in the palette.', icon: 'gown' }, { who: 'Gentlemen', text: 'Black tuxedo or a dark suit with a jewel-tone tie.', icon: 'suit' }],
+};
 
 function Title({ children }) {
   return (
@@ -92,7 +85,29 @@ function Title({ children }) {
   );
 }
 
+export const meta = { defaults: DEFAULTS, className: 't-dark', cover: `${P}g3.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+
 export default function DarkFieryFlowers() {
+  const D = useDetails(DEFAULTS);
+  const photo = usePhoto();
+  const schedule = useSchedule(SCHEDULE);
+  const entourage = useEntourage(demo.entourage(D));
+  const [I1, I2] = initials(D);
+  const EVENT = { title: `${D.a} & ${D.b}'s Wedding`, start: D.start, end: D.end, location: `${D.venue}, ${D.place}` };
+  const DETAILS = [
+    { icon: 'calendar', title: D.date, sub: 'Four thirty in the afternoon', cal: true },
+    { icon: 'pin', title: D.venue, sub: D.place, map: `${D.venue} ${D.place}` },
+    { icon: 'cocktail', title: 'Cocktail Hour', sub: 'Immediately following the ceremony' },
+    { icon: 'cheers', title: 'Reception', sub: 'Dinner, drinks & dancing' },
+  ];
+  const GALLERY = [
+    { src: photo(`${P}g1.jpg`), alt: 'Burgundy rose bouquet' },
+    { src: photo(`${P}g2.jpg`), alt: 'Candlelit table' },
+    { src: photo(`${P}g3.jpg`), alt: 'The couple in silhouette' },
+    { src: photo(`${P}g4.jpg`), alt: 'Dark rose bouquet' },
+    { src: photo(`${P}g5.jpg`), alt: 'Place setting with a velvet menu' },
+  ];
+  const gifts = useGifts(demo.gifts(D));
   const { guest } = useInvite();
   const lightbox = useLightbox(GALLERY);
 
@@ -100,13 +115,13 @@ export default function DarkFieryFlowers() {
     <TemplateRoot
       className="t-dark"
       nav={NAV}
-      monogram="A & C"
+      monogram={`${I1} & ${I2}`}
       music="reverie"
-      gate={{ variant: 'doors', eyebrow: 'You are invited to the wedding of', names: `${D.a} & ${D.b}`, date: D.date, button: 'Open the doors' }}
+      gate={{ variant: 'doors', monogram: `${I1}${I2}`, eyebrow: 'You are invited to the wedding of', names: `${D.a} & ${D.b}`, date: D.date, button: 'Open the doors' }}
     >
       <header className="dk-nav k-topnav">
         <a className="dk-mono" href="#top">
-          A<span>&amp;</span>C
+          {I1}<span>&amp;</span>{I2}
         </a>
         <nav className="nav-links dk-links">
           {NAV.slice(0, 6).map(({ id, label }) => (
@@ -188,7 +203,7 @@ export default function DarkFieryFlowers() {
       <section className="dk-schedule" id="schedule">
         <Title>Schedule of Events</Title>
         <ol className="dk-timeline rv d1">
-          {SCHEDULE.map((s) => (
+          {schedule.map((s) => (
             <li key={s.label}>
               <Icon name={s.icon} size={38} stroke={1} />
               <span className="dk-dot" />
@@ -201,20 +216,12 @@ export default function DarkFieryFlowers() {
 
       <section className="dk-sec dk-sec--attire" id="attire">
         <Title>Dress Code</Title>
-        <DressCode
-          note="Black-tie optional. We would love to see you in deep jewel tones: plum, wine, mauve and copper."
-          palette={PALETTE}
-          shape="petal"
-          attire={[
-            { who: 'Ladies', text: 'Floor-length gowns or elegant cocktail dresses in the palette.', icon: 'gown' },
-            { who: 'Gentlemen', text: 'Black tuxedo or a dark suit with a jewel-tone tie.', icon: 'suit' },
-          ]}
-        />
+        <DressCode {...DRESS} palette={PALETTE} />
       </section>
 
       <section className="dk-sec dk-sec--ent" id="entourage">
         <Title>The Entourage</Title>
-        <Entourage groups={demo.entourage(D)} />
+        <Entourage groups={entourage} />
       </section>
 
       <section className="dk-gallery" id="gallery">
@@ -231,7 +238,7 @@ export default function DarkFieryFlowers() {
 
       <section className="dk-sec dk-sec--gifts" id="gifts">
         <Title>Gifts</Title>
-        <Gifts note={gifts.note} accounts={gifts.accounts} />
+        <Gifts note={gifts.note} accounts={gifts.accounts} qr={gifts.qr} />
       </section>
 
       <section className="dk-faq" id="faq">
@@ -255,7 +262,7 @@ export default function DarkFieryFlowers() {
 
       <footer className="dk-foot">
         <span className="dk-foot-mono">
-          A<span>&amp;</span>C
+          {I1}<span>&amp;</span>{I2}
         </span>
         <div>
           <p className="dk-foot-names">
