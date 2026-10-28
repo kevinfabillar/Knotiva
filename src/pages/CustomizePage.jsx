@@ -21,6 +21,58 @@ const LABELS = {
   ceremony: 'Ceremony venue',
   ceremonyAddress: 'Ceremony address',
   venueAddress: 'Reception address',
+  aLast: 'Partner 1 — surname',
+  bLast: 'Partner 2 — surname',
+  hashtag: 'Wedding hashtag',
+  ceremonyShort: 'Ceremony short label',
+  ceremonyNote: 'Ceremony caption',
+  venueShort: 'Reception short label',
+  venueNote: 'Reception caption',
+  receptionTime: 'Reception time',
+  subtitle: 'Photo caption',
+  tagline: 'Romantic tagline',
+  intro: 'Couple introduction',
+  welcome: 'Welcome message',
+  invitation: 'Invitation message',
+  storyTitle: 'Love story heading',
+  storyIntro: 'Love story introduction',
+  story1Year: 'Story 1 — year',
+  story1Title: 'Story 1 — title',
+  story1Text: 'Story 1 — text',
+  story2Year: 'Story 2 — year',
+  story2Title: 'Story 2 — title',
+  story2Text: 'Story 2 — text',
+  story3Year: 'Story 3 — year',
+  story3Title: 'Story 3 — title',
+  story3Text: 'Story 3 — text',
+  parentsNote: 'Parents section note',
+  aParent1: 'Parent of partner 1',
+  aParent2: 'Parent of partner 1 (second)',
+  bParent1: 'Parent of partner 2',
+  bParent2: 'Parent of partner 2 (second)',
+  dressTitle: 'Dress code title',
+  dressNote: 'Dress code description',
+  paletteNote: 'Palette guidance',
+  giftTitle: 'Gift section title',
+  giftDetails: 'Gift instructions',
+  travelIntro: 'Travel introduction',
+  hotel: 'Suggested hotel',
+  hotelNote: 'Accommodation note',
+  transport: 'Getting around',
+  airport: 'Airport details',
+  reminder1: 'Reminder 1',
+  reminder2: 'Reminder 2',
+  reminder3: 'Reminder 3',
+  closing: 'Closing thank-you message',
+  quote: 'Pull quote (a line from the couple)',
+  fromCode: 'Pass: departure code (e.g. MNL)',
+  fromCity: 'Pass: departure city',
+  toCode: 'Pass: arrival code (e.g. USU)',
+  toCity: 'Pass: arrival city',
+  boat: 'Pass: boat or transfer time',
+  jetty: 'Pass: jetty / pier',
+  estate: 'Estate or house name (shown on the map and footer)',
+  since: 'Year you met (archive starts)',
 };
 const ORDER = ['a', 'b', 'start', 'date', 'venue', 'place', 'replyBy', 'end'];
 const HIDDEN = new Set(['month', 'day', 'year']);
@@ -183,8 +235,11 @@ export default function CustomizePage() {
     setSaved('');
   };
 
-  const rank = (p) => (/\/hero\.jpg$/.test(p) ? 0 : /\/story\.jpg$/.test(p) ? 1 : 2);
-  const photos = registry.photos.filter((p) => /\.jpe?g$/i.test(p)).sort((x, y) => rank(x) - rank(y));
+  // Photos are .jpg; templates without real photos use .svg placeholders. PNGs are decoration.
+  const rank = (p) => (/\/hero\.(jpe?g|svg)$/.test(p) ? 0 : /\/story\.(jpe?g|svg)$/.test(p) ? 1 : 2);
+  const photos = registry.photos
+    .filter((p) => /\.(jpe?g|svg)$/i.test(p) && p !== GIFT_QR && !p.includes('/shared/'))
+    .sort((x, y) => rank(x) - rank(y));
 
   return (
     <div className="cz">

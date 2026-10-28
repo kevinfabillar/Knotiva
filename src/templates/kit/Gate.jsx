@@ -81,7 +81,9 @@ function Barcode() {
  * button    label of the open button
  * image     background image (curtain)
  * petals    falling petals in the background
- * ticket    { from: ['SGL', 'Single'], to: ['MRD', 'Married'], flight, airline, gate }
+ * ticket    { from: ['SGL', 'Single'], to: ['MRD', 'Married'], flight, airline, gate,
+ *             labels: { head, passenger, flight, date, gate, seat, tear } (optional wording),
+ *             namesAbove: show the big names above the pass too (default false) }
  * scratch   [{ value: '14', label: 'Feb' }, ...]
  */
 export default function Gate({
@@ -142,6 +144,8 @@ export default function Gate({
     gate: 'I DO',
     ...ticket,
   };
+  // Optional ticket.labels override the printed words on the pass (merged over the defaults).
+  const L = { head: 'Boarding pass', passenger: 'Passenger', flight: 'Flight', date: 'Date', gate: 'Gate', seat: 'Seat', tear: 'Tear to board', ...(ticket.labels || {}) };
 
   return (
     <Layer>
@@ -171,7 +175,7 @@ export default function Gate({
         <div className="k-gate-inner">
           {dear}
           <p className="k-gate-eyebrow">{eyebrow}</p>
-          {variant === 'card' || variant === 'ticket' ? null : nameLine}
+          {variant === 'card' || (variant === 'ticket' && !ticket.namesAbove) ? null : nameLine}
           {date && !['envelope', 'ticket', 'scratch'].includes(variant) && <p className="k-gate-date">{date}</p>}
 
           {variant === 'envelope' && (
@@ -246,7 +250,7 @@ export default function Gate({
               <span className="k-tk-main">
                 <span className="k-tk-head">
                   <span>{t.airline}</span>
-                  <span>Boarding pass</span>
+                  <span>{L.head}</span>
                 </span>
                 <span className="k-tk-route">
                   <span>
@@ -263,29 +267,29 @@ export default function Gate({
                 </span>
                 <span className="k-tk-grid">
                   <span>
-                    <small>Passenger</small>
+                    <small>{L.passenger}</small>
                     {guest?.name || 'Our favourite guest'}
                   </span>
                   <span>
-                    <small>Flight</small>
+                    <small>{L.flight}</small>
                     {t.flight}
                   </span>
                   <span>
-                    <small>Date</small>
+                    <small>{L.date}</small>
                     {date}
                   </span>
                   <span>
-                    <small>Gate</small>
+                    <small>{L.gate}</small>
                     {t.gate}
                   </span>
                 </span>
                 <span className="k-tk-names">{names}</span>
               </span>
               <span className="k-tk-stub">
-                <small>Seat</small>
+                <small>{L.seat}</small>
                 <b>{guest?.seats ? `${guest.seats}×` : 'VIP'}</b>
                 <Barcode />
-                <em>Tear to board</em>
+                <em>{L.tear}</em>
               </span>
             </button>
           )}

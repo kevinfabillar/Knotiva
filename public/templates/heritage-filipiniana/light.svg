@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+<defs><linearGradient id="g" x1="0.15" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#c6b296"/><stop offset="1" stop-color="#7d6149"/></linearGradient>
+<radialGradient id="sheen" cx="0.28" cy="0.22" r="0.75"><stop offset="0" stop-color="#fff4e2" stop-opacity="0.32"/><stop offset="1" stop-color="#fff4e2" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="900" fill="url(#g)"/><rect width="1200" height="900" fill="url(#sheen)"/>
+<g fill="none" stroke="#f6e8d2" stroke-opacity="0.32" stroke-width="2"><path d="M520 560V420Q600 330 680 420V560"/><path d="M540 560V425Q600 360 660 425V560"/><path d="M460 560H740"/></g>
+<text x="600" y="150" text-anchor="middle" font-family="DM Sans, Helvetica, Arial, sans-serif" font-weight="500" font-size="26" letter-spacing="7" fill="#f6e8d2" fill-opacity="0.75">YOUR PHOTO · ALL THE LIGHT</text>
+</svg>

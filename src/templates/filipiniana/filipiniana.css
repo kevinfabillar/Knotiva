@@ -1,0 +1,1579 @@
+/* Contemporary Filipiniana: the barong panel. Ivory piña, drawn-thread calado, olive lacquer, antique gold. */
+
+.t-filipiniana {
+  --ivory: #f7f2e7;
+  --card: #fbf8f1;
+  --pina: #ede4d0;
+  --abaca: #d9cbb1;
+  --gold: #a88b4a;
+  --gold-text: #8a6f35;
+  --gold-light: #c9ab68;
+  --olive: #3f4a2e;
+  --ink: #2a2a22;
+  --body: #4d4a3e;
+  --muted: #6b6553;
+  --pina-tex: repeating-linear-gradient(45deg, rgba(168, 139, 74, 0.09) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(-45deg, rgba(168, 139, 74, 0.09) 0 1px, transparent 1px 6px);
+  --calado-tex: radial-gradient(circle, #f7f2e7 0 1.8px, transparent 2.2px) 6px 6px / 12px 12px,
+    repeating-linear-gradient(45deg, rgba(168, 139, 74, 0.45) 0 1px, transparent 1px 17px),
+    repeating-linear-gradient(-45deg, rgba(168, 139, 74, 0.45) 0 1px, transparent 1px 17px), #ede4d0;
+  --band-tex: radial-gradient(circle, #f7f2e7 0 1.8px, transparent 2.2px) 0 0 / 12px 12px, #d9cbb1;
+  --strip-tex: radial-gradient(circle, #f7f2e7 0 1.8px, transparent 2.2px) 0 100% / 12px 12px repeat-x,
+    linear-gradient(#d9cbb1, #d9cbb1) bottom / 100% 12px no-repeat;
+  --banig-tex: repeating-conic-gradient(from 45deg, #ece2cc 0 25%, #e5d9bf 0 50%) 0 0 / 16px 16px;
+  --weave: repeating-linear-gradient(45deg, rgba(247, 242, 231, 0.035) 0 6px, transparent 6px 12px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.06) 0 6px, transparent 6px 12px);
+
+  --k-bg: #f7f2e7;
+  --k-surface: #fbf8f1;
+  --k-ink: #2a2a22;
+  --k-muted: #6b6553;
+  --k-accent: #3f4a2e;
+  --k-on-accent: #f7f2e7;
+  --k-line: #d9cbb1;
+  --k-display: 'Marcellus', 'Times New Roman', serif;
+  --k-display-weight: 400;
+  --k-body: 'Mulish', system-ui, sans-serif;
+  --k-script: 'EB Garamond', Georgia, serif;
+  --k-radius: 0px;
+  --k-btn-radius: 0px;
+  --k-shadow: none;
+  --k-field-bg: #fbf8f1;
+
+  --g-bg: var(--weave), radial-gradient(ellipse 50% 60% at 50% 58%, #4a5636, #343d26 80%);
+  --g-ink: #f7f2e7;
+  --g-accent: #c9ab68;
+  --g-card: #f7f2e7;
+  --g-card-ink: #3f4a2e;
+  --g-card-radius: 0px;
+  --g-ribbon: #c9ab68;
+
+  --k-bar-ink-top: #3f4a2e;
+  --k-bar-bg: #f7f2e7;
+  --k-bar-ink: #3f4a2e;
+  --k-menu-bg: #f7f2e7;
+  --k-music-bg: #3f4a2e;
+  --k-music-ink: #f7f2e7;
+
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--k-body);
+}
+
+/* ---------- Shared ---------- */
+.t-filipiniana .fi-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.t-filipiniana .fi-caps {
+  font: 600 10.5px/1.6 var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.t-filipiniana .fi-olive {
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-ink {
+  color: var(--ink);
+}
+
+.t-filipiniana .fi-p {
+  font: 300 16px/1.8 var(--k-body);
+  color: var(--body);
+}
+
+.t-filipiniana .fi-band {
+  height: 12px;
+  background: var(--band-tex);
+  border-block: 1px solid var(--gold);
+}
+
+.t-filipiniana .fi-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.t-filipiniana .fi-h {
+  font: 400 40px/1.15 var(--k-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-en {
+  font: italic 400 20px/1.3 var(--k-script);
+  color: var(--muted);
+}
+
+.t-filipiniana .fi-head--l {
+  text-align: right;
+}
+
+.t-filipiniana .fi-head--c {
+  position: relative;
+  z-index: 3;
+  width: min(560px, 100%);
+  margin: 0 auto 50px;
+  padding: 26px 0;
+  text-align: center;
+  background: var(--ivory);
+}
+
+.t-filipiniana .fi-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: var(--olive);
+  border: 1px solid var(--olive);
+  transition: background 0.25s, color 0.25s;
+}
+
+.t-filipiniana .fi-btn:hover {
+  background: #2f3822;
+}
+
+.t-filipiniana .fi-btn--line {
+  color: var(--olive);
+  background: transparent;
+  border-color: var(--gold);
+}
+
+.t-filipiniana .fi-btn--line:hover {
+  color: var(--ivory);
+  background: var(--olive);
+}
+
+/* ---------- Header ---------- */
+.t-filipiniana .fi-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 88px;
+  padding: 0 56px;
+  border-bottom: 1px solid var(--abaca);
+}
+
+.t-filipiniana .fi-nav nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.t-filipiniana .fi-nav-r {
+  justify-content: flex-end;
+}
+
+.t-filipiniana .fi-nav nav a {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--body);
+}
+
+.t-filipiniana .fi-nav nav a:hover {
+  color: var(--gold-text);
+}
+
+.t-filipiniana .fi-nav .fi-nav-rsvp {
+  padding: 13px 18px;
+  color: var(--ivory);
+  background: var(--olive);
+}
+
+.t-filipiniana .fi-nav .fi-nav-rsvp:hover {
+  color: var(--ivory);
+}
+
+.t-filipiniana .fi-nav-mono {
+  font: 400 26px var(--k-display);
+  letter-spacing: 0.24em;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-nav-mono i {
+  margin: 0 0.3em 0 0.1em;
+  font-style: normal;
+  color: var(--gold);
+}
+
+/* ---------- 1. Hero ---------- */
+.t-filipiniana .fi-hero {
+  position: relative;
+  min-height: 892px;
+  overflow: hidden;
+}
+
+.t-filipiniana .fi-hero-photo {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: calc(50% - 120px);
+  object-fit: cover;
+}
+
+.t-filipiniana .fi-hero-photo--l {
+  left: 0;
+}
+
+.t-filipiniana .fi-hero-photo--r {
+  right: 0;
+}
+
+.t-filipiniana .fi-hero-photo--phone {
+  display: none;
+}
+
+.t-filipiniana .fi-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 240px);
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 56px;
+  text-align: center;
+  background-color: rgba(247, 242, 231, 0.92);
+  background-image: var(--pina-tex);
+  outline: 1px solid rgba(168, 139, 74, 0.5);
+}
+
+.t-filipiniana .fi-panel::before,
+.t-filipiniana .fi-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  background: var(--calado-tex);
+  border-inline: 1px solid var(--gold);
+}
+
+.t-filipiniana .fi-panel::before {
+  left: 0;
+}
+
+.t-filipiniana .fi-panel::after {
+  right: 0;
+}
+
+.t-filipiniana .fi-sprig {
+  width: 120px;
+  height: 60px;
+  margin-bottom: 22px;
+}
+
+.t-filipiniana .fi-en--s {
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.t-filipiniana .fi-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0 26px;
+  font: 400 70px/1.08 var(--k-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-names span {
+  margin-right: -0.12em;
+}
+
+.t-filipiniana .fi-names em {
+  margin: 4px 0;
+  font-size: 34px;
+  font-style: normal;
+  color: var(--gold);
+}
+
+.t-filipiniana .fi-band--hero {
+  width: 220px;
+  margin-bottom: 22px;
+}
+
+.t-filipiniana .fi-panel > .fi-caps.fi-ink {
+  font-size: 12px;
+}
+
+.t-filipiniana .fi-en--place {
+  margin-top: 6px;
+}
+
+.t-filipiniana .fi-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+/* ---------- Main + spine ---------- */
+.t-filipiniana .fi-main {
+  position: relative;
+}
+
+.t-filipiniana .fi-main::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: calc(50% - 48px);
+  width: 96px;
+  top: 0;
+  bottom: 0;
+  background: var(--calado-tex);
+  border-inline: 1px solid var(--gold);
+  box-shadow: inset 4px 0 0 var(--ivory), inset -4px 0 0 var(--ivory), inset 5px 0 0 var(--gold), inset -5px 0 0 var(--gold);
+}
+
+.t-filipiniana .fi-main > section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.t-filipiniana .fi-calado-band {
+  display: none;
+}
+
+.t-filipiniana .fi-sec {
+  padding: 90px 80px;
+}
+
+.t-filipiniana .fi-split {
+  display: grid;
+  grid-template-columns: 1fr 96px 1fr;
+}
+
+.t-filipiniana .fi-split > :first-child {
+  padding-right: 56px;
+}
+
+.t-filipiniana .fi-split > :last-child {
+  padding-left: 56px;
+}
+
+/* 2. Countdown */
+.t-filipiniana .fi-count-sec {
+  align-items: center;
+}
+
+.t-filipiniana .fi-count {
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.t-filipiniana .fi-count .k-count-cell {
+  justify-content: center;
+  width: 104px;
+  height: 120px;
+  min-width: 0;
+  background: var(--pina-tex), var(--pina);
+  box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px var(--pina), inset 0 0 0 6px rgba(168, 139, 74, 0.45);
+}
+
+.t-filipiniana .fi-count .k-count-cell:last-child {
+  background: var(--olive);
+  box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px var(--olive), inset 0 0 0 6px rgba(201, 171, 104, 0.6);
+}
+
+.t-filipiniana .fi-count b {
+  font: 400 44px/1 var(--k-display);
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-count .k-count-cell:last-child b,
+.t-filipiniana .fi-count .k-count-cell:last-child span {
+  color: var(--ivory);
+}
+
+.t-filipiniana .fi-count span {
+  margin-top: 8px;
+  font: 600 8.5px var(--k-body);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+/* 3. Venues */
+.t-filipiniana #kailan {
+  padding-top: 40px;
+}
+
+.t-filipiniana .fi-venue-heads {
+  margin-bottom: 34px;
+}
+
+.t-filipiniana .fi-venues {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 208px;
+  max-width: none;
+  align-items: start;
+}
+
+.t-filipiniana .fi-venues .k-venue:nth-child(2) {
+  margin-top: 90px;
+}
+
+.t-filipiniana .k-venue {
+  padding: 0 34px 32px;
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--abaca);
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.t-filipiniana .k-venue::before {
+  content: '';
+  display: block;
+  align-self: stretch;
+  height: 300px;
+  margin: 0 -34px 30px;
+  background: var(--strip-tex), var(--img-venue-1) center / cover, var(--pina);
+  border-bottom: 1px solid var(--gold);
+}
+
+.t-filipiniana .k-venue:nth-child(2)::before {
+  background: var(--strip-tex), var(--img-venue-2) center / cover, var(--pina);
+}
+
+.t-filipiniana .k-venue-icon {
+  display: none;
+}
+
+.t-filipiniana .k-venue-kind {
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.34em;
+  color: var(--gold-text);
+}
+
+.t-filipiniana .k-venue-name {
+  font: 400 26px/1.25 var(--k-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.t-filipiniana .k-venue-address {
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--body);
+}
+
+.t-filipiniana .k-venue .k-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--olive);
+  border-bottom: 1px solid var(--gold);
+}
+
+/* 4. Program */
+.t-filipiniana .fi-prog-sec {
+  background: var(--banig-tex);
+}
+
+.t-filipiniana .fi-prog-sec .fi-split {
+  margin-bottom: 40px;
+}
+
+.t-filipiniana .fi-prog {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.t-filipiniana .fi-prog li {
+  display: grid;
+  grid-template-columns: 1fr 96px 1fr;
+  align-items: center;
+}
+
+.t-filipiniana .fi-medallion {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: var(--ivory);
+  box-shadow: 0 0 0 1px var(--gold);
+  font: 600 12px var(--k-body);
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-medallion.is-active {
+  color: var(--ivory);
+  background: var(--olive);
+  box-shadow: 0 0 0 1px var(--gold), 0 0 0 5px #ece2cc, 0 0 0 6px var(--gold);
+}
+
+.t-filipiniana .fi-prog-text {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.t-filipiniana .fi-prog li.is-l .fi-prog-text {
+  grid-column: 1;
+  padding-right: 40px;
+  text-align: right;
+}
+
+.t-filipiniana .fi-prog li.is-r .fi-prog-text {
+  grid-column: 3;
+  padding-left: 40px;
+}
+
+.t-filipiniana .fi-prog-label {
+  font: 400 22px/1.2 var(--k-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-prog-note {
+  font: italic 400 17px/1.3 var(--k-script);
+  color: var(--muted);
+}
+
+/* 5. Dress code */
+.t-filipiniana .fi-dress {
+  align-items: flex-end;
+  gap: 30px;
+  max-width: none;
+  margin: 30px 0 0;
+  text-align: right;
+}
+
+.t-filipiniana .fi-dress .k-dress-note {
+  max-width: none;
+  font: 300 16px/1.8 var(--k-body);
+  color: var(--body);
+}
+
+.t-filipiniana .fi-dress .k-swatches {
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.t-filipiniana .fi-dress .k-swatch {
+  width: 64px;
+}
+
+.t-filipiniana .fi-dress .k-swatch-shape {
+  width: 64px;
+  height: 84px;
+  border-radius: 0;
+  background-image: var(--pina-tex) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.t-filipiniana .fi-dress .k-swatch span:last-child {
+  font: 600 8.5px var(--k-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--body);
+}
+
+.t-filipiniana .fi-dress-r {
+  margin-top: 0;
+  text-align: left;
+}
+
+.t-filipiniana .fi-dress .k-attire {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.t-filipiniana .fi-dress .k-attire-card {
+  align-items: flex-start;
+  padding: 30px 32px;
+  background: var(--pina-tex), var(--card);
+  box-shadow: 0 0 0 1px var(--abaca);
+  border: 0;
+  border-radius: 0;
+}
+
+.t-filipiniana .fi-dress .k-attire-card svg {
+  display: none;
+}
+
+.t-filipiniana .fi-dress .k-attire-card h3 {
+  font: 400 24px/1.2 var(--k-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-dress .k-attire-card h3::before {
+  display: block;
+  margin-bottom: 10px;
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.34em;
+  color: var(--gold-text);
+}
+
+.t-filipiniana .fi-dress .k-attire-card:nth-child(1) h3::before {
+  content: 'Para sa kalalakihan · for him';
+}
+
+.t-filipiniana .fi-dress .k-attire-card:nth-child(2) h3::before {
+  content: 'Para sa kababaihan · for her';
+}
+
+.t-filipiniana .fi-dress .k-attire-card p {
+  max-width: none;
+  font: 300 15px/1.7 var(--k-body);
+  color: var(--body);
+}
+
+/* 6. Entourage */
+.t-filipiniana .fi-ent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 208px;
+  row-gap: 36px;
+  max-width: none;
+  text-align: left;
+}
+
+.t-filipiniana .fi-ent .k-ent-group:nth-child(odd) {
+  text-align: right;
+}
+
+.t-filipiniana .fi-ent .k-ent-group.is-wide {
+  grid-column: auto;
+}
+
+.t-filipiniana .fi-ent .k-ent-title {
+  margin: 0 0 10px;
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+}
+
+.t-filipiniana .fi-ent li,
+.t-filipiniana .fi-ent .k-ent-pairs span {
+  font: 400 17px/1.8 var(--k-display);
+  letter-spacing: 0.06em;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-ent .k-ent-names.is-cols {
+  columns: 1;
+}
+
+.t-filipiniana .fi-ent .k-ent-pairs li {
+  display: block;
+  padding: 0;
+}
+
+.t-filipiniana .fi-ent .k-ent-pairs li span {
+  text-align: inherit;
+}
+
+.t-filipiniana .fi-ent .k-ent-pairs li span + span::before {
+  content: ' & ';
+}
+
+/* 7. Gallery */
+.t-filipiniana .fi-gal-sec {
+  padding-inline: 12px;
+}
+
+.t-filipiniana .fi-gal {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1.1fr;
+  grid-template-rows: 254px 254px;
+  gap: 12px;
+}
+
+.t-filipiniana .fi-ph {
+  position: relative;
+  overflow: hidden;
+  background: var(--pina);
+  cursor: zoom-in;
+}
+
+.t-filipiniana .fi-ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s ease;
+}
+
+.t-filipiniana .fi-ph:hover img {
+  transform: scale(1.04);
+}
+
+.t-filipiniana .fi-ph--1 {
+  grid-row: 1 / 3;
+}
+
+.t-filipiniana .fi-ph--4 {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+
+.t-filipiniana .fi-sheer {
+  position: absolute;
+  z-index: 3;
+  left: calc(50% - 88px);
+  width: 176px;
+  top: -20px;
+  bottom: -20px;
+  pointer-events: none;
+  background-color: rgba(247, 242, 231, 0.55);
+  background-image: var(--pina-tex);
+  outline: 1px solid rgba(168, 139, 74, 0.5);
+}
+
+/* 8. Gifts + FAQ */
+.t-filipiniana .fi-gifts-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 26px;
+  text-align: right;
+}
+
+.t-filipiniana .fi-gifts {
+  width: 100%;
+  gap: 0;
+}
+
+.t-filipiniana .fi-gifts .k-gift-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.t-filipiniana .fi-gifts .k-gift-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 20px 24px;
+  text-align: left;
+  background: var(--pina-tex), var(--card);
+  border: 0;
+  box-shadow: 0 0 0 1px var(--abaca);
+}
+
+.t-filipiniana .fi-gifts .k-gift-label {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  color: var(--gold-text);
+}
+
+.t-filipiniana .fi-gifts .k-gift-name {
+  display: none;
+}
+
+.t-filipiniana .fi-gifts .k-gift-number {
+  grid-column: 1;
+  margin: 0;
+  font: 400 22px var(--k-display);
+  letter-spacing: 0.08em;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-gifts .k-copy {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  min-height: 44px;
+  padding: 0 16px;
+  font: 600 9px var(--k-body);
+  letter-spacing: 0.26em;
+  color: var(--olive);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+}
+
+.t-filipiniana .fi-gifts .k-copy svg {
+  display: none;
+}
+
+.t-filipiniana .fi-gifts .k-copy::before {
+  content: 'Kopyahin · ';
+  white-space: pre;
+}
+
+.t-filipiniana .fi-faq {
+  width: 100%;
+  margin-top: 26px;
+  border-top: 1px solid var(--gold);
+}
+
+.t-filipiniana .fi-faq li {
+  border-color: var(--abaca);
+}
+
+.t-filipiniana .fi-faq button {
+  padding: 18px 2px;
+  font: 400 16px/1.4 var(--k-display);
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.t-filipiniana .fi-faq button i {
+  width: auto;
+  height: auto;
+  font: 400 16px/1 var(--k-body);
+  font-style: normal;
+  color: var(--gold-text);
+}
+
+.t-filipiniana .fi-faq button i::after {
+  display: none;
+}
+
+.t-filipiniana .fi-faq button i::before {
+  content: '+';
+  position: static;
+  width: auto;
+  height: auto;
+  background: none;
+}
+
+.t-filipiniana .fi-faq li.is-open button i::before {
+  content: '−';
+}
+
+.t-filipiniana .fi-faq .k-faq-a p {
+  font: 300 15px/1.7 var(--k-body);
+  color: var(--body);
+}
+
+/* ---------- 9. Tugon ---------- */
+.t-filipiniana .fi-tugon {
+  padding: 90px 24px 110px;
+  text-align: center;
+  color: var(--ivory);
+  background: var(--weave), var(--olive);
+}
+
+.t-filipiniana .fi-tugon-h {
+  font: 400 52px/1 var(--k-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.t-filipiniana .fi-tugon-en {
+  margin-top: 12px;
+  font: italic 400 22px var(--k-script);
+  color: #e3d3a8;
+}
+
+.t-filipiniana .fi-tugon-lead {
+  max-width: 600px;
+  margin: 26px auto 40px;
+  font: italic 400 22px/1.4 var(--k-script);
+  color: var(--pina);
+}
+
+.t-filipiniana .fi-rsvp-wrap {
+  width: min(620px, 100%);
+  margin: 0 auto;
+}
+
+.t-filipiniana .k-rsvp {
+  --k-ink: #2a2a22;
+  --k-line: #d9cbb1;
+  position: relative;
+  width: 100%;
+  padding: 44px 56px 46px;
+  background: var(--pina-tex), var(--ivory);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.t-filipiniana .k-rsvp::before,
+.t-filipiniana .k-rsvp::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: var(--band-tex);
+  border-block: 1px solid var(--gold);
+}
+
+.t-filipiniana .k-rsvp::before {
+  top: 0;
+}
+
+.t-filipiniana .k-rsvp::after {
+  bottom: 0;
+}
+
+.t-filipiniana .k-rsvp .k-field input,
+.t-filipiniana .k-rsvp .k-field textarea {
+  background: var(--card);
+  border: 1px solid var(--abaca);
+}
+
+.t-filipiniana .k-rsvp .k-field > span,
+.t-filipiniana .k-rsvp legend {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #5e5a4c;
+}
+
+.t-filipiniana .k-rsvp .k-btn {
+  height: 54px;
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.t-filipiniana .k-rsvp .k-seg {
+  border-radius: 0;
+}
+
+.t-filipiniana .k-rsvp .k-seg button {
+  border-radius: 0;
+}
+
+.t-filipiniana .k-rsvp .k-rsvp-matches button {
+  border-radius: 0;
+}
+
+/* ---------- 10. Footer ---------- */
+.t-filipiniana .fi-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 70px 24px 90px;
+  text-align: center;
+}
+
+.t-filipiniana .fi-foot-flower {
+  width: 40px;
+  height: 40px;
+}
+
+.t-filipiniana .fi-foot-thanks {
+  font: italic 400 22px var(--k-script);
+  color: var(--muted);
+}
+
+.t-filipiniana .fi-foot-names {
+  font: 400 34px/1.2 var(--k-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.t-filipiniana .fi-foot-names em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.t-filipiniana .fi-foot .fi-caps {
+  font-size: 10px;
+}
+
+.t-filipiniana .fi-band--foot {
+  width: 260px;
+  margin-top: 8px;
+}
+
+/* ---------- Tablet ---------- */
+@container tpl (max-width: 960px) {
+  .t-filipiniana .fi-main::before {
+    display: none;
+  }
+
+  .t-filipiniana .fi-hero-photo--l {
+    width: 60%;
+  }
+
+  .t-filipiniana .fi-hero-photo--r {
+    display: none;
+  }
+
+  .t-filipiniana .fi-panel {
+    left: calc(60% - 120px);
+    width: min(480px, calc(40% + 100px));
+  }
+
+  .t-filipiniana .fi-calado-band {
+    display: block;
+    height: 28px;
+    background: var(--calado-tex);
+    border-block: 1px solid var(--gold);
+  }
+
+  .t-filipiniana .fi-sec {
+    padding: 44px 18px 50px;
+  }
+
+  .t-filipiniana .fi-split {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .t-filipiniana .fi-split > span[aria-hidden] {
+    display: none;
+  }
+
+  .t-filipiniana .fi-split > :first-child,
+  .t-filipiniana .fi-split > :last-child {
+    padding: 0;
+  }
+
+  .t-filipiniana .fi-head,
+  .t-filipiniana .fi-head--l {
+    text-align: center;
+  }
+
+  .t-filipiniana .fi-head--c {
+    margin-bottom: 26px;
+    padding: 0;
+  }
+
+  .t-filipiniana .fi-h {
+    font-size: 26px;
+  }
+
+  .t-filipiniana .fi-en {
+    font-size: 17px;
+  }
+
+  .t-filipiniana .fi-count {
+    justify-content: center;
+  }
+
+  .t-filipiniana .fi-venue-heads {
+    display: none;
+  }
+
+  .t-filipiniana #kailan {
+    padding-top: 44px;
+  }
+
+  .t-filipiniana .fi-venues {
+    grid-template-columns: 1fr;
+    row-gap: 22px;
+  }
+
+  .t-filipiniana .fi-venues .k-venue:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .t-filipiniana .k-venue::before {
+    height: 220px;
+    margin-bottom: 24px;
+  }
+
+  .t-filipiniana .k-venue-kind::before {
+    display: block;
+    margin-bottom: 10px;
+    font: 400 22px/1.2 var(--k-display);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--olive);
+  }
+
+  .t-filipiniana .k-venue:nth-child(1) .k-venue-kind::before {
+    content: 'Ang Simbahan';
+  }
+
+  .t-filipiniana .k-venue:nth-child(2) .k-venue-kind::before {
+    content: 'Ang Salu-salo';
+  }
+
+  .t-filipiniana .fi-prog-sec .fi-split {
+    margin-bottom: 26px;
+  }
+
+  .t-filipiniana .fi-prog {
+    position: relative;
+    gap: 14px;
+  }
+
+  .t-filipiniana .fi-prog::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 18px;
+    background: var(--calado-tex);
+    border-inline: 1px solid var(--gold);
+  }
+
+  .t-filipiniana .fi-prog li {
+    grid-template-columns: 66px 1fr;
+    gap: 14px;
+  }
+
+  .t-filipiniana .fi-medallion {
+    position: relative;
+    grid-column: 1;
+    width: 66px;
+    height: 66px;
+  }
+
+  .t-filipiniana .fi-prog li.is-l .fi-prog-text,
+  .t-filipiniana .fi-prog li.is-r .fi-prog-text {
+    grid-column: 2;
+    padding: 0;
+    text-align: left;
+  }
+
+  .t-filipiniana .fi-prog-label {
+    font-size: 18px;
+  }
+
+  .t-filipiniana .fi-prog-note {
+    font-size: 15px;
+  }
+
+  .t-filipiniana .fi-dress,
+  .t-filipiniana .fi-dress-r {
+    align-items: center;
+    text-align: center;
+  }
+
+  .t-filipiniana .fi-dress .k-swatches {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+  }
+
+  .t-filipiniana .fi-dress .k-swatch,
+  .t-filipiniana .fi-dress .k-swatch-shape {
+    width: 100%;
+  }
+
+  .t-filipiniana .fi-dress .k-swatch-shape {
+    height: 76px;
+  }
+
+  .t-filipiniana .fi-dress .k-attire {
+    width: 100%;
+  }
+
+  .t-filipiniana .fi-dress .k-attire-card {
+    text-align: left;
+  }
+
+  .t-filipiniana .fi-ent {
+    column-gap: 18px;
+    row-gap: 26px;
+  }
+
+  .t-filipiniana .fi-ent .k-ent-group,
+  .t-filipiniana .fi-ent .k-ent-group:nth-child(odd) {
+    text-align: center;
+  }
+
+  .t-filipiniana .fi-ent .k-ent-group.is-wide {
+    grid-column: 1 / -1;
+  }
+
+  .t-filipiniana .fi-ent .k-ent-group.is-wide::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 12px;
+    margin: 22px auto 0;
+    background: var(--band-tex);
+    border-block: 1px solid var(--gold);
+  }
+
+  .t-filipiniana .fi-ent li,
+  .t-filipiniana .fi-ent .k-ent-pairs span {
+    font-size: 15.5px;
+  }
+
+  .t-filipiniana .fi-gal-sec {
+    padding-inline: 12px;
+  }
+
+  .t-filipiniana .fi-gal {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 150px 150px;
+    gap: 8px;
+  }
+
+  .t-filipiniana .fi-ph--1 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .t-filipiniana .fi-ph--4 {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .t-filipiniana .fi-sheer {
+    left: calc(50% - 48px);
+    width: 96px;
+  }
+
+  .t-filipiniana .fi-gifts-col {
+    align-items: center;
+    text-align: center;
+  }
+
+  .t-filipiniana .fi-gf {
+    row-gap: 60px;
+  }
+}
+
+/* ---------- Phone ---------- */
+@container tpl (max-width: 640px) {
+  .t-filipiniana .fi-hero {
+    min-height: 0;
+    padding: 56px 0 30px;
+  }
+
+  .t-filipiniana .fi-hero-photo--l {
+    display: none;
+  }
+
+  .t-filipiniana .fi-hero-photo--phone {
+    position: static;
+    display: block;
+    width: 100%;
+    height: 420px;
+  }
+
+  .t-filipiniana .fi-panel {
+    position: relative;
+    left: auto;
+    width: auto;
+    margin: -120px 22px 0;
+    padding: 44px 22px 34px;
+  }
+
+  .t-filipiniana .fi-panel::before {
+    left: 0;
+    right: 0;
+    width: auto;
+    top: 0;
+    bottom: auto;
+    height: 14px;
+    border: 0;
+    border-block: 1px solid var(--gold);
+  }
+
+  .t-filipiniana .fi-panel::after {
+    display: none;
+  }
+
+  .t-filipiniana .fi-sprig {
+    margin-bottom: 14px;
+  }
+
+  .t-filipiniana .fi-names {
+    margin: 20px 0 20px;
+    font-size: 44px;
+  }
+
+  .t-filipiniana .fi-names em {
+    font-size: 26px;
+  }
+
+  .t-filipiniana .fi-panel > .fi-caps {
+    font-size: 9.5px;
+  }
+
+  .t-filipiniana .fi-actions {
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .t-filipiniana .fi-actions .k-cal,
+  .t-filipiniana .fi-actions .fi-btn {
+    width: 100%;
+  }
+
+  .t-filipiniana .fi-count {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .t-filipiniana .fi-count .k-count-cell {
+    width: auto;
+    height: 96px;
+  }
+
+  .t-filipiniana .fi-count b {
+    font-size: 32px;
+  }
+
+  .t-filipiniana .fi-count span {
+    font-size: 7.5px;
+    letter-spacing: 0.16em;
+  }
+
+  .t-filipiniana .k-rsvp {
+    padding: 40px 22px 42px;
+  }
+
+  .t-filipiniana .fi-tugon {
+    padding: 60px 18px 70px;
+  }
+
+  .t-filipiniana .fi-tugon-h {
+    font-size: 40px;
+  }
+
+  .t-filipiniana .fi-tugon-lead {
+    font-size: 19px;
+  }
+
+  .t-filipiniana .fi-foot-names {
+    font-size: 24px;
+  }
+
+  .t-filipiniana .fi-gal {
+    grid-template-rows: 220px 150px 200px;
+  }
+
+  .t-filipiniana .fi-ph--4 {
+    grid-column: 1 / -1;
+  }
+
+  .t-filipiniana .fi-gifts .k-gift-card {
+    grid-template-columns: 1fr;
+  }
+
+  .t-filipiniana .fi-gifts .k-copy {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    margin-top: 8px;
+  }
+
+  .t-filipiniana .fi-ent li,
+  .t-filipiniana .fi-ent .k-ent-pairs span {
+    letter-spacing: 0.02em;
+  }
+}
+
+/* ---------- Phone bar ---------- */
+@media (max-width: 760px) {
+  .tpl-layer.t-filipiniana .k-mbar {
+    color: var(--olive);
+    background: var(--ivory);
+    box-shadow: 0 1px 0 var(--abaca);
+  }
+
+  .tpl-layer.t-filipiniana .k-mbar-mono {
+    font-size: 20px;
+    letter-spacing: 0.2em;
+  }
+}
+
+/* ---------- Gate: a card wrapped in piña, tied with gold cord ---------- */
+.t-filipiniana .k-gate--ribbon::before {
+  content: '';
+  position: absolute;
+  inset: 26px;
+  border: 1px solid rgba(168, 139, 74, 0.6);
+  outline: 1px solid rgba(168, 139, 74, 0.25);
+  outline-offset: -7px;
+  pointer-events: none;
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-dear {
+  font: italic 400 24px var(--k-script);
+  color: #e3d3a8;
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-eyebrow {
+  font: 600 11px var(--k-body);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #d9cbb1;
+  opacity: 1;
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-names {
+  font-family: var(--k-display);
+  font-size: clamp(38px, 4.6vw, 58px);
+  line-height: 1.1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-names em {
+  font-family: var(--k-display);
+  font-style: normal;
+  font-size: 1em;
+  color: var(--gold-light);
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-date {
+  font: 400 12px var(--k-body);
+  letter-spacing: 0.36em;
+  color: #d9cbb1;
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-inner {
+  width: min(900px, 100%);
+}
+
+.t-filipiniana .k-rb-card {
+  justify-content: flex-start;
+  padding-top: 22%;
+  background-image: var(--pina-tex);
+  box-shadow: 0 34px 60px -24px rgba(0, 0, 0, 0.6);
+}
+
+.t-filipiniana .k-rb-card::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--gold);
+}
+
+.t-filipiniana .k-rb-card::after {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  pointer-events: none;
+  background: var(--band-tex);
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% 10px no-repeat, linear-gradient(#000 0 0) bottom / 100% 10px no-repeat;
+  mask: linear-gradient(#000 0 0) top / 100% 10px no-repeat, linear-gradient(#000 0 0) bottom / 100% 10px no-repeat;
+}
+
+.t-filipiniana .k-rb-mono {
+  font-family: var(--k-display);
+  font-size: 40px;
+  letter-spacing: 0.12em;
+  color: var(--olive);
+  opacity: 1;
+}
+
+.t-filipiniana .k-rb-date {
+  margin-top: auto;
+  margin-bottom: 42px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  color: var(--olive);
+  opacity: 1;
+}
+
+.t-filipiniana .k-rb-band {
+  box-shadow: none;
+}
+
+.t-filipiniana .k-rb-band--v {
+  width: 110px;
+  margin-left: -55px;
+  background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.35) 0 1px, transparent 1px 5px), rgba(237, 228, 208, 0.55);
+  box-shadow: 0 0 0 1px rgba(168, 139, 74, 0.35);
+}
+
+.t-filipiniana .k-rb-band--h {
+  top: 58%;
+  height: 5px;
+  margin-top: -2.5px;
+  background: repeating-linear-gradient(115deg, #c9ab68 0 3px, #8f733a 3px 5px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.t-filipiniana .k-rb-bow {
+  top: 58%;
+  width: 34%;
+  filter: none;
+  background: url(/templates/filipiniana/sampaguita-sprig-light.svg) 50% 0 / 70% no-repeat;
+}
+
+.t-filipiniana .k-rb-loop,
+.t-filipiniana .k-rb-tail {
+  fill: none;
+  stroke: #c9ab68;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.t-filipiniana .k-rb-shade {
+  display: none;
+}
+
+.t-filipiniana .k-rb-knot {
+  fill: #8f733a;
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-hint {
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.32em;
+  color: #d9cbb1;
+  opacity: 1;
+}
+
+.t-filipiniana .k-gate--ribbon .k-gate-hint i {
+  background: var(--gold-light);
+}
+
+@media (max-width: 640px) {
+  .t-filipiniana .k-gate--ribbon::before {
+    inset: 14px;
+  }
+
+  .t-filipiniana .k-gate--ribbon .k-gate-names {
+    font-size: 38px;
+    white-space: normal;
+  }
+
+  .t-filipiniana .k-gate--ribbon .k-gate-names span {
+    display: block;
+  }
+
+  .t-filipiniana .k-gate--ribbon .k-gate-names em {
+    display: block;
+    margin: 0.1em 0;
+    font-size: 0.7em;
+  }
+
+  .t-filipiniana .k-rb {
+    width: 260px;
+  }
+
+  .t-filipiniana .k-gate--ribbon .k-gate-hint {
+    font-size: 8.5px;
+    letter-spacing: 0.24em;
+  }
+}

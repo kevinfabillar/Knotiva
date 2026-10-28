@@ -10,4 +10,13 @@ export const LOADERS = {
   'gilded-deco': () => import('./deco/GildedDeco.jsx'),
   isla: () => import('./isla/Isla.jsx'),
   sumi: () => import('./sumi/Sumi.jsx'),
+  'heritage-filipiniana': () => import('./heritage-filipiniana/HeritageFilipiniana.jsx'),
+  herbarium: () => import('./herbarium/Herbarium.jsx'),
+  'next-chapter': () => import('./next-chapter/NextChapter.jsx'),
+  'coastal-luxe': () => import('./coastal-luxe/CoastalLuxe.jsx'),
+  haciendera: () => import('./haciendera/Haciendera.jsx'),
+  'love-archive': () => import('./love-archive/LoveArchive.jsx'),
+  'editorial-luxe': () => import('./editorial-luxe/EditorialLuxe.jsx'),
+  filipiniana: () => import('./filipiniana/Filipiniana.jsx'),
+  'midnight-garden': () => import('./midnight-garden/MidnightGarden.jsx'),
 };

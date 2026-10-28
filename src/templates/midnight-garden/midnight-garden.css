@@ -1,0 +1,1428 @@
+/* Midnight Garden: a romantic film after dark. Letterbox, scene slugs, subtitles, a film strip and end credits. */
+
+.t-midnight {
+  --night: #0c0d0b;
+  --black: #000;
+  --moss: #13201a;
+  --forest: #1c2a22;
+  --forest-2: #0f1612;
+  --rule: #2c3a30;
+  --wine: #6b1e2a;
+  --burgundy: #4a1220;
+  --premiere: #2a0a12;
+  --gold: #b8955a;
+  --gold-light: #d9b980;
+  --candle: #e9d9b8;
+  --body: #c9bfa9;
+  --muted: #a39c8a;
+  --glow: rgba(233, 190, 120, 0.28);
+
+  --k-bg: #0c0d0b;
+  --k-surface: #13201a;
+  --k-ink: #e9d9b8;
+  --k-muted: #a39c8a;
+  --k-accent: #b8955a;
+  --k-on-accent: #0c0d0b;
+  --k-line: #2c3a30;
+  --k-display: 'Playfair Display', Georgia, serif;
+  --k-display-weight: 400;
+  --k-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --k-script: 'Playfair Display', Georgia, serif;
+  --k-radius: 0px;
+  --k-btn-radius: 0px;
+  --k-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  --k-field-bg: transparent;
+
+  --g-bg: radial-gradient(ellipse 30% 26% at 50% 96%, rgba(233, 190, 120, 0.3), transparent 70%),
+    radial-gradient(ellipse 60% 55% at 50% 60%, #15201a, transparent 75%), #0c0d0b;
+  --g-ink: #e9d9b8;
+  --g-accent: #b8955a;
+  --g-seal: #5d1a29;
+  --g-seal-ink: #d9b980;
+
+  --k-bar-ink-top: #e9d9b8;
+  --k-bar-bg: #000;
+  --k-bar-ink: #b8955a;
+  --k-menu-bg: #0c0d0b;
+  --k-music-bg: #b8955a;
+  --k-music-ink: #0c0d0b;
+
+  background: var(--night);
+  color: var(--candle);
+  font-family: var(--k-body);
+}
+
+/* ---------- Recipes ---------- */
+.t-midnight .mg-slug {
+  font: 600 10.5px/1.6 var(--k-body);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .mg-slug--light {
+  color: #d6c39a;
+}
+
+.t-midnight .mg-sub {
+  font: italic 400 26px/1.3 var(--k-display);
+  color: var(--candle);
+  text-align: center;
+}
+
+.t-midnight .mg-sprockets {
+  height: 22px;
+  background: radial-gradient(ellipse 6px 4.5px at 11px 11px, #2a2a26 0 98%, transparent 100%) 0 0 / 22px 22px repeat-x, #000;
+}
+
+.t-midnight .mg-center {
+  text-align: center;
+}
+
+.t-midnight .mg-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.t-midnight .mg-p {
+  font: 300 16px/1.8 var(--k-body);
+  color: var(--body);
+}
+
+.t-midnight .mg-title {
+  margin-top: 18px;
+  font: italic 400 72px/1.02 var(--k-display);
+  color: var(--candle);
+}
+
+.t-midnight .mg-title--s {
+  font-size: 56px;
+}
+
+.t-midnight .mg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 24px;
+  font: 600 10px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--candle);
+  background: var(--wine);
+  border: 1px solid var(--wine);
+  transition: background 0.25s, color 0.25s;
+}
+
+.t-midnight .mg-btn:hover {
+  background: #7d2533;
+}
+
+.t-midnight .mg-btn--line {
+  background: transparent;
+  border-color: var(--gold);
+}
+
+.t-midnight .mg-btn--line:hover {
+  color: var(--night);
+  background: var(--gold);
+}
+
+/* ---------- Header ---------- */
+.t-midnight .mg-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 56px;
+  background: var(--black);
+}
+
+.t-midnight .mg-nav-names {
+  font: italic 400 26px var(--k-display);
+}
+
+.t-midnight .mg-nav-names em,
+.t-midnight .mg-names em,
+.t-midnight .mg-stars em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.t-midnight .mg-nav nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.t-midnight .mg-nav nav a {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .mg-nav nav a:hover {
+  color: var(--candle);
+}
+
+.t-midnight .mg-nav .mg-nav-rsvp {
+  padding: 14px 20px;
+  color: var(--candle);
+  background: var(--wine);
+}
+
+/* ---------- 1. Opening titles ---------- */
+.t-midnight .mg-hero {
+  position: relative;
+  padding: 96px 0 34px;
+  background: var(--black);
+}
+
+.t-midnight .mg-frame {
+  position: relative;
+  aspect-ratio: 2.39;
+  overflow: hidden;
+  background: #090a08;
+}
+
+.t-midnight .mg-frame-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.t-midnight .mg-frame-img--tall {
+  display: none;
+}
+
+.t-midnight .mg-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 45% at 50% 50%, rgba(0, 0, 0, 0.5), transparent 80%);
+  pointer-events: none;
+}
+
+.t-midnight .mg-frame-text {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 20px;
+  text-align: center;
+}
+
+.t-midnight .mg-names {
+  font: italic 400 132px/0.95 var(--k-display);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.t-midnight .mg-names em {
+  font-size: 80px;
+}
+
+.t-midnight .mg-hero-date {
+  font: 600 12px var(--k-body);
+  letter-spacing: 0.5em;
+}
+
+.t-midnight .mg-under {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 30px;
+  padding: 30px 56px 0;
+}
+
+.t-midnight .mg-tagline {
+  max-width: 560px;
+}
+
+.t-midnight .mg-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.t-midnight .mg-hero-foot {
+  margin-top: 70px;
+  padding: 0 56px;
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- 2. Countdown ---------- */
+.t-midnight .mg-count-sec {
+  padding: 90px 24px;
+}
+
+.t-midnight .mg-strip {
+  width: min(1000px, 100%);
+  margin: 26px auto 0;
+  background: #000;
+}
+
+.t-midnight .mg-count {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 6px 10px;
+  background: #000;
+}
+
+.t-midnight .mg-count .k-count-cell {
+  justify-content: center;
+  height: 160px;
+  min-width: 0;
+  background: radial-gradient(ellipse at 50% 40%, #1c2a22, #0c0d0b 80%);
+}
+
+.t-midnight .mg-count .k-count-cell:last-child {
+  background: radial-gradient(ellipse at 50% 40%, #4a1220, #1a060b 80%);
+}
+
+.t-midnight .mg-count b {
+  font: 400 76px/1 var(--k-display);
+  color: var(--candle);
+}
+
+.t-midnight .mg-count .k-count-cell:last-child b {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.t-midnight .mg-count span {
+  margin-top: 8px;
+  font: 600 9px var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Sections ---------- */
+.t-midnight .mg-sec {
+  padding: 100px 56px;
+}
+
+/* 3. The Scenes */
+.t-midnight #scenes .mg-title {
+  margin: 0 0 50px;
+}
+
+.t-midnight .mg-venues {
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: none;
+  align-items: start;
+}
+
+.t-midnight .mg-venues .k-venue:nth-child(2) {
+  margin-top: 120px;
+}
+
+.t-midnight .k-venue {
+  gap: 10px;
+  padding: 0;
+  text-align: center;
+  background: none;
+  border: 0;
+}
+
+.t-midnight .k-venue-icon {
+  display: none;
+}
+
+.t-midnight .k-venue-kind {
+  order: -2;
+  align-self: stretch;
+  text-align: left;
+  font: 600 10.5px var(--k-body);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .k-venue::before {
+  content: '';
+  order: -1;
+  display: block;
+  align-self: stretch;
+  aspect-ratio: 2.39;
+  margin: 4px 0 8px;
+  background: var(--img-venue-1) center / cover, #090a08;
+  box-shadow: 0 0 0 1px var(--forest);
+}
+
+.t-midnight .k-venue:nth-child(2)::before {
+  background-image: var(--img-venue-2);
+}
+
+.t-midnight .k-venue-name {
+  font: italic 400 30px/1.2 var(--k-display);
+  color: var(--candle);
+}
+
+.t-midnight .k-venue-time {
+  order: 5;
+  font: 600 10px var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .k-venue-address {
+  max-width: none;
+  font: 300 16px/1.6 var(--k-body);
+  color: var(--body);
+}
+
+.t-midnight .k-venue-actions {
+  order: 6;
+}
+
+.t-midnight .k-venue .k-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 600 10px var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--candle);
+  border-bottom: 1px solid var(--gold);
+}
+
+/* 4. Running Order */
+.t-midnight .mg-running {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 80px;
+  background: radial-gradient(ellipse 50% 60% at 15% 50%, #1c2a22, transparent 70%), var(--forest-2);
+}
+
+.t-midnight .mg-running-l .mg-p {
+  max-width: 340px;
+  margin-top: 26px;
+}
+
+.t-midnight .mg-reels {
+  border-top: 1px solid var(--rule);
+}
+
+.t-midnight .mg-reels li {
+  display: grid;
+  grid-template-columns: 90px 150px 1fr;
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.t-midnight .mg-reel {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .mg-reel-time {
+  font: 400 30px/1 var(--k-display);
+}
+
+.t-midnight .mg-reels li.is-key .mg-reel-time {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.t-midnight .mg-reel-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.t-midnight .mg-reel-label {
+  font: 400 24px/1.2 var(--k-display);
+}
+
+.t-midnight .mg-reel-note {
+  font: italic 400 16px/1.3 var(--k-display);
+  color: var(--muted);
+}
+
+/* 5. Wardrobe */
+.t-midnight .mg-ward {
+  max-width: none;
+  margin-top: 26px;
+  gap: 0;
+}
+
+.t-midnight .mg-ward .k-dress-note {
+  max-width: 620px;
+  font: 300 16px/1.8 var(--k-body);
+  color: var(--body);
+}
+
+.t-midnight .mg-ward .k-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 22px;
+  width: 900px;
+  max-width: 100%;
+  margin: 56px auto 0;
+}
+
+.t-midnight .mg-ward .k-swatch {
+  width: auto;
+  gap: 14px;
+}
+
+.t-midnight .mg-ward .k-swatch-shape {
+  width: 100%;
+  height: 240px;
+  border-radius: 0;
+  background-image: radial-gradient(ellipse 60% 50% at 40% 30%, rgba(255, 255, 255, 0.14), transparent 70%) !important;
+  box-shadow: none;
+}
+
+.t-midnight .mg-ward .k-swatch:first-child .k-swatch-shape {
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.t-midnight .mg-ward .k-swatch span:last-child {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--candle);
+}
+
+.t-midnight .mg-ward .k-attire {
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 900px;
+  max-width: 100%;
+  margin: 60px auto 0;
+}
+
+.t-midnight .mg-ward .k-attire-card {
+  gap: 12px;
+  padding: 26px 0 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  border-radius: 0;
+}
+
+.t-midnight .mg-ward .k-attire-card svg {
+  display: none;
+}
+
+.t-midnight .mg-ward .k-attire-card h3 {
+  font: 600 10px var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .mg-ward .k-attire-card p {
+  max-width: none;
+  font: italic 400 22px/1.4 var(--k-display);
+  color: var(--candle);
+}
+
+/* 6. Stills */
+.t-midnight .mg-stills {
+  padding-bottom: 60px;
+}
+
+.t-midnight .mg-feature {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.39;
+  margin-top: 50px;
+  overflow: hidden;
+  background: #090a08;
+  cursor: zoom-in;
+}
+
+.t-midnight .mg-feature img,
+.t-midnight .mg-frame-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s ease;
+}
+
+.t-midnight .mg-feature:hover img,
+.t-midnight .mg-frame-btn:hover img {
+  transform: scale(1.03);
+}
+
+.t-midnight .mg-still-line {
+  margin: 22px 0 40px;
+  font-size: 22px;
+}
+
+.t-midnight .mg-film {
+  margin: 0 -56px;
+  background: #000;
+}
+
+.t-midnight .mg-frames {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  padding: 6px 10px;
+}
+
+.t-midnight .mg-frame-btn {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+  background: #090a08;
+  cursor: zoom-in;
+}
+
+.t-midnight .mg-swipe {
+  display: none;
+}
+
+/* 7. Gifts + Q & A */
+.t-midnight .mg-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.t-midnight .mg-two .mg-title {
+  margin-bottom: 26px;
+}
+
+.t-midnight .mg-gifts {
+  display: block;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.t-midnight .mg-gifts .k-gift-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.t-midnight .mg-gifts .k-gift-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px 16px;
+  padding: 24px 26px;
+  background: var(--moss);
+  border: 1px solid var(--rule);
+}
+
+.t-midnight .mg-gifts .k-gift-label {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.t-midnight .mg-gifts .k-gift-name {
+  display: none;
+}
+
+.t-midnight .mg-gifts .k-gift-number {
+  grid-column: 1;
+  margin: 0;
+  font: 400 26px var(--k-display);
+  letter-spacing: 0.02em;
+}
+
+.t-midnight .mg-gifts .k-copy {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  min-height: 44px;
+  padding: 0 16px;
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.28em;
+  color: var(--candle);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+}
+
+.t-midnight .mg-gifts .k-copy svg {
+  display: none;
+}
+
+.t-midnight .mg-faq {
+  width: 100%;
+  border-top: 1px solid var(--gold);
+}
+
+.t-midnight .mg-faq button {
+  padding: 20px 2px;
+  font: 400 21px/1.3 var(--k-display);
+  color: var(--candle);
+}
+
+.t-midnight .mg-faq button i {
+  width: auto;
+  height: auto;
+  font: 400 16px/1 var(--k-body);
+  font-style: normal;
+  color: var(--gold);
+}
+
+.t-midnight .mg-faq button i::after {
+  display: none;
+}
+
+.t-midnight .mg-faq button i::before {
+  content: '+';
+  position: static;
+  width: auto;
+  height: auto;
+  background: none;
+}
+
+.t-midnight .mg-faq li.is-open button i::before {
+  content: '−';
+}
+
+.t-midnight .mg-faq .k-faq-a p {
+  font: 300 15px/1.7 var(--k-body);
+  color: var(--body);
+}
+
+/* 8. The Premiere */
+.t-midnight .mg-premiere {
+  padding: 100px 24px 130px;
+  background: radial-gradient(ellipse 40% 35% at 50% 100%, rgba(233, 190, 120, 0.16), transparent 70%), var(--premiere);
+}
+
+.t-midnight .mg-premiere .mg-slug {
+  color: var(--gold-light);
+}
+
+.t-midnight .mg-premiere-h {
+  margin-top: 18px;
+  font: italic 400 84px/1.05 var(--k-display);
+}
+
+.t-midnight .mg-premiere-lead {
+  max-width: 600px;
+  margin: 20px auto 46px;
+  font: italic 400 22px/1.45 var(--k-display);
+  color: #e3cfae;
+}
+
+.t-midnight .mg-rsvp-wrap {
+  width: min(580px, 100%);
+  margin: 0 auto;
+}
+
+.t-midnight .k-rsvp {
+  --k-line: #b8955a;
+  width: 100%;
+  padding: 44px 48px;
+  background: var(--night);
+  border: 0;
+  box-shadow: inset 0 0 0 1px #b8955a, inset 0 0 0 6px #0c0d0b, inset 0 0 0 7px rgba(184, 149, 90, 0.35), 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.t-midnight .k-rsvp .k-rsvp-steps,
+.t-midnight .k-rsvp .k-rsvp-party,
+.t-midnight .k-rsvp .k-rsvp-party li,
+.t-midnight .k-rsvp .k-rsvp-deadline,
+.t-midnight .k-rsvp .k-rsvp-summary,
+.t-midnight .k-rsvp .k-rsvp-summary li {
+  border-color: var(--rule);
+}
+
+.t-midnight .k-rsvp .k-field input,
+.t-midnight .k-rsvp .k-field textarea {
+  padding: 0;
+  color: var(--candle);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--gold);
+  border-radius: 0;
+}
+
+.t-midnight .k-rsvp .k-field input {
+  height: 48px;
+  font: italic 400 26px var(--k-display);
+}
+
+.t-midnight .k-rsvp .k-field input:focus,
+.t-midnight .k-rsvp .k-field textarea:focus {
+  box-shadow: none;
+  border-color: var(--gold-light);
+}
+
+.t-midnight .k-rsvp .k-field > span,
+.t-midnight .k-rsvp legend {
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.t-midnight .k-rsvp .k-btn {
+  height: 56px;
+  font: 600 10px var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.t-midnight .k-rsvp .k-seg {
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.t-midnight .k-rsvp .k-seg button {
+  min-height: 44px;
+  padding: 0 14px;
+  font: 600 9.5px var(--k-body);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--candle);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+}
+
+.t-midnight .k-rsvp .k-seg button.is-on {
+  color: var(--candle);
+  background: var(--wine);
+  border-color: var(--wine);
+}
+
+.t-midnight .k-rsvp .k-rsvp-matches button {
+  border-color: var(--rule);
+  border-radius: 0;
+}
+
+/* 9. End credits */
+.t-midnight .mg-credits-sec {
+  padding: 100px 24px 90px;
+  background: var(--black);
+}
+
+.t-midnight .mg-starring {
+  margin-top: 22px;
+  font: italic 400 60px/1.1 var(--k-display);
+}
+
+.t-midnight .mg-stars {
+  margin-top: 10px;
+  font: 400 44px/1.2 var(--k-display);
+}
+
+.t-midnight .mg-credits {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 760px;
+  max-width: 100%;
+  margin: 60px auto 0;
+}
+
+.t-midnight .mg-credits .k-ent-group {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  align-items: start;
+}
+
+.t-midnight .mg-credits .k-ent-title {
+  grid-column: 1;
+  margin: 6px 0 0;
+  text-align: right;
+  font: 600 10px var(--k-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .mg-credits ul {
+  grid-column: 3;
+  display: block;
+  columns: auto;
+  text-align: left;
+}
+
+.t-midnight .mg-credits li,
+.t-midnight .mg-credits .k-ent-pairs span {
+  font: 400 20px/1.6 var(--k-display);
+  color: var(--candle);
+}
+
+.t-midnight .mg-credits .k-ent-names li {
+  display: inline;
+}
+
+.t-midnight .mg-credits .k-ent-names li + li::before {
+  content: ' · ';
+  color: var(--muted);
+}
+
+.t-midnight .mg-credits .k-ent-pairs li {
+  display: block;
+  padding: 0;
+}
+
+.t-midnight .mg-credits .k-ent-pairs li span {
+  text-align: left;
+}
+
+.t-midnight .mg-credits .k-ent-pairs li span + span::before {
+  content: ' & ';
+}
+
+/* 10. Fin. */
+.t-midnight .mg-fin {
+  padding: 70px 24px 90px;
+  background: var(--black);
+  border-top: 1px solid var(--forest);
+}
+
+.t-midnight .mg-fin-word {
+  font: italic 400 64px/1 var(--k-display);
+  color: var(--gold);
+}
+
+.t-midnight .mg-fin-meta {
+  margin-top: 20px;
+  font: 600 10px/1.8 var(--k-body);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.t-midnight .mg-social {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  color: var(--gold);
+}
+
+.t-midnight .mg-social a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+}
+
+.t-midnight .mg-social a:hover {
+  color: var(--candle);
+}
+
+/* ---------- Tablet ---------- */
+@container tpl (max-width: 960px) {
+  .t-midnight .mg-names {
+    font-size: 96px;
+  }
+
+  .t-midnight .mg-names em {
+    font-size: 60px;
+  }
+
+  .t-midnight .mg-under {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .t-midnight .mg-hero-foot {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .t-midnight .mg-sec {
+    padding: 80px 32px;
+  }
+
+  .t-midnight .mg-running,
+  .t-midnight .mg-two {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .t-midnight .mg-film {
+    margin: 0 -32px;
+  }
+}
+
+/* ---------- Phone ---------- */
+@container tpl (max-width: 640px) {
+  .t-midnight .mg-slug {
+    font-size: 8.5px;
+    letter-spacing: 0.3em;
+  }
+
+  .t-midnight .mg-sub {
+    font-size: 21px;
+  }
+
+  .t-midnight .mg-title {
+    font-size: 46px;
+  }
+
+  .t-midnight .mg-hero {
+    padding: 56px 0 30px;
+  }
+
+  .t-midnight .mg-frame {
+    aspect-ratio: auto;
+    height: 420px;
+  }
+
+  .t-midnight .mg-frame-img--wide {
+    display: none;
+  }
+
+  .t-midnight .mg-frame-img--tall {
+    display: block;
+  }
+
+  .t-midnight .mg-frame::after {
+    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+  }
+
+  .t-midnight .mg-frame-text {
+    justify-content: flex-end;
+    gap: 12px;
+    padding-bottom: 26px;
+  }
+
+  .t-midnight .mg-names {
+    font-size: 64px;
+    line-height: 1;
+  }
+
+  .t-midnight .mg-names span:first-child {
+    display: block;
+  }
+
+  .t-midnight .mg-names em {
+    font-size: 44px;
+  }
+
+  .t-midnight .mg-hero-date {
+    letter-spacing: 0.4em;
+  }
+
+  .t-midnight .mg-under {
+    padding: 22px 18px 0;
+  }
+
+  .t-midnight .mg-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .t-midnight .mg-actions .k-cal,
+  .t-midnight .mg-actions .mg-btn {
+    width: 100%;
+  }
+
+  .t-midnight .mg-btn {
+    padding: 0 10px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+  }
+
+  .t-midnight .mg-hero-foot {
+    margin-top: 26px;
+    padding: 0 18px;
+    font-size: 8.5px;
+    line-height: 1.8;
+  }
+
+  .t-midnight .mg-count-sec {
+    padding: 60px 10px;
+  }
+
+  .t-midnight .mg-sprockets {
+    height: 16px;
+    background: radial-gradient(ellipse 4.5px 3.5px at 8px 8px, #2a2a26 0 98%, transparent 100%) 0 0 / 16px 16px repeat-x, #000;
+  }
+
+  .t-midnight .mg-count {
+    gap: 6px;
+    padding: 4px 6px;
+  }
+
+  .t-midnight .mg-count .k-count-cell {
+    height: 104px;
+  }
+
+  .t-midnight .mg-count b {
+    font-size: 38px;
+  }
+
+  .t-midnight .mg-count span {
+    font-size: 7px;
+    letter-spacing: 0.18em;
+  }
+
+  .t-midnight .mg-sec {
+    padding: 64px 18px;
+  }
+
+  .t-midnight #scenes .mg-title {
+    margin-bottom: 30px;
+  }
+
+  .t-midnight .mg-venues {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .t-midnight .mg-venues .k-venue:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .t-midnight .k-venue-kind {
+    font-size: 8.5px;
+    letter-spacing: 0.26em;
+  }
+
+  .t-midnight .k-venue::before {
+    aspect-ratio: auto;
+    height: 148px;
+  }
+
+  .t-midnight .k-venue-name {
+    font-size: 25px;
+  }
+
+  .t-midnight .k-venue-address {
+    font-size: 15px;
+  }
+
+  .t-midnight .mg-reels li {
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 4px;
+    padding: 16px 0;
+  }
+
+  .t-midnight .mg-reel {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 8px;
+  }
+
+  .t-midnight .mg-reel-time {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 24px;
+  }
+
+  .t-midnight .mg-reel-text {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .t-midnight .mg-reel-label {
+    font-size: 20px;
+  }
+
+  .t-midnight .mg-reel-note {
+    font-size: 14.5px;
+  }
+
+  .t-midnight .mg-ward .k-swatches {
+    gap: 8px;
+    margin-top: 34px;
+  }
+
+  .t-midnight .mg-ward .k-swatch-shape {
+    height: 120px;
+  }
+
+  .t-midnight .mg-ward .k-swatch span:last-child {
+    font-size: 7px;
+    letter-spacing: 0.14em;
+  }
+
+  .t-midnight .mg-ward .k-attire {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    margin-top: 40px;
+  }
+
+  .t-midnight .mg-ward .k-attire-card p {
+    font-size: 19px;
+  }
+
+  .t-midnight .mg-feature {
+    margin: 30px -18px 0;
+    width: auto;
+  }
+
+  .t-midnight .mg-still-line {
+    margin: 18px 0 26px;
+    font-size: 18px;
+  }
+
+  .t-midnight .mg-film {
+    margin: 0 -18px;
+  }
+
+  .t-midnight .mg-frames {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .t-midnight .mg-frames::-webkit-scrollbar {
+    display: none;
+  }
+
+  .t-midnight .mg-frame-btn {
+    flex: 0 0 150px;
+    height: 110px;
+    scroll-snap-align: start;
+  }
+
+  .t-midnight .mg-swipe {
+    display: block;
+    margin-top: 12px;
+    font: 600 8.5px var(--k-body);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .t-midnight .mg-title--s {
+    font-size: 42px;
+  }
+
+  .t-midnight .mg-gifts .k-gift-card {
+    padding: 20px 18px;
+  }
+
+  .t-midnight .mg-gifts .k-gift-number {
+    font-size: 22px;
+  }
+
+  .t-midnight .mg-faq button {
+    font-size: 18px;
+  }
+
+  .t-midnight .mg-premiere {
+    padding: 70px 18px 90px;
+  }
+
+  .t-midnight .mg-premiere-h {
+    font-size: 46px;
+  }
+
+  .t-midnight .mg-premiere-lead {
+    font-size: 19px;
+  }
+
+  .t-midnight .k-rsvp {
+    padding: 34px 24px;
+  }
+
+  .t-midnight .mg-credits-sec {
+    padding: 70px 18px;
+  }
+
+  .t-midnight .mg-starring {
+    font-size: 46px;
+  }
+
+  .t-midnight .mg-stars {
+    font-size: 30px;
+  }
+
+  .t-midnight .mg-credits .k-ent-group {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .t-midnight .mg-credits .k-ent-title,
+  .t-midnight .mg-credits ul,
+  .t-midnight .mg-credits .k-ent-pairs li span {
+    grid-column: 1;
+    text-align: center;
+  }
+
+  .t-midnight .mg-credits li,
+  .t-midnight .mg-credits .k-ent-pairs span {
+    font-size: 17px;
+  }
+
+  .t-midnight .mg-fin-word {
+    font-size: 54px;
+  }
+}
+
+/* ---------- Phone bar ---------- */
+@media (max-width: 760px) {
+  .tpl-layer.t-midnight .k-mbar {
+    color: var(--candle);
+    background: var(--black);
+    box-shadow: 0 1px 0 var(--rule);
+  }
+
+  .tpl-layer.t-midnight .k-mbar-mono {
+    font: italic 400 20px var(--k-display);
+    letter-spacing: 0.02em;
+  }
+
+  .tpl-layer.t-midnight .k-mbar-btn {
+    color: var(--gold);
+  }
+}
+
+/* ---------- Gate: burgundy wax on black velvet ---------- */
+.t-midnight .k-gate--seal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(#000 0 0) top / 100% 64px no-repeat, linear-gradient(#000 0 0) bottom / 100% 64px no-repeat;
+}
+
+.t-midnight .k-gate--seal::after {
+  content: 'Sc. 00 — Ext. The garden gate — Night';
+  position: absolute;
+  z-index: 3;
+  left: 48px;
+  top: 24px;
+  font: 600 10px var(--k-body);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.t-midnight .k-gate--seal {
+  background: url(/templates/midnight-garden/leaves-shadow.svg) left -30px top / auto 100% no-repeat,
+    url(/templates/midnight-garden/leaves-shadow-r.svg) right -30px top / auto 100% no-repeat, var(--g-bg);
+}
+
+.t-midnight .k-gate--seal .k-gate-inner {
+  width: min(900px, 100%);
+}
+
+.t-midnight .k-gate-dear {
+  font: italic 400 26px var(--k-display);
+  color: var(--gold);
+}
+
+.t-midnight .k-gate-eyebrow {
+  font: 600 11px var(--k-body);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 1;
+}
+
+.t-midnight .k-gate-names {
+  font: italic 400 clamp(58px, 7vw, 88px) / 1 var(--k-display);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.t-midnight .k-gate-names em {
+  margin: 0 0.18em;
+  font-family: var(--k-display);
+  font-style: normal;
+  font-size: 0.64em;
+  color: var(--gold);
+}
+
+.t-midnight .k-gate-date {
+  font: 400 12px var(--k-body);
+  letter-spacing: 0.4em;
+}
+
+.t-midnight .k-seal {
+  width: min(44vw, 190px);
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.6));
+}
+
+.t-midnight .k-seal-half {
+  background: url(/templates/midnight-garden/seal-leaf.svg) center / 78% no-repeat,
+    radial-gradient(circle at 36% 30%, #8a2b3a 0%, #5d1a29 44%, #2e0912 100%);
+  box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.14), inset 0 0 0 12px rgba(184, 149, 90, 0.25), inset 0 0 0 26px rgba(0, 0, 0, 0.08);
+}
+
+.t-midnight .k-seal-half span {
+  font: italic 400 46px var(--k-display);
+  color: #d9b980;
+}
+
+.t-midnight .k-gate-hint {
+  font: 600 11px var(--k-body);
+  letter-spacing: 0.36em;
+  color: var(--muted);
+  opacity: 1;
+}
+
+.t-midnight .k-gate-hint i {
+  background: var(--gold);
+}
+
+@media (max-width: 640px) {
+  .t-midnight .k-gate--seal::before {
+    background: linear-gradient(#000 0 0) top / 100% 44px no-repeat, linear-gradient(#000 0 0) bottom / 100% 44px no-repeat;
+  }
+
+  .t-midnight .k-gate--seal::after {
+    left: 18px;
+    top: 16px;
+    font-size: 8px;
+  }
+
+  .t-midnight .k-gate--seal {
+    background: url(/templates/midnight-garden/leaves-shadow.svg) left -120px top / 260px auto no-repeat, var(--g-bg);
+  }
+
+  .t-midnight .k-gate-names {
+    font-size: 58px;
+  }
+
+  .t-midnight .k-gate-names span,
+  .t-midnight .k-gate-names em {
+    display: block;
+  }
+
+  .t-midnight .k-gate-names em {
+    margin: 0.04em 0;
+  }
+
+  .t-midnight .k-seal {
+    width: 170px;
+  }
+
+  .t-midnight .k-gate-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+  }
+}

@@ -1,0 +1,432 @@
+/* Modern Haciendera: cream paper, terracotta tiles, olive and walnut; arches everywhere. */
+
+.t-hacienda {
+  --cream: #f3eada;
+  --paper: #ebddc3;
+  --paper-deep: #d9c6a8;
+  --line: #c9b28c;
+  --terracotta: #b65f3e;
+  --clay: #a3512f;
+  --olive: #5f6640;
+  --walnut: #5a4232;
+  --ink: #3a2c22;
+  --amber: #c98a3a;
+  --paper-tex: radial-gradient(rgba(90, 66, 50, 0.07) 1px, transparent 1.2px) 0 0 / 5px 5px;
+  --tiles: radial-gradient(circle at 50% 0, #b65f3e 0 12px, transparent 12.5px) 0 0 / 30px 26px, linear-gradient(#9b4e31, #8d4527);
+
+  --k-bg: #f3eada;
+  --k-surface: #ebddc3;
+  --k-ink: #3a2c22;
+  --k-muted: #5a4232;
+  --k-accent: #a3512f;
+  --k-on-accent: #f3eada;
+  --k-line: #c9b28c;
+  --k-display: 'Gloock', Georgia, serif;
+  --k-display-weight: 400;
+  --k-body: 'Karla', system-ui, sans-serif;
+  --k-script: 'Karla', system-ui, sans-serif;
+  --k-radius: 6px;
+  --k-btn-radius: 999px;
+  --k-shadow: 0 20px 40px rgba(43, 29, 20, 0.2);
+  --k-field-bg: #ebddc3;
+
+  --g-bg: var(--paper-tex), #f3eada;
+  --g-ink: #3a2c22;
+  --g-accent: #a3512f;
+  --g-door: radial-gradient(circle, #2a1d14 0 2.6px, #8a6a4c 3px, transparent 3.6px) 18px 18px / 56px 64px,
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0 2px, transparent 2px 9px),
+    linear-gradient(90deg, #6b4a33, #7d5a3f 50%, #6b4a33);
+  --g-door-ink: #3a2c22;
+  --g-handle: #2b1d14;
+
+  --k-bar-ink-top: #3a2c22;
+  --k-bar-bg: #f3eada;
+  --k-bar-ink: #3a2c22;
+  --k-menu-bg: #f3eada;
+  --k-music-bg: #a3512f;
+  --k-music-ink: #f3eada;
+
+  background: var(--paper-tex), var(--cream);
+  color: var(--ink);
+  font-family: var(--k-body);
+}
+
+.t-hacienda .ha-tiles { height: 26px; background: var(--tiles); }
+.t-hacienda .ha-tiles.is-flip { transform: scaleY(-1); }
+.t-hacienda .ha-arch { border-radius: 999px 999px 0 0; overflow: hidden; }
+.t-hacienda .ha-window { box-shadow: 0 0 0 14px var(--paper), 0 0 0 15px var(--terracotta); }
+.t-hacienda .ha-arch img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Type ---------- */
+.t-hacienda .ha-es { font: italic 400 18px var(--k-body); color: var(--clay); }
+.t-hacienda .ha-caps { font: 700 10.5px var(--k-body); letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive); }
+.t-hacienda .ha-caps--clay { color: var(--clay); }
+.t-hacienda .ha-caps--walnut { color: var(--walnut); }
+.t-hacienda .ha-h2 { margin-top: 10px; font: 400 60px/1.02 var(--k-display); color: var(--ink); }
+.t-hacienda .ha-head--center { text-align: center; }
+.t-hacienda .ha-paper { background: var(--paper-tex), var(--paper); }
+
+.t-hacienda .ha-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 30px;
+  font: 700 11px var(--k-body);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--clay);
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+}
+.t-hacienda .ha-btn:hover { opacity: 0.9; }
+.t-hacienda .ha-btn--line { color: var(--olive); background: transparent; border-color: var(--olive); }
+.t-hacienda .ha-links { display: flex; gap: 24px; margin-top: 12px; }
+.t-hacienda .ha-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 700 10px var(--k-body);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--terracotta);
+}
+
+/* ---------- Header ---------- */
+.t-hacienda .ha-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 86px; padding: 0 60px; }
+.t-hacienda .ha-top nav { display: flex; align-items: center; gap: 28px; }
+.t-hacienda .ha-top-r { justify-content: flex-end; }
+.t-hacienda .ha-top nav a { font: 700 10px var(--k-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--walnut); }
+.t-hacienda .ha-top nav a:hover { color: var(--clay); }
+.t-hacienda .ha-top nav .ha-top-rsvp { display: inline-flex; align-items: center; height: 44px; padding: 0 22px; color: var(--cream); background: var(--clay); border-radius: 999px; }
+.t-hacienda .ha-top-mark { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.t-hacienda .ha-top-mark span { font: 400 30px/1 var(--k-display); }
+.t-hacienda .ha-top-mark em, .t-hacienda .ha-names em, .t-hacienda .ha-foot-names em { font-style: normal; color: var(--clay); }
+.t-hacienda .ha-top-mark small { font: 700 8.5px var(--k-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive); }
+
+/* ---------- Hero ---------- */
+.t-hacienda .ha-hero { display: grid; grid-template-columns: 500px minmax(0, 1fr); gap: 90px; align-items: center; padding: 50px 60px 74px 110px; }
+.t-hacienda .ha-hero-art { position: relative; }
+.t-hacienda .ha-hero-photo { width: 500px; height: 720px; }
+.t-hacienda .ha-hero-branch { position: absolute; left: 310px; top: -40px; width: 300px; height: 185px; }
+.t-hacienda .ha-caps + .ha-names { margin-top: 18px; }
+.t-hacienda .ha-hero-text .ha-caps { margin-top: 14px; }
+.t-hacienda .ha-names { margin-top: 18px; font: 400 124px/0.95 var(--k-display); letter-spacing: -0.01em; }
+.t-hacienda .ha-names span { display: block; }
+.t-hacienda .ha-hero-date { display: flex; align-items: center; gap: 16px; margin-top: 30px; font: 700 12px var(--k-body); letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); }
+.t-hacienda .ha-hero-date i { display: block; width: 40px; height: 1px; background: var(--terracotta); }
+.t-hacienda .ha-hero-line { margin-top: 18px; max-width: 400px; font-size: 16.5px; line-height: 1.75; color: var(--walnut); }
+.t-hacienda .ha-hero-cta { display: flex; gap: 12px; margin-top: 34px; }
+
+/* ---------- Countdown ---------- */
+.t-hacienda .ha-count-sec { display: flex; align-items: center; justify-content: center; gap: 60px; padding: 80px 40px; }
+.t-hacienda .ha-count-lead .ha-es { font-size: 22px; }
+.t-hacienda .ha-count-lead .ha-caps { margin-top: 6px; }
+.t-hacienda .ha-count { gap: 18px; }
+.t-hacienda .ha-count .k-count-cell { width: 120px; height: 150px; border-radius: 999px 999px 0 0; justify-content: flex-end; padding-bottom: 20px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--terracotta); }
+.t-hacienda .ha-count .k-count-cell:last-child { background: var(--clay); box-shadow: none; }
+.t-hacienda .ha-count b { font: 400 50px/1 var(--k-display); color: var(--ink); }
+.t-hacienda .ha-count .k-count-cell:last-child b,
+.t-hacienda .ha-count .k-count-cell:last-child span { color: var(--cream); }
+.t-hacienda .ha-count span { margin-top: 6px; font: 700 9px var(--k-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive); }
+
+/* ---------- The estate ---------- */
+.t-hacienda .ha-estate { display: grid; grid-template-columns: 620px minmax(0, 1fr); gap: 70px; align-items: start; padding: 110px 60px 120px; }
+.t-hacienda .ha-map { margin: 0; padding: 18px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--line); }
+.t-hacienda .ha-map svg { display: block; width: 100%; height: auto; }
+.t-hacienda .ha-map figcaption { margin-top: 12px; font: italic 400 13px var(--k-body); text-align: center; color: var(--walnut); }
+.t-hacienda .ha-estate-text { padding-top: 10px; }
+.t-hacienda .ha-estate-lead { margin-top: 14px; }
+.t-hacienda .ha-venues { display: flex; flex-direction: column; gap: 30px; margin-top: 40px; }
+.t-hacienda .ha-venues li { display: grid; grid-template-columns: 44px 1fr; gap: 18px; }
+.t-hacienda .ha-pin { display: grid; place-items: center; width: 40px; height: 40px; font: 400 19px var(--k-display); color: var(--cream); background: var(--clay); border-radius: 50%; }
+.t-hacienda .ha-venue-name { margin-top: 6px; font: 400 30px/1.15 var(--k-display); }
+.t-hacienda .ha-venue-addr { margin-top: 8px; font-size: 16.5px; line-height: 1.7; color: var(--walnut); }
+
+/* ---------- Menu card ---------- */
+.t-hacienda .ha-day { padding: 0 20px 120px; }
+.t-hacienda .ha-menu {
+  width: min(620px, 100%);
+  margin: 0 auto;
+  padding: 130px 70px 60px;
+  text-align: center;
+  background: var(--paper-tex), var(--paper);
+  box-shadow: inset 0 0 0 1px #b65f3e, inset 0 0 0 8px #ebddc3, inset 0 0 0 9px rgba(182, 95, 62, 0.45);
+}
+.t-hacienda .ha-menu-title { margin-top: 8px; font: 400 54px/1 var(--k-display); }
+.t-hacienda .ha-menu-list { display: flex; flex-direction: column; gap: 14px; margin-top: 34px; }
+.t-hacienda .ha-leaf { display: block; margin: 0 auto 14px; }
+.t-hacienda .ha-menu-time { font: 400 26px/1.1 var(--k-display); }
+.t-hacienda .ha-menu-time small { margin-left: 6px; font: 700 9.5px var(--k-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); }
+.t-hacienda .ha-menu-list .is-key .ha-menu-time { color: var(--clay); }
+.t-hacienda .ha-menu-label { margin-top: 4px; font: 700 10px var(--k-body); letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); }
+.t-hacienda .ha-menu-note { margin-top: 3px; font: italic 400 15px var(--k-body); color: var(--walnut); }
+
+/* ---------- Vestimenta ---------- */
+.t-hacienda .ha-dress-sec { padding: 90px 60px 100px; }
+.t-hacienda .ha-dress-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; gap: 0 80px; width: min(1160px, 100%); margin: 0 auto; }
+.t-hacienda .ha-dress-grid .ha-head { grid-column: 1; grid-row: 1; }
+.t-hacienda .ha-dress { display: contents; }
+.t-hacienda .ha-dress .k-dress-note { grid-column: 1; grid-row: 2; max-width: none; margin-top: 24px; font-size: 16.5px; line-height: 1.75; color: var(--walnut); text-align: left; }
+.t-hacienda .ha-dress .k-attire { grid-column: 1; grid-row: 3; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 30px; align-self: start; }
+.t-hacienda .ha-dress .k-swatches { grid-column: 2; grid-row: 1 / 4; align-self: center; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 22px; background: var(--paper-deep); box-shadow: inset 0 0 0 1px var(--line); }
+.t-hacienda .ha-dress .k-swatch { display: flex; flex-direction: column; gap: 8px; align-items: stretch; width: auto; }
+.t-hacienda .ha-dress .k-swatch-shape {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12);
+  background-image: radial-gradient(ellipse at 30% 25%, rgba(255, 255, 255, 0.2), transparent 60%) !important;
+}
+.t-hacienda .ha-dress .k-swatch span:last-child { font: 700 9px var(--k-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); text-align: left; }
+.t-hacienda .ha-dress .k-attire-card { align-items: flex-start; gap: 6px; background: none; border: 0; padding: 0; text-align: left; }
+.t-hacienda .ha-dress .k-attire-card svg { display: none; }
+.t-hacienda .ha-dress .k-attire-card h3 { font: 700 10.5px var(--k-body); letter-spacing: 0.26em; text-transform: uppercase; color: var(--clay); }
+.t-hacienda .ha-dress .k-attire-card p { max-width: none; font-size: 15.5px; line-height: 1.75; color: var(--walnut); }
+
+/* ---------- La familia ---------- */
+.t-hacienda .ha-fam-sec { padding: 110px 60px 120px; }
+.t-hacienda .ha-sprig { display: block; width: 150px; height: 92px; margin: 20px auto 0; }
+.t-hacienda .ha-fam { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 50px; width: min(1040px, 100%); max-width: none; margin-top: 40px; }
+.t-hacienda .ha-fam .k-ent-group.is-wide { padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.t-hacienda .ha-fam .k-ent-group.is-wide + .k-ent-group.is-wide { margin-top: -41px; border-top: 0; }
+.t-hacienda .ha-fam .k-ent-title { margin-bottom: 10px; font: 700 10.5px var(--k-body); letter-spacing: 0.24em; text-transform: uppercase; color: var(--clay); }
+.t-hacienda .ha-fam li,
+.t-hacienda .ha-fam .k-ent-pairs span { font: 400 21px/1.5 var(--k-display); color: var(--ink); }
+.t-hacienda .ha-fam .k-ent-names.is-cols { columns: 1; }
+.t-hacienda .ha-fam .is-wide .k-ent-pairs { display: grid; grid-template-columns: 1fr 1fr; column-gap: 60px; }
+.t-hacienda .ha-fam .k-ent-pairs li { display: block; padding: 2px 0; }
+.t-hacienda .ha-fam .k-ent-pairs li span + span::before { content: ' & '; }
+
+/* ---------- Recuerdos ---------- */
+.t-hacienda .ha-film-sec { padding: 110px 60px 100px; }
+.t-hacienda .ha-arcade { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); width: min(1160px, 100%); margin: 50px auto 0; border-bottom: 18px solid var(--paper-deep); }
+.t-hacienda .ha-bay { padding: 0 14px 26px; border-left: 14px solid #e3d2b4; }
+.t-hacienda .ha-bay:last-child { border-right: 14px solid #e3d2b4; }
+.t-hacienda .ha-bay button { display: block; width: 100%; height: 420px; padding: 0; }
+.t-hacienda .ha-bay button img { transition: transform 0.6s ease; }
+.t-hacienda .ha-bay button:hover img { transform: scale(1.03); }
+.t-hacienda .ha-film-cap { margin-top: 24px; font: italic 400 15px var(--k-body); text-align: center; color: var(--walnut); }
+.t-hacienda .ha-swipe { display: none; }
+
+/* ---------- Gifts + FAQ ---------- */
+.t-hacienda .ha-info { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; width: min(1280px, 100%); margin: 0 auto; padding: 110px 60px 120px; }
+.t-hacienda .ha-gifts { align-items: stretch; gap: 14px; margin-top: 24px; text-align: left; }
+.t-hacienda .ha-gifts .k-gifts-note { max-width: none; margin-bottom: 10px; font-size: 16.5px; line-height: 1.75; color: var(--walnut); text-align: left; }
+.t-hacienda .ha-gifts .k-gift-cards { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+.t-hacienda .ha-gifts .k-gift-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: 'label copy' 'num copy';
+  align-items: center;
+  gap: 2px 16px;
+  padding: 20px 26px;
+  text-align: left;
+  background: var(--paper);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.t-hacienda .ha-gifts .k-gift-label { grid-area: label; font: 700 9.5px var(--k-body); letter-spacing: 0.24em; color: var(--clay); }
+.t-hacienda .ha-gifts .k-gift-name { display: none; }
+.t-hacienda .ha-gifts .k-gift-number { grid-area: num; margin: 0; font: 400 26px var(--k-display); letter-spacing: 0.02em; }
+.t-hacienda .ha-gifts .k-copy { grid-area: copy; min-height: 44px; padding: 0 20px; font: 700 9.5px var(--k-body); letter-spacing: 0.22em; color: var(--clay); background: var(--cream); border: 1px solid var(--terracotta); }
+.t-hacienda .ha-gifts .k-copy svg { display: none; }
+.t-hacienda .ha-faq { width: 100%; margin-top: 26px; border-top: 1px solid var(--terracotta); }
+.t-hacienda .ha-faq button { padding: 20px 0; font: 400 21px/1.3 var(--k-display); }
+.t-hacienda .ha-faq button i { color: var(--clay); width: 10px; }
+.t-hacienda .ha-faq button i::before,
+.t-hacienda .ha-faq button i::after { width: 10px; height: 1.2px; }
+.t-hacienda .ha-faq .k-faq-a p { color: var(--walnut); }
+
+/* ---------- Respuesta ---------- */
+.t-hacienda .ha-reply {
+  padding: 110px 40px 120px;
+  text-align: center;
+  background: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1.2px) 0 0 / 5px 5px, var(--olive);
+}
+.t-hacienda .ha-reply .ha-es { color: #ebd3a9; }
+.t-hacienda .ha-reply-title { margin-top: 10px; font: 400 76px/1.05 var(--k-display); color: var(--cream); }
+.t-hacienda .ha-reply-lead { max-width: 560px; margin: 18px auto 50px; font: italic 400 20px/1.5 var(--k-body); color: #ebddc3; }
+.t-hacienda .k-rsvp {
+  width: min(580px, 100%);
+  padding: 120px 52px 46px;
+  background: var(--paper-tex), var(--cream);
+  border: 0;
+  border-radius: 999px 999px 0 0;
+  box-shadow: inset 0 0 0 1px #b65f3e, inset 0 0 0 8px #f3eada, inset 0 0 0 9px rgba(182, 95, 62, 0.45);
+}
+.t-hacienda .k-rsvp-steps { border-bottom-color: var(--line); }
+.t-hacienda .k-field input,
+.t-hacienda .k-field textarea { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; }
+.t-hacienda .k-field input { font: 400 20px var(--k-display); }
+.t-hacienda .k-field > span,
+.t-hacienda .k-rsvp legend { font: 700 9.5px var(--k-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--olive); }
+.t-hacienda .k-rsvp .k-btn { height: 56px; border-radius: 28px; font: 700 10.5px var(--k-body); letter-spacing: 0.24em; text-transform: uppercase; }
+.t-hacienda .k-rsvp .k-btn svg { display: none; }
+.t-hacienda .k-rsvp-lead, .t-hacienda .k-rsvp-hint { color: var(--walnut); }
+
+/* ---------- Footer ---------- */
+.t-hacienda .ha-foot { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 70px 20px 90px; text-align: center; }
+.t-hacienda .ha-foot .ha-es { font-size: 22px; }
+.t-hacienda .ha-foot-names { font: 400 56px/1.1 var(--k-display); }
+
+/* ---------- Gate: zaguán doors in an arched wall ---------- */
+.t-hacienda .k-gate--doors::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: url(/templates/haciendera/wall-arch.svg) center bottom / cover no-repeat;
+  transition: opacity 0.6s ease 0.9s;
+}
+.t-hacienda .k-gate--doors::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: url(/templates/haciendera/calamansi.svg) calc(50% - 222px) 40px / 300px no-repeat,
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px) 0 100% / 64px 70px repeat-x,
+    linear-gradient(#a3512f, #8d4527) 0 100% / 100% 70px no-repeat;
+  transition: opacity 0.6s ease 0.9s;
+}
+.t-hacienda .k-gate--doors[data-step='2']::before,
+.t-hacienda .k-gate--doors[data-step='2']::after { opacity: 0; }
+.t-hacienda .k-door { box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.15); }
+.t-hacienda .k-door--l { border-right: 2px solid #3d2a1d; }
+.t-hacienda .k-door--r { border-left: 2px solid #3d2a1d; }
+.t-hacienda .k-door-panel {
+  inset: 46% 26px 14% 26px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: inset 0 0 0 2px rgba(43, 29, 20, 0.55), inset 0 0 0 8px rgba(255, 255, 255, 0.04), inset 0 0 0 10px rgba(43, 29, 20, 0.35);
+}
+.t-hacienda .k-door-panel::after { display: none; }
+.t-hacienda .k-door-handle { top: 40%; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; background: none; border: 4px solid #2b1d14; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
+.t-hacienda .k-gate--doors .k-gate-inner {
+  position: relative;
+  z-index: 4;
+  gap: 10px;
+  width: min(380px, 80vw);
+  padding: 66px 26px 28px;
+  color: var(--ink);
+  background: var(--paper-tex), var(--cream);
+  border-radius: 190px 190px 6px 6px;
+  box-shadow: 0 0 0 1px #b65f3e, 0 0 0 6px #f3eada, 0 0 0 7px rgba(182, 95, 62, 0.5), 0 20px 40px rgba(43, 29, 20, 0.35);
+}
+.t-hacienda .k-gate-dear { font: italic 400 19px var(--k-body); color: var(--walnut); }
+.t-hacienda .k-gate-eyebrow { font: 700 10.5px var(--k-body); letter-spacing: 0.3em; text-transform: uppercase; color: var(--olive); opacity: 1; line-height: 1.6; }
+.t-hacienda .k-gate-names { font: 400 clamp(42px, 4vw, 50px)/1.02 var(--k-display); letter-spacing: 0; text-transform: none; }
+.t-hacienda .k-gate-names em { margin: 0; font-family: var(--k-display); font-size: 1em; font-style: normal; color: var(--clay); }
+.t-hacienda .k-gate-names span:first-child::after { content: '\A'; white-space: pre; }
+.t-hacienda .k-gate-date { font: 500 12px var(--k-body); letter-spacing: 0.26em; color: var(--walnut); }
+.t-hacienda .k-gate-btn { height: 50px; margin-top: 10px; padding: 0 30px; border-radius: 25px; background: var(--clay); color: var(--cream); border: 0; font: 700 11px var(--k-body); letter-spacing: 0.24em; text-transform: uppercase; }
+.t-hacienda .k-gate--doors .k-gate-btn:hover { color: var(--cream); background: #8d4527; }
+@media (max-width: 640px) {
+  .t-hacienda .k-gate--doors::before { background-image: url(/templates/haciendera/wall-arch-phone.svg); }
+  .t-hacienda .k-gate--doors::after {
+    background: url(/templates/haciendera/calamansi.svg) 10px 70px / 200px no-repeat,
+      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px) 0 100% / 64px 60px repeat-x,
+      linear-gradient(#a3512f, #8d4527) 0 100% / 100% 60px no-repeat;
+  }
+  .t-hacienda .k-gate--doors .k-gate-inner { width: 298px; padding: 56px 20px 24px; }
+  .t-hacienda .k-gate-names { font-size: 42px; }
+  .t-hacienda .k-gate-eyebrow { font-size: 9.5px; letter-spacing: 0.24em; }
+  .t-hacienda .k-gate-btn { width: 100%; padding: 0 12px; font-size: 10px; letter-spacing: 0.18em; }
+}
+
+.t-hacienda .k-mbar-mono { font: 400 22px var(--k-display); }
+
+/* ---------- Tablet ---------- */
+@container tpl (max-width: 960px) {
+  .t-hacienda .ha-top { padding: 0 30px; }
+  .t-hacienda .ha-top nav { gap: 16px; }
+  .t-hacienda .ha-hero { grid-template-columns: 1fr; justify-items: center; gap: 60px; padding: 60px 40px 70px; text-align: center; }
+  .t-hacienda .ha-hero-art { width: 60%; }
+  .t-hacienda .ha-hero-photo { width: 100%; height: auto; aspect-ratio: 500 / 720; }
+  .t-hacienda .ha-hero-branch { left: auto; right: -20%; width: 60%; height: auto; }
+  .t-hacienda .ha-hero-date, .t-hacienda .ha-hero-cta { justify-content: center; }
+  .t-hacienda .ha-hero-line { margin-left: auto; margin-right: auto; }
+  .t-hacienda .ha-estate { grid-template-columns: 1fr; gap: 50px; padding: 90px 40px; }
+  .t-hacienda .ha-dress-grid { grid-template-columns: 1fr; }
+  .t-hacienda .ha-dress .k-swatches { grid-column: 1; grid-row: 4; margin-top: 40px; }
+  .t-hacienda .ha-info { grid-template-columns: 1fr; gap: 70px; padding: 90px 40px; }
+  .t-hacienda .ha-count-sec { flex-direction: column; gap: 26px; text-align: center; }
+  .t-hacienda .ha-bay button { height: 320px; }
+}
+
+/* ---------- Phone ---------- */
+@container tpl (max-width: 640px) {
+  .t-hacienda .ha-tiles { height: 20px; background: radial-gradient(circle at 50% 0, #b65f3e 0 9px, transparent 9.5px) 0 0 / 22px 20px, linear-gradient(#9b4e31, #8d4527); }
+  .t-hacienda .ha-window { box-shadow: 0 0 0 10px var(--paper), 0 0 0 11px var(--terracotta); }
+  .t-hacienda .ha-es { font-size: 16px; }
+  .t-hacienda .ha-h2 { font-size: 40px; }
+  .t-hacienda .ha-hero { gap: 44px; padding: 100px 20px 56px; }
+  .t-hacienda .ha-hero-art { width: 300px; max-width: 100%; }
+  .t-hacienda .ha-hero-photo { aspect-ratio: 300 / 420; }
+  .t-hacienda .ha-hero-branch { right: -40px; top: -40px; width: 180px; }
+  .t-hacienda .ha-names { font-size: 64px; }
+  .t-hacienda .ha-hero-date { margin-top: 22px; font-size: 10.5px; letter-spacing: 0.2em; gap: 10px; }
+  .t-hacienda .ha-hero-date i { width: 24px; }
+  .t-hacienda .ha-hero-line { font-size: 15.5px; }
+  .t-hacienda .ha-hero-cta { display: grid; grid-template-columns: 1fr 1fr; width: 100%; margin-top: 26px; }
+  .t-hacienda .ha-hero-cta .ha-btn { width: 100%; height: 50px; padding: 0 10px; letter-spacing: 0.16em; }
+  .t-hacienda .ha-hero-cta .k-cal { width: 100%; }
+
+  .t-hacienda .ha-count-sec { padding: 56px 20px; gap: 22px; }
+  .t-hacienda .ha-count { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; width: 100%; }
+  .t-hacienda .ha-count .k-count-cell { width: auto; height: 118px; padding-bottom: 16px; }
+  .t-hacienda .ha-count b { font-size: 32px; }
+  .t-hacienda .ha-count span { font-size: 7.5px; letter-spacing: 0.12em; }
+
+  .t-hacienda .ha-estate { padding: 70px 20px; gap: 40px; }
+  .t-hacienda .ha-map { padding: 10px; }
+  .t-hacienda .ha-venues li { grid-template-columns: 36px 1fr; gap: 14px; }
+  .t-hacienda .ha-pin { width: 36px; height: 36px; font-size: 17px; }
+  .t-hacienda .ha-venue-name { font-size: 24px; }
+  .t-hacienda .ha-venue-addr { font-size: 15.5px; }
+
+  .t-hacienda .ha-day { padding: 0 20px 70px; }
+  .t-hacienda .ha-menu { padding: 90px 26px 40px; }
+  .t-hacienda .ha-menu-title { font-size: 42px; }
+  .t-hacienda .ha-menu-list { gap: 18px; margin-top: 26px; }
+  .t-hacienda .ha-leaf { display: none; }
+  .t-hacienda .ha-menu-time { font-size: 22px; }
+
+  .t-hacienda .ha-dress-sec { padding: 64px 20px 70px; }
+  .t-hacienda .ha-dress .k-dress-note { font-size: 15.5px; }
+  .t-hacienda .ha-dress .k-attire { grid-template-columns: 1fr; gap: 20px; }
+  .t-hacienda .ha-dress .k-swatches { padding: 14px; gap: 8px; }
+  .t-hacienda .ha-dress .k-swatch span:last-child { font-size: 8px; letter-spacing: 0.14em; }
+
+  .t-hacienda .ha-fam-sec { padding: 70px 20px; }
+  .t-hacienda .ha-fam { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 16px; }
+  .t-hacienda .ha-fam .is-wide .k-ent-pairs { grid-template-columns: 1fr; }
+  .t-hacienda .ha-fam li,
+  .t-hacienda .ha-fam .k-ent-pairs span { font-size: 18px; }
+  .t-hacienda .ha-fam .k-ent-title { font-size: 9px; letter-spacing: 0.18em; }
+
+  .t-hacienda .ha-film-sec { padding: 70px 0 60px; }
+  .t-hacienda .ha-film-sec .ha-head { padding: 0 20px; }
+  .t-hacienda .ha-arcade { display: flex; width: auto; margin: 36px 0 0; padding: 0 20px; overflow-x: auto; scroll-snap-type: x mandatory; border-bottom: 0; }
+  .t-hacienda .ha-bay { flex: none; width: 210px; padding: 0 10px 18px; border-left-width: 10px; border-bottom: 14px solid var(--paper-deep); scroll-snap-align: start; }
+  .t-hacienda .ha-bay:last-child { border-right-width: 10px; }
+  .t-hacienda .ha-bay button { height: 300px; }
+  .t-hacienda .ha-swipe { display: inline; }
+
+  .t-hacienda .ha-info { padding: 70px 20px; }
+  .t-hacienda .ha-gifts .k-gift-card { padding: 18px 18px; }
+  .t-hacienda .ha-gifts .k-gift-number { font-size: 22px; }
+  .t-hacienda .ha-faq button { font-size: 19px; }
+
+  .t-hacienda .ha-reply { padding: 70px 20px; }
+  .t-hacienda .ha-reply-title { font-size: 48px; }
+  .t-hacienda .ha-reply-lead { font-size: 17px; margin-bottom: 36px; }
+  .t-hacienda .k-rsvp { padding: 90px 22px 32px; }
+  .t-hacienda .ha-foot-names { font-size: 40px; }
+}
