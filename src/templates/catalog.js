@@ -165,6 +165,30 @@ export const CATALOG = [
     blurb: 'Your love story as a curated archive: a contact sheet with a grease-pencil circle, film date stamps, index cards, a running log, tagged people, prints and negatives, and a photo-lab envelope to open.',
     fonts: ['Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400', 'Caveat:wght@400;600', 'IBM+Plex+Mono:wght@400;500'],
   },
+  {
+    slug: 'fine-line',
+    name: 'Fine Line',
+    tags: ['modern', 'elegant'],
+    price: '₱3,500',
+    blurb: 'Cornflower ink on cotton paper: one continuous line hangs two linked rings across the page, then loops once at every section.',
+    fonts: ['Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600'],
+  },
+  {
+    slug: 'red-letter',
+    name: 'Red Letter',
+    tags: ['modern', 'playful'],
+    price: '₱3,500',
+    blurb: 'Butter-yellow riso paper and a calendar with your day circled in red: a Swiss grid, big dates and a day-planner schedule.',
+    fonts: ['Geist:wght@300;400;500;600', 'Geist+Mono:wght@400;500'],
+  },
+  {
+    slug: 'diptych',
+    name: 'Diptych',
+    tags: ['modern', 'elegant'],
+    price: '₱3,800',
+    blurb: 'Two panels side by side: a lime-washed spruce wall or a photograph holds still while the details scroll beside it. Quiet, Scandinavian and green.',
+    fonts: ['Hedvig+Letters+Serif:opsz@12..24', 'Hedvig+Letters+Sans'],
+  },
 ];
 
 export const catalogEntry = (slug) => CATALOG.find((t) => t.slug === slug);

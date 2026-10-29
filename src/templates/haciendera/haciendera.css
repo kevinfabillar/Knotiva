@@ -430,3 +430,51 @@
   .t-hacienda .k-rsvp { padding: 90px 22px 32px; }
   .t-hacienda .ha-foot-names { font-size: 40px; }
 }
+
+/* ---------- Art-direction pass: alignment, rhythm, legibility ---------- */
+.t-hacienda .ha-h2,
+.t-hacienda .ha-reply-lead { text-wrap: balance; }
+
+/* The Day: a printed menu card. Times sit right-aligned in their own column,
+   courses and notes share one left edge. */
+.t-hacienda .ha-menu-list { gap: 0; width: min(440px, 100%); margin: 34px auto 0; text-align: left; }
+.t-hacienda .ha-menu-list li {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  column-gap: 26px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-top: 1px solid rgba(182, 95, 62, 0.28);
+}
+.t-hacienda .ha-menu-list li:first-child { border-top: 0; }
+.t-hacienda .ha-leaf { display: none; }
+.t-hacienda .ha-menu-time { grid-column: 1; grid-row: 1 / span 2; text-align: right; white-space: nowrap; }
+.t-hacienda .ha-menu-label { grid-column: 2; grid-row: 1; margin-top: 0; font-size: 11px; }
+.t-hacienda .ha-menu-note { grid-column: 2; grid-row: 2; margin-top: 4px; }
+.t-hacienda .ha-menu-time small { font-size: 10.5px; }
+
+/* La familia: one left edge for the heading and every name. */
+.t-hacienda .ha-fam-sec .ha-head { width: min(1040px, 100%); margin-inline: auto; text-align: left; }
+.t-hacienda .ha-fam-sec .ha-sprig { margin-left: max(0px, calc((100% - 1040px) / 2)); margin-right: auto; }
+.t-hacienda .ha-fam { text-align: left; }
+.t-hacienda .ha-fam .k-ent-group { text-align: left; }
+.t-hacienda .ha-fam .k-ent-pairs li span { text-align: left; }
+.t-hacienda .ha-fam .k-ent-title { font-size: 11px; }
+
+/* Labels: nothing under 11px. */
+.t-hacienda .ha-count span,
+.t-hacienda .ha-dress .k-swatch span:last-child,
+.t-hacienda .ha-gifts .k-gift-label,
+.t-hacienda .k-field > span,
+.t-hacienda .k-rsvp legend { font-size: 11px; }
+.t-hacienda .ha-gifts .k-copy { font-size: 10.5px; }
+
+@container tpl (max-width: 640px) {
+  .t-hacienda .ha-menu-list li { grid-template-columns: 78px 1fr; column-gap: 16px; padding: 14px 0; }
+  .t-hacienda .ha-menu-time small { margin-left: 3px; font-size: 9.5px; letter-spacing: 0.1em; }
+  .t-hacienda .ha-count span { font-size: 10px; letter-spacing: 0.08em; }
+  .t-hacienda .ha-dress .k-swatch span:last-child { font-size: 10px; letter-spacing: 0.1em; }
+  .t-hacienda .ha-fam .k-ent-group:nth-child(-n + 2) { grid-column: 1 / -1; }
+  .t-hacienda .ha-fam .k-ent-title { font-size: 10.5px; letter-spacing: 0.18em; }
+  .t-hacienda .ha-fam-sec .ha-sprig { margin-left: 0; }
+}

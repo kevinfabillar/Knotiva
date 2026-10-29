@@ -19,4 +19,7 @@ export const LOADERS = {
   'editorial-luxe': () => import('./editorial-luxe/EditorialLuxe.jsx'),
   filipiniana: () => import('./filipiniana/Filipiniana.jsx'),
   'midnight-garden': () => import('./midnight-garden/MidnightGarden.jsx'),
+  'fine-line': () => import('./fine-line/FineLine.jsx'),
+  'red-letter': () => import('./red-letter/RedLetter.jsx'),
+  diptych: () => import('./diptych/Diptych.jsx'),
 };

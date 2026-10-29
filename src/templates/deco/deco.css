@@ -1479,3 +1479,250 @@
     display: none;
   }
 }
+
+/* ==========================================================================
+   Design pass — keep the symmetry for display moments, but set body copy,
+   lists and cards to a grid instead of centring every line.
+   ========================================================================== */
+
+/* Body paragraphs: justified block with a centred last line (a classic
+   deco invitation setting), held to a readable measure. */
+.t-deco .dc-dress .k-dress-note,
+.t-deco .dc-gifts .k-gifts-note {
+  max-width: 600px;
+  text-align: justify;
+  text-align-last: center;
+  hyphens: auto;
+}
+
+/* Venues: links sit on a shared baseline at the foot of both arches. */
+.t-deco .dc-venues .k-venue {
+  min-height: 420px;
+}
+
+.t-deco .k-venue-actions {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+/* Attire cards: icon in a gutter, copy left-aligned beside it. */
+.t-deco .k-attire-card {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 22px;
+  row-gap: 8px;
+  align-content: center;
+  align-items: start;
+  min-height: 0;
+  padding: 40px 48px;
+  text-align: left;
+}
+
+.t-deco .k-attire-card svg {
+  grid-row: 1 / span 2;
+  margin: 2px 0 0;
+}
+
+.t-deco .k-attire-card p {
+  max-width: none;
+  line-height: 1.7;
+}
+
+/* Wedding party: a playbill ledger. Role on the left (set flush to a gold
+   spine), names flush left on the other side of it. */
+.t-deco .dc-ent {
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 880px;
+  text-align: left;
+}
+
+.t-deco .dc-ent .k-ent-group {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+
+.t-deco .dc-ent .k-ent-group::before {
+  content: '';
+  position: absolute;
+  left: calc(50% - 3.5px);
+  top: 26px;
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.t-deco .dc-ent .k-ent-title {
+  margin: 0;
+  padding: 22px 36px 0 0;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.t-deco .dc-ent .k-ent-pairs,
+.t-deco .dc-ent .k-ent-names {
+  padding: 12px 0 14px 36px;
+  border-left: 1px solid rgba(212, 178, 106, 0.4);
+}
+
+.t-deco .dc-ent .k-ent-group:first-child :is(.k-ent-pairs, .k-ent-names) {
+  border-image: linear-gradient(transparent, rgba(212, 178, 106, 0.4) 30px) 1;
+}
+
+.t-deco .dc-ent .k-ent-group:last-child :is(.k-ent-pairs, .k-ent-names) {
+  border-image: linear-gradient(rgba(212, 178, 106, 0.4) calc(100% - 30px), transparent) 1;
+}
+
+.t-deco .dc-ent .k-ent-pairs li {
+  display: block;
+  padding: 0;
+}
+
+.t-deco .dc-ent .k-ent-pairs li::after {
+  display: none;
+}
+
+.t-deco .dc-ent .k-ent-pairs li span {
+  text-align: left;
+}
+
+.t-deco .dc-ent .k-ent-pairs li span:first-child::after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 12px;
+  vertical-align: middle;
+  background: var(--gold-deep);
+  transform: rotate(45deg);
+}
+
+.t-deco .dc-ent .k-ent-names.is-cols {
+  column-gap: 32px;
+}
+
+/* RSVP: keep helper lines off the corner ornaments. */
+.t-deco .k-rsvp-hint {
+  text-wrap: balance;
+}
+
+.t-deco .k-rsvp-deadline {
+  border-top-color: var(--gold-line);
+}
+
+/* Footer clears the floating music button. */
+.dc-foot {
+  padding-bottom: 96px;
+}
+
+@container tpl (max-width: 640px) {
+  /* Paragraphs on a phone: flush left reads better than justified. */
+  .t-deco .dc-dress .k-dress-note,
+  .t-deco .dc-gifts .k-gifts-note {
+    text-align: left;
+    text-align-last: auto;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* countdown digits fit inside their frames */
+  .t-deco .dc-count b {
+    font-size: min(8.4cqw, 34px);
+  }
+
+  .t-deco .dc-count span {
+    font-size: 9px;
+  }
+
+  /* swatches: five across without the labels touching */
+  .t-deco .dc-dress .k-swatches {
+    gap: 4px;
+  }
+
+  .t-deco .dc-dress .k-swatch {
+    width: 62px;
+  }
+
+  .t-deco .dc-dress .k-swatch span {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .t-deco .dc-dress {
+    align-items: stretch;
+  }
+
+  .t-deco .dc-dress .k-swatches {
+    align-self: center;
+  }
+
+  .t-deco .k-attire-card {
+    grid-template-columns: 32px minmax(0, 1fr);
+    column-gap: 16px;
+    padding: 34px 28px;
+  }
+
+  /* party ledger collapses to role-over-names along a left spine */
+  .t-deco .dc-ent {
+    max-width: 420px;
+    padding-left: 4px;
+  }
+
+  .t-deco .dc-ent .k-ent-group {
+    display: block;
+    padding: 0 0 22px 24px;
+    border-left: 1px solid rgba(212, 178, 106, 0.4);
+  }
+
+  .t-deco .dc-ent .k-ent-group:last-child {
+    padding-bottom: 0;
+  }
+
+  .t-deco .dc-ent .k-ent-group::before {
+    left: -4px;
+    top: 5px;
+  }
+
+  .t-deco .dc-ent .k-ent-title {
+    padding: 0 0 8px;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .t-deco .dc-ent .k-ent-pairs,
+  .t-deco .dc-ent .k-ent-names {
+    padding: 0;
+    border: 0;
+    border-image: none;
+  }
+
+  .t-deco .dc-ent .k-ent-group:first-child :is(.k-ent-pairs, .k-ent-names),
+  .t-deco .dc-ent .k-ent-group:last-child :is(.k-ent-pairs, .k-ent-names) {
+    border-image: none;
+  }
+
+  .t-deco .dc-ent .k-ent-pairs li span:first-child::after {
+    margin: 0 9px;
+  }
+
+  .t-deco .dc-ent .k-ent-pairs li {
+    padding: 2px 0;
+    line-height: 1.45;
+  }
+
+  /* rsvp card: clear the bottom corner ornaments */
+  .t-deco .k-rsvp {
+    padding: 34px 24px 56px;
+  }
+
+  .t-deco .k-rsvp-lead {
+    font-size: 15px;
+  }
+
+  .dc-foot {
+    padding-bottom: 96px;
+  }
+}

@@ -1646,3 +1646,37 @@
     translate: none;
   }
 }
+
+/* ==========================================================================
+   Design pass — tighten edges and measures on the existing editorial grid.
+   ========================================================================== */
+
+/* countdown: first figure starts on the content edge like every heading */
+.t-sumi .sm-count .k-count-cell:first-child {
+  padding-left: 0;
+}
+
+/* answers keep a readable measure inside the wide column */
+.t-sumi .sm-faq .k-faq-a p {
+  max-width: 64ch;
+}
+
+/* reply line breaks as two even lines, never "…by 1 / October 2027" */
+.sm-reply-line {
+  text-wrap: balance;
+}
+
+.t-sumi .k-rsvp-hint {
+  text-wrap: balance;
+}
+
+@container tpl (max-width: 640px) {
+  /* leave room under the deadline for the hanko stamp */
+  .t-sumi .sm-rsvp {
+    padding-bottom: 52px;
+  }
+
+  .sm-stamp {
+    bottom: -22px;
+  }
+}

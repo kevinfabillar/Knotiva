@@ -1577,3 +1577,113 @@
     letter-spacing: 0.24em;
   }
 }
+
+/* ---------- Art-direction pass: alignment, rhythm, legibility ---------- */
+.t-filipiniana .fi-h {
+  text-wrap: balance;
+}
+
+/* Running text reads from the left, even in the mirrored column; the block
+   still hugs the spine so the composition keeps its symmetry. */
+.t-filipiniana .fi-dress .k-dress-note,
+.t-filipiniana .fi-gifts-col > .fi-p {
+  max-width: 460px;
+  text-align: left;
+}
+
+.t-filipiniana .k-venue {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.t-filipiniana .k-venue-actions {
+  gap: 26px;
+}
+
+/* The spine already runs behind the gallery; the sheer strip only veiled the photos. */
+.t-filipiniana .fi-sheer {
+  display: none;
+}
+
+/* Labels: nothing under 11px. */
+.t-filipiniana .fi-caps,
+.t-filipiniana .fi-ent .k-ent-title,
+.t-filipiniana .k-venue-kind,
+.t-filipiniana .fi-gifts .k-gift-label,
+.t-filipiniana .k-rsvp .k-field > span,
+.t-filipiniana .k-rsvp legend {
+  font-size: 11px;
+}
+
+.t-filipiniana .fi-count span {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+
+.t-filipiniana .fi-dress .k-swatch span:last-child {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.t-filipiniana .fi-gifts .k-copy {
+  font-size: 10.5px;
+}
+
+@container tpl (max-width: 960px) {
+  .t-filipiniana .fi-head,
+  .t-filipiniana .fi-head--l,
+  .t-filipiniana .fi-head--c {
+    text-align: left;
+  }
+
+  .t-filipiniana .fi-dress,
+  .t-filipiniana .fi-dress-r,
+  .t-filipiniana .fi-gifts-col {
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .t-filipiniana .fi-dress .k-dress-note,
+  .t-filipiniana .fi-gifts-col > .fi-p {
+    max-width: none;
+  }
+
+  .t-filipiniana .fi-ent .k-ent-group,
+  .t-filipiniana .fi-ent .k-ent-group:nth-child(odd) {
+    text-align: left;
+  }
+
+  .t-filipiniana .fi-ent .k-ent-group.is-wide::after {
+    margin: 22px 0 0;
+  }
+
+  /* The gallery runs wider; its heading keeps the shared 18px edge. */
+  .t-filipiniana .fi-gal-sec .fi-head {
+    padding-inline: 6px;
+  }
+
+  .t-filipiniana .k-venue {
+    padding-inline: 24px;
+  }
+
+  .t-filipiniana .k-venue::before {
+    margin-inline: -24px;
+  }
+}
+
+@container tpl (max-width: 640px) {
+  .t-filipiniana .fi-panel > .fi-caps {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  .t-filipiniana .fi-count span {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Parents' full names need the whole width. */
+  .t-filipiniana .fi-ent .k-ent-group:nth-child(-n + 2) {
+    grid-column: 1 / -1;
+  }
+}

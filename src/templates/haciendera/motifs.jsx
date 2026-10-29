@@ -84,7 +84,7 @@ export const EstateMap = ({ estate = 'the estate', ...p }) => (
     <g fontFamily="Karla, sans-serif" fontStyle="italic" fontSize="12" fill="#5a4232">
       <text x="306" y="440">the gate</text>
       <text x="60" y="318">cane fields</text>
-      <text x="344" y="440">pond</text>
+      <text x="372" y="400">pond</text>
       <text x="474" y="132">the house</text>
       <text x="120" y="244">the chapel</text>
     </g>

@@ -398,3 +398,37 @@
   .t-archive .ar-foot { grid-template-columns: 1fr; justify-items: center; gap: 12px; padding: 40px 18px 70px; text-align: center; }
   .t-archive .ar-foot .ar-hand { justify-self: center; }
 }
+
+/* ---------- Art-direction pass: alignment, rhythm, legibility ---------- */
+.t-archive .ar-h2,
+.t-archive .ar-reply-title,
+.t-archive .ar-reply-lead { text-wrap: balance; }
+
+/* Read me: answers hang on the same edge as their questions. */
+.t-archive .ar-faq button { column-gap: 18px; }
+.t-archive .ar-faq .k-faq-a p,
+.t-archive .ar-faq li.is-open .k-faq-a p { padding-left: 68px; }
+
+/* Swatch book: the chip number gets its own line instead of breaking mid-label. */
+.t-archive .ar-wear .k-swatch span:last-child { font-size: 10.5px; line-height: 1.5; }
+.t-archive .ar-wear .k-swatch span:last-child::after { display: block; content: 'No. ' counter(chip, decimal-leading-zero); }
+
+/* Labels: nothing under ~11px. */
+.t-archive .ar-sheet-cap,
+.t-archive .ar-pr figcaption .ar-mono,
+.t-archive .ar-gifts .k-gift-label,
+.t-archive .ar-gifts .k-copy { font-size: 10.5px; }
+.t-archive .k-field > span,
+.t-archive .k-rsvp legend { font-size: 11px; }
+
+@container tpl (max-width: 640px) {
+  .t-archive .ar-mono { font-size: 10.5px; }
+  .t-archive .ar-faq .k-faq-a p,
+  .t-archive .ar-faq li.is-open .k-faq-a p { padding-left: 54px; }
+  .t-archive .ar-wear .k-swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 10px; }
+  .t-archive .ar-wear .k-swatch { padding: 6px 6px 10px; }
+  .t-archive .ar-wear .k-swatch-shape { height: 84px; }
+  .t-archive .ar-wear .k-swatch span:last-child { font-size: 10px; letter-spacing: 0.04em; }
+  .t-archive .ar-wear .k-swatch span:last-child::after { content: 'No. ' counter(chip, decimal-leading-zero); }
+  .t-archive .ar-pr figcaption .ar-mono { font-size: 10px; }
+}

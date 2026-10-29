@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
+<!-- Diptych lime-wash (for spruce panels, over #213f37): soft clouds, faint horizontal brush drag and fine sand, in black and white at low alpha. Tiles seamlessly. -->
+<defs>
+<filter id="cloudDark" filterUnits="userSpaceOnUse" x="0" y="0" width="900" height="900" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.0026 0.0042" numOctaves="4" seed="5" stitchTiles="stitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.1 0 0 0 -1.02"/>
+</filter>
+<filter id="cloudLight" filterUnits="userSpaceOnUse" x="0" y="0" width="900" height="900" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.0034 0.005" numOctaves="4" seed="8" stitchTiles="stitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -2.1 0 0 0 1.0"/>
+</filter>
+<filter id="brush" filterUnits="userSpaceOnUse" x="0" y="0" width="900" height="900" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.0018 0.028" numOctaves="3" seed="13" stitchTiles="stitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  3.2 0 0 0 -1.78"/>
+</filter>
+<filter id="sand" filterUnits="userSpaceOnUse" x="0" y="0" width="900" height="900" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" seed="3" stitchTiles="stitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.8 0 0 0 -1.42"/>
+</filter>
+</defs>
+<rect width="900" height="900" filter="url(#cloudDark)" opacity="0.3"/>
+<rect width="900" height="900" filter="url(#cloudLight)" opacity="0.26"/>
+<rect width="900" height="900" filter="url(#brush)" opacity="0.1"/>
+<rect width="900" height="900" filter="url(#sand)" opacity="0.18"/>
+</svg>

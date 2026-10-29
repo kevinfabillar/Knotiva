@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1700" width="1200" height="1700">
-<defs><linearGradient id="g" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#34312a"/><stop offset="1" stop-color="#161714"/></linearGradient>
-<radialGradient id="sheen" cx="0.3" cy="0.2" r="0.7"><stop offset="0" stop-color="#fff" stop-opacity="0.35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
-<rect width="1200" height="1700" fill="url(#g)"/><g transform="translate(546.0 750.4) scale(4.5)" fill="none" stroke="#d4b26a" stroke-opacity="0.6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12.5" rx="1.8"/><path d="M8.2 7l1.4-2.4h4.8L15.8 7"/><circle cx="12" cy="13.2" r="3.4"/></g><text x="600.0" y="926.8" text-anchor="middle" font-family="Josefin Sans, Helvetica, Arial, sans-serif" font-weight="600" font-size="38" letter-spacing="8.36" fill="#f2e9d4" fill-opacity="0.6">THE COUPLE, FULL LENGTH</text>
-</svg>

@@ -1870,3 +1870,136 @@
     font-size: 34px;
   }
 }
+
+/* ==========================================================================
+   Design pass — left-aligned content on a shared grid; centring kept for
+   the hero, section titles and the countdown only.
+   ========================================================================== */
+
+/* Venues: a left-aligned ticket. Map links sit on the same line in both cards. */
+.t-isla .is-venues .k-venue {
+  align-items: flex-start;
+  min-height: 0;
+  padding: 0 40px 34px;
+  text-align: left;
+}
+
+.t-isla .is-venues .k-venue::before {
+  margin: 0 -40px 30px;
+}
+
+.t-isla .is-venues .k-venue-icon {
+  margin-bottom: 10px;
+}
+
+.t-isla .is-venues .k-venue-address {
+  max-width: 34ch;
+}
+
+.t-isla .is-venues .k-venue-actions {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* Entourage: two left-aligned columns with hairline rules; couples are set
+   as a two-column table that shares the same column edges. */
+.t-isla .is-ent {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 120px;
+  max-width: 880px;
+  text-align: left;
+}
+
+.t-isla .is-ent .k-ent-group {
+  padding-top: 18px;
+  border-top: 1px solid rgba(245, 234, 215, 0.2);
+}
+
+.t-isla .is-ent .k-ent-title {
+  margin-bottom: 12px;
+}
+
+.t-isla .is-ent .k-ent-pairs li {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 120px;
+  padding: 2px 0;
+}
+
+.t-isla .is-ent .k-ent-pairs li::after {
+  display: none;
+}
+
+.t-isla .is-ent .k-ent-pairs li span:first-child,
+.t-isla .is-ent .k-ent-pairs li span:last-child {
+  text-align: left;
+}
+
+/* RSVP helper line: no one-word orphan. */
+.t-isla .k-rsvp-hint {
+  text-wrap: balance;
+}
+
+@container tpl (max-width: 640px) {
+  /* side-by-side sections stack, but keep their left edge */
+  .is-two .is-head {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .t-isla .is-dress-l {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .t-isla .is-dress-l .k-dress-note,
+  .is-gifts-l .is-body {
+    font-size: 16px;
+  }
+
+  .t-isla .is-dress-l .k-swatches {
+    justify-content: flex-start;
+    gap: 4px;
+  }
+
+  .t-isla .is-dress-l .k-swatch {
+    width: 64px;
+  }
+
+  .t-isla .is-dress-l .k-swatch span {
+    white-space: nowrap;
+  }
+
+  .is-gifts-l {
+    text-align: left;
+  }
+
+  /* venues */
+  .t-isla .is-venues .k-venue {
+    min-height: 0;
+    padding: 0 26px 28px;
+  }
+
+  .t-isla .is-venues .k-venue::before {
+    margin: 0 -26px 26px;
+  }
+
+  .t-isla .is-venues .k-venue-icon {
+    width: 56px;
+    height: 56px;
+    padding: 14px;
+  }
+
+  /* entourage: one column, couples keep their two-column table */
+  .t-isla .is-ent {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .t-isla .is-ent .k-ent-pairs li {
+    column-gap: 16px;
+  }
+
+  .t-isla .is-ent .k-ent-pairs span {
+    font-size: 16px;
+  }
+}

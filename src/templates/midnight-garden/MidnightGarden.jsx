@@ -319,7 +319,12 @@ export default function MidnightGarden() {
       <footer className="mg-fin mg-center">
         <p className="mg-fin-word">Fin.</p>
         <p className="mg-fin-meta">
-          {D.a} &amp; {D.b} · {dotted(D.start)} · {D.place}
+          <span>
+            {D.a} &amp; {D.b} ·
+          </span>{' '}
+          <span>
+            {dotted(D.start)} · {D.place}
+          </span>
         </p>
         <div className="mg-social">
           <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">

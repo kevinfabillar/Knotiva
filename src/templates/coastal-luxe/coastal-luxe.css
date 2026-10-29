@@ -518,3 +518,50 @@
   .t-coastal .k-rsvp { padding: 30px 22px; border-radius: 28px; }
   .t-coastal .co-foot-names { font-size: 42px; }
 }
+
+/* ---------- Art-direction pass: alignment, rhythm, legibility ---------- */
+.t-coastal .co-h2,
+.t-coastal .co-reply-title,
+.t-coastal .k-gate-eyebrow {
+  text-wrap: balance;
+}
+.t-coastal .co-tide-note { text-wrap: pretty; }
+
+/* The long wave line sits behind the copy; keep it a whisper where it crosses text. */
+.t-coastal .co-waveline { opacity: 0.5; }
+
+/* Section heads share the content's left edge instead of floating centred. */
+.t-coastal .co-head--center { width: min(1136px, 100%); margin-inline: auto; text-align: left; }
+.t-coastal .co-tide-h { width: min(1136px, 100%); }
+
+/* Our people: a four-column grid, every name on a shared left edge. */
+.t-coastal .co-people { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 40px; width: min(1136px, 100%); }
+.t-coastal .co-people .k-ent-group { grid-column: span 1; text-align: left; }
+.t-coastal .co-people .k-ent-group:nth-child(-n + 2) { grid-column: span 2; }
+.t-coastal .co-people .k-ent-group.is-wide { grid-column: 1 / -1; }
+.t-coastal .co-people .is-wide .k-ent-pairs { column-gap: 40px; }
+.t-coastal .co-people .k-ent-pairs li span { text-align: left; }
+.t-coastal .co-people .k-ent-group.is-wide::before { margin: 0 0 26px; background-position: left center; }
+.t-coastal .co-people .k-ent-group.is-wide:has(+ .k-ent-group:not(.is-wide))::after { margin: 34px 0 0; background-position: left center; }
+.t-coastal .co-people .k-ent-title { margin-bottom: 10px; font-size: 11px; }
+
+/* Labels: nothing under 11px. */
+.t-coastal .co-count span,
+.t-coastal .co-gifts .k-gift-label,
+.t-coastal .k-field > span,
+.t-coastal .k-rsvp legend { font-size: 11px; }
+.t-coastal .co-gifts .k-copy { font-size: 10.5px; }
+
+@container tpl (max-width: 960px) {
+  .t-coastal .co-people { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-coastal .co-people .k-ent-group,
+  .t-coastal .co-people .k-ent-group:nth-child(-n + 2) { grid-column: span 1; }
+}
+
+@container tpl (max-width: 640px) {
+  .t-coastal .co-count span { font-size: 10px; letter-spacing: 0.1em; }
+  .t-coastal .co-wear .k-swatch span:last-child { font-size: 10px; letter-spacing: 0.14em; }
+  .t-coastal .co-people { gap: 28px 18px; }
+  .t-coastal .co-people .k-ent-group:nth-child(-n + 2) { grid-column: 1 / -1; }
+  .t-coastal .co-people .k-ent-title { font-size: 10.5px; letter-spacing: 0.2em; }
+}

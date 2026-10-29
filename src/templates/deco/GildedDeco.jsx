@@ -153,7 +153,7 @@ function Head({ title, sub }) {
   );
 }
 
-export const meta = { defaults: DEFAULTS, className: 't-deco', cover: `${P}portrait.svg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+export const meta = { defaults: DEFAULTS, className: 't-deco', cover: `${P}portrait.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
 
 export default function GildedDeco() {
   const D = useDetails(DEFAULTS);
@@ -173,11 +173,11 @@ export default function GildedDeco() {
     { kind: 'The Reception', name: D.venue, time: 'Seven o’clock until the New Year', address: D.venueAddress, icon: 'cheers' },
   ];
   const PHOTOS = [
-    { src: photo(`${P}toast.svg`), alt: 'Two champagne coupes touching' },
-    { src: photo(`${P}rings.svg`), alt: 'Wedding rings on black velvet' },
-    { src: photo(`${P}portrait.svg`), alt: `${D.a} and ${D.b} on a hotel staircase` },
-    { src: photo(`${P}dance.svg`), alt: `${D.a} and ${D.b} dancing` },
-    { src: photo(`${P}lobby.svg`), alt: 'An Art Deco hotel lobby' },
+    { src: photo(`${P}toast.jpg`), alt: 'Two champagne coupes touching' },
+    { src: photo(`${P}rings.jpg`), alt: 'Wedding rings on black velvet' },
+    { src: photo(`${P}portrait.jpg`), alt: `${D.a} and ${D.b} on a hotel staircase` },
+    { src: photo(`${P}dance.jpg`), alt: `${D.a} and ${D.b} dancing` },
+    { src: photo(`${P}lobby.jpg`), alt: 'An Art Deco hotel lobby' },
   ];
   const lightbox = useLightbox(PHOTOS);
   const track = useRef(null);

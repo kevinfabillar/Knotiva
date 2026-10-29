@@ -1375,3 +1375,103 @@
     columns: 1;
   }
 }
+
+/* ==========================================================================
+   Design pass — one content column for the whole page. Full-bleed sections
+   now share the left edge of the paper sheets' text, and couples are set in
+   reading order.
+   ========================================================================== */
+
+.t-hb {
+  /* the text column inside a 1200px paper sheet */
+  --hb-col: calc(min(1200px, 100cqw - 2 * clamp(16px, 2.6cqw, 36px)) - 2 * clamp(40px, 6cqw, 90px));
+}
+
+.hb-notes-sec > .hb-head,
+.hb-field,
+.hb-plates-sec > .hb-head,
+.hb-plates,
+.hb-company > .hb-head,
+.t-hb .hb-ent,
+.hb-faq-grid {
+  max-width: var(--hb-col);
+}
+
+.hb-gifts-sheet {
+  max-width: 1200px;
+}
+
+/* couples: row-major grid, one couple per cell */
+.t-hb .hb-ent .k-ent-pairs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  column-gap: 32px;
+  columns: auto;
+}
+
+/* RSVP: heading and note on the left, the card on the right — the same
+   split as the guest notes below it. */
+.hb-rsvp-in {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: clamp(30px, 6cqw, 90px);
+  max-width: var(--hb-col);
+}
+
+.hb-rsvp-in > .hb-head,
+.hb-rsvp-in > .hb-rsvp-line {
+  grid-column: 1;
+}
+
+.hb-rsvp-in > div {
+  grid-column: 2;
+  grid-row: 1 / 4;
+}
+
+.hb-rsvp-line {
+  margin-top: 0;
+  max-width: 22ch;
+}
+
+.t-hb .hb-rsvp-card {
+  width: 100%;
+}
+
+.hb-rsvp-sprig {
+  top: auto;
+  right: auto;
+  left: 6px;
+  bottom: -46px;
+  width: 104px;
+  rotate: -14deg;
+}
+
+@container tpl (max-width: 980px) {
+  .hb-rsvp-in {
+    display: block;
+    max-width: 720px;
+  }
+
+  .hb-rsvp-line {
+    max-width: none;
+  }
+}
+
+@container tpl (max-width: 640px) {
+  /* phone sheets set their own padding; full-bleed sections use the full width */
+  .hb-notes-sec > .hb-head,
+  .hb-field,
+  .hb-plates-sec > .hb-head,
+  .hb-plates,
+  .hb-company > .hb-head,
+  .t-hb .hb-ent,
+  .hb-faq-grid {
+    max-width: 100%;
+  }
+
+  /* answers hang under the question text, not under the number */
+  .t-hb .hb-faq li.is-open .k-faq-a p {
+    padding-left: 48px;
+  }
+}

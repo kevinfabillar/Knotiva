@@ -1656,3 +1656,140 @@
     margin-top: 22px;
   }
 }
+
+/* ==========================================================================
+   Design pass — readable caps, labels kept next to their values, and a
+   masthead grid that pairs the roles the way they are read.
+   ========================================================================== */
+
+/* Small caps were set at 9–10px; 11px is the floor for labels. */
+.t-luxe .lx-caps,
+.t-luxe .lx-cap,
+.t-luxe .lx-ulink,
+.t-luxe .lx-run,
+.t-luxe .lx-nav .lx-caps,
+.t-luxe .lx-facts dt,
+.t-luxe .lx-vcap,
+.t-luxe .lx-count span,
+.t-luxe .lx-prog-note,
+.t-luxe .lx-prog-ap,
+.t-luxe .lx-edit .k-swatch span:last-child,
+.t-luxe .lx-edit .k-attire-card h3,
+.t-luxe .lx-mast .k-ent-title,
+.t-luxe .lx-gifts .k-gift-label,
+.t-luxe .lx-gifts .k-copy,
+.t-luxe .lx-faq .k-faq-a p::after,
+.t-luxe .k-rsvp legend,
+.t-luxe .k-rsvp .k-seg button,
+.t-luxe .lx-btn,
+.t-luxe .k-rsvp .k-btn {
+  font-size: 11px;
+}
+
+.t-luxe .lx-edit .k-swatch span:last-child,
+.t-luxe .lx-edit .k-attire-card h3,
+.t-luxe .lx-mast .k-ent-title {
+  letter-spacing: 0.26em;
+}
+
+/* Contents: "PM" sits under its time instead of floating at the far edge. */
+.t-luxe .lx-prog li {
+  grid-template-columns: 130px 1fr;
+  grid-template-areas: 'time text' 'ap text';
+  align-items: start;
+}
+
+.t-luxe .lx-prog-time {
+  grid-area: time;
+}
+
+.t-luxe .lx-prog-text {
+  grid-area: text;
+  padding-top: 4px;
+}
+
+.t-luxe .lx-prog-ap {
+  grid-area: ap;
+  margin-top: 10px;
+}
+
+/* Masthead: two columns, so parents, best man / maid of honour, groomsmen /
+   bridesmaids and the bearers each sit side by side. */
+.t-luxe .lx-mast {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 64px;
+}
+
+.t-luxe .lx-mast .is-wide .k-ent-pairs {
+  column-gap: 64px;
+}
+
+/* Reply line and gate eyebrow: even line breaks. */
+.t-luxe .lx-reply-lead,
+.t-luxe .k-gate--curtain .k-gate-eyebrow,
+.t-luxe .k-rsvp-hint {
+  text-wrap: balance;
+}
+
+@container tpl (max-width: 640px) {
+  .t-luxe .lx-count span {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  .t-luxe .lx-run,
+  .t-luxe .lx-run-r::after {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  .t-luxe .lx-prog-note {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+  }
+
+  .t-luxe .lx-prog li {
+    grid-template-columns: 74px 1fr;
+  }
+
+  .t-luxe .lx-prog-text {
+    padding-top: 0;
+  }
+
+  .t-luxe .lx-prog-ap {
+    display: block;
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .t-luxe .lx-btn {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  /* swatches: 3 + 2 so the names fit at a readable size */
+  .t-luxe .lx-edit .k-swatches {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 22px;
+  }
+
+  .t-luxe .lx-edit .k-swatch-shape {
+    height: 96px;
+  }
+
+  .t-luxe .lx-edit .k-swatch span:last-child {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+  }
+
+  .t-luxe .lx-mast {
+    column-gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .t-luxe .k-gate--curtain::before {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+  }
+}
