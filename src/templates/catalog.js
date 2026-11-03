@@ -189,6 +189,14 @@ export const CATALOG = [
     blurb: 'Two panels side by side: a lime-washed spruce wall or a photograph holds still while the details scroll beside it. Quiet, Scandinavian and green.',
     fonts: ['Hedvig+Letters+Serif:opsz@12..24', 'Hedvig+Letters+Sans'],
   },
+  {
+    slug: 'maison',
+    name: 'Maison',
+    tags: ['elegant', 'modern', 'filipino'],
+    price: '₱6,800',
+    blurb: 'A couture house founded on your wedding day: your initials unite into a house monogram, the camera flies through the letters into your photograph, and bordeaux lacquer, bone stock and palladium foil carry every guest to an engraved reply card.',
+    fonts: ['Noto+Serif+Display:ital,wght@0,200;0,300;0,400;1,200;1,300', 'Archivo:wdth,wght@100,300;100,400;100,500;125,400;125,500'],
+  },
 ];
 
 export const catalogEntry = (slug) => CATALOG.find((t) => t.slug === slug);

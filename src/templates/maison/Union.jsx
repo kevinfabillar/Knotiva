@@ -268,7 +268,7 @@ export default function Union({ D, letters, heroSrc, onArrive, onDone }) {
             oy={anchor?.y ?? g.cy}
             sheen={v.sheen}
             fade={v.fade}
-            seal={{ x: g.cx, y: g.cy, r: g.ringR, draw: v.sealDraw, text: `EST. ${toRoman(Number(year))}`, textOn: v.textOn }}
+            seal={v.sealDraw > 0 ? { x: g.cx, y: g.cy, r: g.ringR, draw: v.sealDraw, text: `EST. ${toRoman(Number(year))}`, textOn: v.textOn } : null}
           />
         )}
         <div className="ma-gate-copy" aria-hidden={phase !== 'rest' && phase !== 'loading' ? 'true' : undefined}>

@@ -317,7 +317,7 @@ export default function Maison() {
 
   return (
     <TemplateRoot
-      className="t-maison"
+      className={`t-maison${still ? ' ma-still' : ''}`}
       nav={NAV}
       rsvp="rsvp"
       music="reverie"
@@ -612,7 +612,7 @@ export default function Maison() {
                 </span>
                 <span>{String(PLATES.length).padStart(2, '0')}</span>
               </div>
-              <p className="ma-cap ma-muted ma-hide-ph">Keep scrolling · tap a plate to enlarge</p>
+              <p className="ma-cap ma-muted ma-hide-ph">{still ? 'Tap a plate to enlarge' : 'Keep scrolling · tap a plate to enlarge'}</p>
             </div>
           </div>
           <ul className="ma-look-track" ref={trackRef}>

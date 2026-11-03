@@ -22,4 +22,5 @@ export const LOADERS = {
   'fine-line': () => import('./fine-line/FineLine.jsx'),
   'red-letter': () => import('./red-letter/RedLetter.jsx'),
   diptych: () => import('./diptych/Diptych.jsx'),
+  maison: () => import('./maison/Maison.jsx'),
 };
