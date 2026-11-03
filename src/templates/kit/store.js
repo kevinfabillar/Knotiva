@@ -61,11 +61,22 @@ export async function compressImage(file, max = 1800) {
   return new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.85));
 }
 
-/** Turns a stored record into { details, photos } with object URLs the page can use. */
+/**
+ * Turns a record into { details, photos } the page can use. Photos may be Blobs (saved in this
+ * browser; they become object URLs the caller must revoke) or URL strings (a published site's
+ * Firebase Storage links), which pass through unchanged. `objectUrls` lists the ones to revoke.
+ */
 export function toUrls(record) {
   const photos = {};
-  Object.entries(record.photos || {}).forEach(([src, blob]) => {
-    if (blob) photos[src] = URL.createObjectURL(blob);
+  const objectUrls = [];
+  Object.entries(record.photos || {}).forEach(([src, value]) => {
+    if (typeof value === 'string') {
+      if (value) photos[src] = value;
+    } else if (value) {
+      const url = URL.createObjectURL(value);
+      photos[src] = url;
+      objectUrls.push(url);
+    }
   });
-  return { details: record.details || {}, photos };
+  return { details: record.details || {}, photos, objectUrls };
 }

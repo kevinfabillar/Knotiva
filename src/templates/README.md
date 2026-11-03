@@ -50,3 +50,5 @@ Templates must read their details and photos through the kit so the Customize pa
 - Export `meta = { defaults: DEFAULTS, className, cover }`. The print page uses it for the card's theme and photo.
 
 Edits are saved in the visitor's browser (IndexedDB, `kit/store.js`); `?mine=1` shows them on the demo page.
+
+Publishing: the customise page can publish an invitation to `www.knotiva.my/<handle>` after payment (see `PAYMENTS.md`). A published site feeds the same `CustomContext` with stored details and photo URLs, and adds `rsvp.submit` so `Rsvp` sends real replies (guests type their name; the party is their name plus `?seats`). Templates need no changes.

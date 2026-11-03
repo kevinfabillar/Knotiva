@@ -112,7 +112,7 @@ function Head({ title, eyebrow, sprig = false, center = false, children }) {
   );
 }
 
-export const meta = { defaults: DEFAULTS, className: 't-next-chapter', cover: `${P}hero.svg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+export const meta = { defaults: DEFAULTS, className: 't-next-chapter', cover: `${P}hero.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
 
 export default function NextChapter() {
   const D = useDetails(DEFAULTS);
@@ -125,9 +125,9 @@ export default function NextChapter() {
 
   const names = `${D.a} & ${D.b}`;
   const when = longDate(D.start);
-  const STORY = [1, 2, 3].map((n) => ({ year: D[`story${n}Year`], title: D[`story${n}Title`], text: D[`story${n}Text`], img: `story-${DEFAULTS[`story${n}Year`]}.svg` }));
-  const hero = photo(`${P}hero.svg`);
-  const foliage = photo(`${P}loader.svg`);
+  const STORY = [1, 2, 3].map((n) => ({ year: D[`story${n}Year`], title: D[`story${n}Title`], text: D[`story${n}Text`], img: `story-${DEFAULTS[`story${n}Year`]}.jpg` }));
+  const hero = photo(`${P}hero.jpg`);
+  const foliage = photo(`${P}loader.jpg`);
 
   const VENUES = [
     {
@@ -135,7 +135,7 @@ export default function NextChapter() {
       name: D.ceremony,
       address: D.ceremonyAddress,
       when: `${when} · ${timeOf(D.start)}`,
-      img: photo(`${P}ceremony.svg`),
+      img: photo(`${P}ceremony.jpg`),
       alt: `${D.ceremony} at dusk`,
     },
     {
@@ -143,17 +143,17 @@ export default function NextChapter() {
       name: D.venue,
       address: D.venueAddress,
       when: D.receptionTime,
-      img: photo(`${P}reception.svg`),
+      img: photo(`${P}reception.jpg`),
       alt: `The reception hall at ${D.venue}`,
     },
   ].map((v) => ({ ...v, query: `${v.name}, ${v.address}` }));
 
   const GALLERY = [
-    { src: photo(`${P}gallery-1.svg`), alt: `${D.a} and ${D.b} at sunset on the city walls` },
-    { src: photo(`${P}gallery-2.svg`), alt: 'Under the arches, in black and white' },
-    { src: photo(`${P}gallery-3.svg`), alt: 'Laughing in the street' },
-    { src: photo(`${P}gallery-4.svg`), alt: 'Holding hands' },
-    { src: photo(`${P}gallery-5.svg`), alt: 'A quiet moment, in black and white' },
+    { src: photo(`${P}gallery-1.jpg`), alt: `${D.a} and ${D.b} at sunset on the city walls` },
+    { src: photo(`${P}gallery-2.jpg`), alt: 'Under the arches, in black and white' },
+    { src: photo(`${P}gallery-3.jpg`), alt: 'Laughing in the street' },
+    { src: photo(`${P}gallery-4.jpg`), alt: 'Holding hands' },
+    { src: photo(`${P}gallery-5.jpg`), alt: 'A quiet moment, in black and white' },
   ];
   const lightbox = useLightbox(GALLERY);
 
@@ -163,7 +163,7 @@ export default function NextChapter() {
       nav={NAV}
       monogram={names}
       music="reverie"
-      style={{ '--img-hero': `url("${hero}")`, '--img-foliage': `url("${foliage}")`, '--img-wedding': `url("${photo(`${P}wedding.svg`)}")` }}
+      style={{ '--img-hero': `url("${hero}")`, '--img-foliage': `url("${foliage}")`, '--img-wedding': `url("${photo(`${P}wedding.jpg`)}")` }}
     >
       <Loader names={names} letters={[I1, I2]} image={hero} background={foliage} onReveal={() => setReady(true)} />
 
@@ -268,7 +268,7 @@ export default function NextChapter() {
         <div className="nc-wrap">
           <Head title="Entourage" eyebrow="The people who made us who we are today." sprig />
           <figure className="nc-ent-photo rv">
-            <img src={photo(`${P}entourage.svg`)} alt="Our families and friends" loading="lazy" />
+            <img src={photo(`${P}entourage.jpg`)} alt="Our families and friends" loading="lazy" />
           </figure>
           <Entourage groups={entourage} className="nc-ent-list" />
         </div>
@@ -391,7 +391,7 @@ export default function NextChapter() {
           <p className="nc-script nc-sign rv d2">{names}</p>
           <p className="nc-eyebrow rv d3">{when}</p>
         </div>
-        <div className="nc-see-photo" role="img" aria-label={`${D.a} and ${D.b} watching the sunset`} style={{ '--img': `url("${photo(`${P}seeyou.svg`)}")` }} />
+        <div className="nc-see-photo" role="img" aria-label={`${D.a} and ${D.b} watching the sunset`} style={{ '--img': `url("${photo(`${P}seeyou.jpg`)}")` }} />
       </section>
 
       {/* 12. Footer */}

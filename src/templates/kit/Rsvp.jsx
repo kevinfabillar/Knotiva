@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Icon from '../shared/Icon.jsx';
 import { seatLine, useInvite } from './context.jsx';
+import { CustomContext } from './custom.jsx';
 
 // Demo guest list. On a real invitation this comes from the couple's guest list.
 export const DEMO_PARTIES = [
@@ -26,12 +27,24 @@ function findParties(query, parties) {
   return parties.filter((party) => party.some((name) => q.every((t) => norm(name).some((w) => w.startsWith(t)))));
 }
 
+/** On a live invitation there is no guest list yet: the guest's party is their name plus their reserved seats. */
+function liveParty(name, seats) {
+  const first = name.split(/\s+/)[0];
+  const extra = Array.from({ length: Math.max(0, Math.min(10, seats || 1) - 1) }, (_, i) => `${first}’s guest${i ? ` ${i + 1}` : ''}`);
+  return [name, ...extra];
+}
+
 /**
  * The RSVP card: find your name → answer for everyone in your party → details → done.
  * `couple` = { a, b }, `deadline` = "February 1, 2027"
+ *
+ * On a published invitation, CustomContext carries `rsvp.submit(reply)`: the guest types their name
+ * (no demo guest list), and replies are sent with it. Without it (demos) nothing is sent.
  */
 export function Rsvp({ couple, deadline, parties = DEMO_PARTIES, className = '' }) {
   const { guest } = useInvite();
+  const live = useContext(CustomContext).rsvp || null;
+  const [sending, setSending] = useState(false);
   const [step, setStep] = useState(1);
   const [query, setQuery] = useState(guest?.name || '');
   const [error, setError] = useState('');
@@ -49,6 +62,12 @@ export function Rsvp({ couple, deadline, parties = DEMO_PARTIES, className = '' 
 
   const search = (e) => {
     e.preventDefault();
+    if (live) {
+      const name = query.trim().replace(/\s+/g, ' ').slice(0, 80);
+      if (name.length < 2) return setError('Please enter your name.');
+      setError('');
+      return choose(liveParty(name, guest?.seats));
+    }
     const found = findParties(query, parties);
     if (found.length === 0) {
       setError('We couldn’t find that name on the guest list. Please use the name on your invitation.');
@@ -82,7 +101,9 @@ export function Rsvp({ couple, deadline, parties = DEMO_PARTIES, className = '' 
       {step === 1 && (
         <form className="k-rsvp-body" onSubmit={search}>
           <p className="k-rsvp-lead">
-            Please enter the first and last name of one member of your party. If you&rsquo;re replying for your family too, you can answer for everyone on the next step.
+            {live
+              ? 'Please enter your first and last name as it appears on your invitation. You can answer for everyone in your party on the next step.'
+              : <>Please enter the first and last name of one member of your party. If you&rsquo;re replying for your family too, you can answer for everyone on the next step.</>}
           </p>
           <label className="k-field">
             <span>First and last name</span>
@@ -115,9 +136,9 @@ export function Rsvp({ couple, deadline, parties = DEMO_PARTIES, className = '' 
           )}
           <button type="submit" className="k-btn k-btn--block">
             <Icon name="search" size={16} stroke={1.6} />
-            Find my invitation
+            {live ? 'Continue' : 'Find my invitation'}
           </button>
-          <p className="k-rsvp-hint">Demo guests: Maria Santos, Juan Dela Cruz, Grace Lim</p>
+          {!live && <p className="k-rsvp-hint">Demo guests: Maria Santos, Juan Dela Cruz, Grace Lim</p>}
         </form>
       )}
 
@@ -164,9 +185,27 @@ export function Rsvp({ couple, deadline, parties = DEMO_PARTIES, className = '' 
       {step === 3 && (
         <form
           className="k-rsvp-body"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            setStep(4);
+            if (!live) return setStep(4);
+            setSending(true);
+            setError('');
+            try {
+              await live.submit({
+                name: party[0],
+                party: party.map((n) => ({ name: n, attending: answers[n] === 'yes' })),
+                attending: attending.length,
+                seats: party.length,
+                diet: attending.length ? details.diet.trim().slice(0, 300) : '',
+                song: attending.length ? details.song.trim().slice(0, 200) : '',
+                note: details.note.trim().slice(0, 1000),
+              });
+              setStep(4);
+            } catch {
+              setError('We couldn’t send your reply. Please check your connection and try again.');
+            } finally {
+              setSending(false);
+            }
           }}
         >
           {attending.length > 0 ? (
@@ -187,12 +226,17 @@ export function Rsvp({ couple, deadline, parties = DEMO_PARTIES, className = '' 
             <span>A message for the couple</span>
             <textarea rows="3" value={details.note} onChange={(e) => setDetails({ ...details, note: e.target.value })} placeholder="Optional" />
           </label>
+          {step === 3 && error && (
+            <p className="k-rsvp-error" role="alert">
+              {error}
+            </p>
+          )}
           <div className="k-rsvp-nav">
             <button type="button" className="k-link" onClick={() => setStep(2)}>
               Back
             </button>
-            <button type="submit" className="k-btn">
-              Send RSVP
+            <button type="submit" className="k-btn" disabled={sending}>
+              {sending ? 'Sending…' : 'Send RSVP'}
             </button>
           </div>
         </form>
@@ -215,7 +259,9 @@ export function Rsvp({ couple, deadline, parties = DEMO_PARTIES, className = '' 
               </li>
             ))}
           </ul>
-          <p className="k-rsvp-hint">This is a demo. On a real invitation, every reply goes straight to the couple&rsquo;s guest list.</p>
+          <p className="k-rsvp-hint">
+            {live ? <>Your reply has been sent to {couple.a} &amp; {couple.b}.</> : <>This is a demo. On a real invitation, every reply goes straight to the couple&rsquo;s guest list.</>}
+          </p>
           <button
             type="button"
             className="k-link"

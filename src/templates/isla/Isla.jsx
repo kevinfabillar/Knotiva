@@ -137,7 +137,7 @@ function Wave({ fill }) {
   );
 }
 
-export const meta = { defaults: DEFAULTS, className: 't-isla', cover: `${P}palms.svg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+export const meta = { defaults: DEFAULTS, className: 't-isla', cover: `${P}palms.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
 
 export default function Isla() {
   const D = useDetails(DEFAULTS);
@@ -159,11 +159,11 @@ export default function Isla() {
     { kind: 'The Reception', name: D.venue, time: '5:30 until the stars come out', address: D.venueAddress, icon: 'cheers' },
   ];
   const PHOTOS = [
-    { src: photo(`${P}sandbar.svg`), alt: `${D.a} and ${D.b} on a sandbar` },
-    { src: photo(`${P}bangka.svg`), alt: 'An outrigger bangka at sunset' },
-    { src: photo(`${P}palms.svg`), alt: `${D.a} and ${D.b} under the coconut palms` },
-    { src: photo(`${P}barefoot.svg`), alt: 'A barefoot walk at the waterline' },
-    { src: photo(`${P}sampaguita.svg`), alt: 'Hands holding a sampaguita garland' },
+    { src: photo(`${P}sandbar.jpg`), alt: `${D.a} and ${D.b} on a sandbar` },
+    { src: photo(`${P}bangka.jpg`), alt: 'An outrigger bangka at sunset' },
+    { src: photo(`${P}palms.jpg`), alt: `${D.a} and ${D.b} under the coconut palms` },
+    { src: photo(`${P}barefoot.jpg`), alt: 'A barefoot walk at the waterline' },
+    { src: photo(`${P}sampaguita.jpg`), alt: 'Hands holding a sampaguita garland' },
   ];
   const lightbox = useLightbox(PHOTOS);
   const track = useRef(null);

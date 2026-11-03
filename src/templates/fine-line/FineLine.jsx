@@ -115,7 +115,7 @@ function spokenTime(iso) {
   return `${WORDS[h % 12]}${m[2] === '00' ? ' o’clock' : `-${m[2]}`} ${part}`;
 }
 
-export const meta = { defaults: DEFAULTS, className: 't-fineline', cover: `${P}portrait.svg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+export const meta = { defaults: DEFAULTS, className: 't-fineline', cover: `${P}portrait.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
 
 export default function FineLine() {
   const D = useDetails(DEFAULTS);
@@ -134,11 +134,11 @@ export default function FineLine() {
     { kind: `Reception · ${D.receptionTime}`, name: D.venue, address: D.venueAddress, icon: 'cheers', query: `${D.venue} ${D.venueAddress}` },
   ];
   const PHOTOS = [
-    { key: 'portrait', src: photo(`${P}portrait.svg`), alt: `${D.a} and ${D.b}` },
-    { key: 'chapel', src: photo(`${P}chapel.svg`), alt: 'The chapel' },
-    { key: 'hands', src: photo(`${P}hands.svg`), alt: 'Hands with wedding rings' },
-    { key: 'lake', src: photo(`${P}lake.svg`), alt: 'A wide landscape under a big sky' },
-    { key: 'steps', src: photo(`${P}steps.svg`), alt: `${D.a} and ${D.b} together` },
+    { key: 'portrait', src: photo(`${P}portrait.jpg`), alt: `${D.a} and ${D.b}` },
+    { key: 'chapel', src: photo(`${P}chapel.jpg`), alt: 'The chapel' },
+    { key: 'hands', src: photo(`${P}hands.jpg`), alt: 'Two hands held together' },
+    { key: 'lake', src: photo(`${P}lake.jpg`), alt: `${D.a} and ${D.b} looking out over the water` },
+    { key: 'steps', src: photo(`${P}steps.jpg`), alt: `${D.a} and ${D.b} walking along the shore` },
   ];
   const lightbox = useLightbox(PHOTOS);
   const long = schedule.length > 7;

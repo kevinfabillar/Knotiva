@@ -1,0 +1,48 @@
+rules_version = '2';
+
+// Knotiva. The /api functions use firebase-admin and bypass these rules; they only govern browsers.
+//   orders/{orderId}           server only (holds the couple's email)
+//   handles/{handle}           server only (the claim on knotiva.my/<handle>)
+//   sites/{handle}             public read of one site at a time, never listed, server writes only
+//   sites/{handle}/rsvps/{id}  guests may create a reply; nobody can read, change or delete them here
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /orders/{orderId} {
+      allow read, write: if false;
+    }
+
+    match /handles/{handle} {
+      allow read, write: if false;
+    }
+
+    match /sites/{handle} {
+      allow get: if true;
+      allow list, write: if false;
+
+      match /rsvps/{rsvpId} {
+        allow read, update, delete: if false;
+        allow create: if exists(/databases/$(database)/documents/sites/$(handle))
+          && validRsvp(request.resource.data);
+      }
+    }
+
+    function shortString(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+
+    // { name, party: [{ name, attending }], attending, seats, diet, song, note, createdAt }
+    function validRsvp(d) {
+      return d.keys().hasOnly(['name', 'party', 'attending', 'seats', 'diet', 'song', 'note', 'createdAt'])
+        && d.keys().hasAll(['name', 'party', 'attending', 'createdAt'])
+        && shortString(d.name, 1, 80)
+        && d.party is list && d.party.size() >= 1 && d.party.size() <= 10
+        && d.attending is int && d.attending >= 0 && d.attending <= d.party.size()
+        && (!('seats' in d) || (d.seats is int && d.seats >= 1 && d.seats <= 10))
+        && (!('diet' in d) || shortString(d.diet, 0, 300))
+        && (!('song' in d) || shortString(d.song, 0, 200))
+        && (!('note' in d) || shortString(d.note, 0, 1000))
+        && d.createdAt == request.time;
+    }
+  }
+}

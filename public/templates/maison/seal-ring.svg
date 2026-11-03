@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <!-- Maison: the seal's rings without names or monogram (palladium #BDB6AE). For CSS-only uses, e.g. the
+       phone menu watermark at 6% opacity. The full seal with text is the <Seal> component in motifs.jsx. -->
+  <g fill="none" stroke="#BDB6AE">
+    <circle cx="500" cy="500" r="482" stroke-width="4" />
+    <circle cx="500" cy="500" r="466" stroke-width="1.4" />
+    <circle cx="500" cy="500" r="386" stroke-width="1.4" />
+  </g>
+  <circle cx="74" cy="500" r="5" fill="#BDB6AE" />
+  <circle cx="926" cy="500" r="5" fill="#BDB6AE" />
+</svg>

@@ -134,7 +134,7 @@ function Title({ num, children }) {
   );
 }
 
-export const meta = { defaults: DEFAULTS, className: 't-sumi', cover: `${P}portrait.svg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+export const meta = { defaults: DEFAULTS, className: 't-sumi', cover: `${P}portrait.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
 
 export default function Sumi() {
   const D = useDetails(DEFAULTS);
@@ -149,10 +149,10 @@ export default function Sumi() {
   const ceremonyQ = `${D.ceremony} ${D.ceremonyAddress}`;
   const receptionQ = `${D.venue} ${D.place}`;
   const PHOTOS = [
-    { src: photo(`${P}portrait.svg`), alt: `${D.a} and ${D.b} in a Japanese garden` },
-    { src: photo(`${P}maples.svg`), alt: 'A canopy of autumn maples' },
-    { src: photo(`${P}hands.svg`), alt: 'Hands holding a sake cup' },
-    { src: photo(`${P}lantern.svg`), alt: 'A stone lantern at dusk' },
+    { src: photo(`${P}portrait.jpg`), alt: `${D.a} and ${D.b} in a Japanese garden` },
+    { src: photo(`${P}maples.jpg`), alt: 'A canopy of autumn maples' },
+    { src: photo(`${P}hands.jpg`), alt: 'Hands holding a sake cup' },
+    { src: photo(`${P}lantern.jpg`), alt: 'A stone lantern at dusk' },
   ];
   const lightbox = useLightbox(PHOTOS);
 
@@ -270,7 +270,7 @@ export default function Sumi() {
             </div>
           </dl>
           <figure className="sm-day-photo rv d2">
-            <img src={photo(`${P}garden.svg`)} alt="A garden stone path under autumn maples" loading="lazy" />
+            <img src={photo(`${P}garden.jpg`)} alt="A garden stone path under autumn maples" loading="lazy" />
           </figure>
         </div>
       </section>

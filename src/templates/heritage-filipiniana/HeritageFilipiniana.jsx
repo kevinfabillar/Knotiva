@@ -227,9 +227,9 @@ export default function HeritageFilipiniana() {
   const GALLERY = [
     { src: hero, alt: 'Our forever begins' },
     { src: arch, alt: 'A place where stories linger' },
-    { src: photo(`${P}moment.svg`), alt: 'The beauty in every little moment' },
-    { src: photo(`${P}celebration.svg`), alt: 'A lifetime of celebrations' },
-    { src: photo(`${P}light.svg`), alt: 'All the love, all the light' },
+    { src: photo(`${P}moment.jpg`), alt: 'The beauty in every little moment' },
+    { src: photo(`${P}celebration.jpg`), alt: 'A lifetime of celebrations' },
+    { src: photo(`${P}light.jpg`), alt: 'All the love, all the light' },
   ];
   const lightbox = useLightbox(GALLERY);
 

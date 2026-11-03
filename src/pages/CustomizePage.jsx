@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom';
 import { catalogEntry } from '../templates/catalog.js';
 import { LOADERS } from '../templates/registry.js';
 import { clearCustom, compressImage, loadCustom, saveCustom } from '../templates/kit/store.js';
 import { GIFT_QR } from '../templates/kit/custom.jsx';
+import PublishStep from './PublishStep.jsx';
 import './customize.css';
 
 const LABELS = {
@@ -132,6 +133,8 @@ function PhotoTile({ src, label, custom, onPick, onReset }) {
 /** /templates/:slug/customize — the couple fills in their details and photos with a live preview. */
 export default function CustomizePage() {
   const { slug } = useParams();
+  const [query] = useSearchParams();
+  const cancelled = query.get('publish') === 'cancelled';
   const meta = catalogEntry(slug);
   const [record, setRecord] = useState(null);
   const [registry, setRegistry] = useState({ details: null, photos: [], schedule: '', entourage: '', gifts: null });
@@ -251,9 +254,19 @@ export default function CustomizePage() {
           <a className="cz-btn cz-btn--ghost" href={`/templates/${slug}?mine=1`} target="_blank" rel="noreferrer">
             Open full preview
           </a>
-          <Link className="cz-btn" to={`/templates/${slug}/print?mine=1`}>
+          <Link className="cz-btn cz-btn--ghost" to={`/templates/${slug}/print?mine=1`}>
             Print version
           </Link>
+          <button
+            type="button"
+            className="cz-btn"
+            onClick={() => {
+              setTab('edit');
+              requestAnimationFrame(() => document.getElementById('publish')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+            }}
+          >
+            Publish · {meta.price}
+          </button>
         </div>
       </header>
 
@@ -269,7 +282,7 @@ export default function CustomizePage() {
       <div className="cz-body">
         <aside className={`cz-panel${tab === 'edit' ? ' is-on' : ''}`}>
           <h1>Make it yours</h1>
-          <p className="cz-lead">Type your names and details and swap in your own photos. The preview updates as you go. Everything is saved in this browser.</p>
+          <p className="cz-lead">Type your names and details and swap in your own photos. The preview updates as you go. Everything is saved in this browser until you publish.</p>
 
           {!record || !defaults ? (
             <p className="cz-loading">Loading the template…</p>
@@ -382,6 +395,8 @@ export default function CustomizePage() {
                   ))}
                 </div>
               </section>
+
+              <PublishStep slug={slug} meta={meta} record={record} defaults={defaults} cancelled={cancelled} />
 
               <div className="cz-foot">
                 <span className="cz-saved" aria-live="polite">

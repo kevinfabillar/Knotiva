@@ -2,10 +2,12 @@ import { createContext, useContext, useMemo } from 'react';
 
 /**
  * A couple's own edits to a template: `details` (names, date, venue…) and `photos`
- * (default photo URL → their uploaded photo URL). `registry` collects what the template
- * uses, so the customise page knows which fields and photos to offer.
+ * (default photo URL → their photo's URL: an object URL for a Blob saved in this browser, or a
+ * Firebase Storage URL on a published site). `registry` collects what the template uses, so the
+ * customise page knows which fields and photos to offer. `rsvp` is set only on a published
+ * invitation: `{ submit(reply) }` sends a guest's RSVP (see Rsvp.jsx).
  */
-export const CustomContext = createContext({ details: null, photos: null, registry: null });
+export const CustomContext = createContext({ details: null, photos: null, registry: null, rsvp: null });
 
 /** The template's details with the couple's edits on top. Empty edits fall back to the default. */
 export function useDetails(defaults) {

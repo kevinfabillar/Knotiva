@@ -107,11 +107,11 @@ const FAQ = [
 ];
 
 const PLATES = [
-  { src: `${P}plate-1.svg`, caption: 'The acacia, late afternoon' },
-  { src: `${P}plate-2.svg`, caption: 'Market day' },
-  { src: `${P}plate-3.svg`, caption: 'Morning fog, Tagaytay' },
-  { src: `${P}plate-4.svg`, caption: 'The long walk home' },
-  { src: `${P}plate-5.svg`, caption: 'Buttercups' },
+  { src: `${P}plate-1.jpg`, caption: 'The acacia, late afternoon' },
+  { src: `${P}plate-2.jpg`, caption: 'Market day' },
+  { src: `${P}plate-3.jpg`, caption: 'Morning fog, Tagaytay' },
+  { src: `${P}plate-4.jpg`, caption: 'The long walk home' },
+  { src: `${P}plate-5.jpg`, caption: 'Buttercups' },
 ];
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
@@ -256,7 +256,7 @@ function SectionHead({ n, title, sub, dark = false }) {
   );
 }
 
-export const meta = { defaults: DEFAULTS, className: 't-hb', cover: `${P}hero.svg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
+export const meta = { defaults: DEFAULTS, className: 't-hb', cover: `${P}hero.jpg`, schedule: SCHEDULE, palette: PALETTE, dress: DRESS };
 
 export default function Herbarium() {
   const D = useDetails(DEFAULTS);
@@ -267,7 +267,7 @@ export default function Herbarium() {
   const { guest } = useInvite();
   const [I1, I2] = initials(D);
 
-  const hero = photo(`${P}hero.svg`);
+  const hero = photo(`${P}hero.jpg`);
   const plates = PLATES.map((p, i) => ({ src: photo(p.src), alt: `${D.a} and ${D.b}: ${p.caption}`, caption: p.caption, n: ROMAN[i] }));
   const lightbox = useLightbox(plates);
   const roman = romanDate(D.start);

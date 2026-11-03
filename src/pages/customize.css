@@ -407,3 +407,214 @@
   align-items: start;
   gap: 14px;
 }
+
+/* ---------- Publish your invitation ---------- */
+
+.cz-publish {
+  scroll-margin-top: 80px;
+}
+
+.cz-price {
+  color: var(--ink);
+}
+
+.cz-note {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: #f3e6df;
+  border-left: 3px solid #b96f6f;
+  border-radius: 6px;
+}
+
+.cz-handle {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.cz-handle:focus-within {
+  outline: 2px solid rgba(43, 58, 79, 0.25);
+  border-color: var(--ink);
+}
+
+.cz-handle.is-ok {
+  border-color: #4d7a55;
+}
+
+.cz-handle.is-taken,
+.cz-handle.is-invalid {
+  border-color: #b96f6f;
+}
+
+.cz-field .cz-handle-host {
+  display: flex;
+  align-items: center;
+  max-width: 48%;
+  padding: 0 2px 0 13px;
+  overflow: hidden;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: #f7f2e8;
+  border-right: 1px solid var(--line);
+  padding-right: 10px;
+}
+
+.cz-field .cz-handle input {
+  flex: 1;
+  min-width: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+}
+
+.cz-avail {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: -6px 0 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.cz-avail i {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-style: normal;
+  color: #fff;
+  background: var(--muted);
+  border-radius: 50%;
+}
+
+.cz-avail.is-ok {
+  color: #4d7a55;
+}
+
+.cz-avail.is-ok i {
+  background: #4d7a55;
+}
+
+.cz-avail.is-taken,
+.cz-avail.is-invalid {
+  color: #a35757;
+}
+
+.cz-avail.is-taken i,
+.cz-avail.is-invalid i {
+  background: #b96f6f;
+}
+
+.cz-field input:disabled {
+  opacity: 0.6;
+}
+
+.cz-linkcard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 16px 14px;
+  text-align: center;
+  background: #fff;
+  border: 1px dashed #cdbfa8;
+  border-radius: 10px;
+}
+
+.cz-linkcard span,
+.cz-linkcard small {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cz-linkcard small {
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.cz-linkcard b {
+  font-size: 18px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.cz-linkcard em {
+  font-style: italic;
+  color: #b96f6f;
+}
+
+.cz-error {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #a35757;
+}
+
+.cz-pay {
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 18px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.cz-pay:hover:not(:disabled) {
+  background: #3d5270;
+}
+
+.cz-pay:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.cz-pay:has(.cz-spin) {
+  opacity: 0.85;
+}
+
+.cz-spin {
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid rgba(251, 247, 239, 0.35);
+  border-top-color: #fbf7ef;
+  border-radius: 50%;
+  animation: cz-spin 0.8s linear infinite;
+}
+
+@keyframes cz-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cz-paynote {
+  margin: -4px 0 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--muted);
+}
+
+button.cz-btn {
+  cursor: pointer;
+}

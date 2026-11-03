@@ -249,7 +249,7 @@
   inset: -40px;
   background:
     radial-gradient(ellipse at 50% 45%, rgba(36, 35, 30, 0.25), rgba(24, 23, 19, 0.82) 75%),
-    var(--nc-loader-img, url(/templates/next-chapter/loader.svg)) center / cover;
+    var(--nc-loader-img, url(/templates/next-chapter/loader.jpg)) center / cover;
   filter: blur(7px) saturate(0.95);
   transform: scale(1.12);
   animation: nc-drift 9s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
@@ -438,7 +438,7 @@
 .t-next-chapter .nc-hero-photo {
   position: absolute;
   inset: 0;
-  background: var(--img-hero, url(/templates/next-chapter/hero.svg)) center 30% / cover;
+  background: var(--img-hero, url(/templates/next-chapter/hero.jpg)) center 30% / cover;
   transform: scale(1.08);
   transition: transform 2.8s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
@@ -661,7 +661,7 @@
 .t-next-chapter .nc-wedding-photo {
   position: relative;
   height: clamp(340px, 58cqw, 620px);
-  background: var(--img-wedding, url(/templates/next-chapter/wedding.svg)) center 40% / cover;
+  background: var(--img-wedding, url(/templates/next-chapter/wedding.jpg)) center 40% / cover;
 }
 
 .t-next-chapter .nc-wedding-photo::after {
@@ -1166,7 +1166,7 @@
   position: relative;
   height: clamp(300px, 46cqw, 560px);
   margin-top: clamp(-10px, 2cqw, 30px);
-  background: var(--img, url(/templates/next-chapter/seeyou.svg)) center 60% / cover;
+  background: var(--img, url(/templates/next-chapter/seeyou.jpg)) center 60% / cover;
 }
 
 .t-next-chapter .nc-see-photo::before {
@@ -1194,7 +1194,7 @@
   z-index: -1;
   background:
     linear-gradient(rgba(28, 27, 22, 0.78), rgba(28, 27, 22, 0.9)),
-    var(--img-foliage, url(/templates/next-chapter/loader.svg)) center / cover;
+    var(--img-foliage, url(/templates/next-chapter/loader.jpg)) center / cover;
   filter: blur(3px);
 }
 

@@ -92,6 +92,7 @@
 .t-fineline .k-gate--seal[data-step='1'] .k-seal-half--r,
 .t-fineline .k-gate--seal[data-step='2'] .k-seal-half--r { opacity: 0; transform: translateX(34%); }
 .t-fineline .k-gate--seal[data-step]:not([data-step='0']) .k-seal::before { opacity: 0; }
+@media (max-width: 480px) { .t-fineline .k-gate-eyebrow { font-size: 11px; letter-spacing: .2em; } }
 .t-fineline .k-gate-hint { font-weight: 500; font-size: 11px; letter-spacing: .32em; color: var(--muted); opacity: 1; }
 .t-fineline .k-gate-hint i { background: var(--dusty); }
 
@@ -219,10 +220,10 @@
 .t-fineline .k-dress { align-items: flex-start; gap: 36px; max-width: none; margin: 0; text-align: left; }
 .t-fineline .k-dress-note { max-width: 60ch; font-size: 19px; line-height: 1.65; color: var(--muted); }
 .t-fineline .k-swatches { justify-content: flex-start; gap: 8px; }
-.t-fineline .k-swatch { width: 84px; align-items: flex-start; }
+.t-fineline .k-swatch { width: 96px; align-items: flex-start; }
 .t-fineline .k-swatch-shape { width: 60px; height: 60px; }
 .t-fineline .k-swatch-shape--circle { box-shadow: inset 0 0 0 1px rgba(31, 50, 102, .12); }
-.t-fineline .k-swatch span { font-weight: 500; font-size: 10.5px; letter-spacing: .18em; color: var(--muted); }
+.t-fineline .k-swatch span { font-weight: 500; font-size: 10.5px; letter-spacing: .14em; color: var(--muted); }
 .t-fineline .fl-attire { margin-top: 44px; }
 .t-fineline .k-attire { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; border-top: 1px solid var(--line); }
 .t-fineline .k-attire-card { display: grid; grid-template-columns: 52px 1fr; column-gap: 12px; row-gap: 6px; align-items: start; padding: 24px 0 0; text-align: left; background: none; border: 0; border-radius: 0; }
@@ -345,10 +346,10 @@
   .t-fineline .fl-cal-link--phone { display: block; margin-top: 36px; }
 
   .t-fineline .k-dress-note { font-size: 17px; }
-  .t-fineline .k-swatches { gap: 12px; }
-  .t-fineline .k-swatch { width: 52px; }
+  .t-fineline .k-swatches { display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; gap: 8px; width: 100%; }
+  .t-fineline .k-swatch { width: auto; min-width: 0; }
   .t-fineline .k-swatch-shape { width: 46px; height: 46px; }
-  .t-fineline .k-swatch span { font-size: 9px; letter-spacing: .12em; }
+  .t-fineline .k-swatch span { font-size: 8.5px; letter-spacing: .08em; white-space: nowrap; }
   .t-fineline .fl-attire { margin-top: 32px; }
   .t-fineline .k-attire { grid-template-columns: 1fr; }
   .t-fineline .k-attire-card { padding: 22px 0; border-bottom: 1px solid var(--line); }
